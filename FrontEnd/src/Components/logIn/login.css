@@ -1,0 +1,97 @@
+.header{
+    text-align: center;
+    font-weight: 500;
+    font-size: 28px;
+}
+#hello{
+    font-family:serif;
+    font-size: 16px;
+
+}
+.centered {
+    text-align: center;
+}
+
+.L{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    min-height: 100vh;
+    width:100%;
+    background: url('library-download-reading-book-icon-vector-book-75d474e52ea788b28a93a575c48d72e3.png')no-repeat;
+    background-size: 50%;
+    background-position: 0%;
+}
+.form-boxL{
+    position: relative;
+    width:400px;
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10%;
+    z-index: 2;
+    box-shadow: 5px 5px 5px 5px #92B4EC;
+    border: 2px solid rgba(255,255,255,0.5);
+    border-radius: 15px;
+
+}
+.inputbox{
+    position: relative;
+    width:310px;
+    margin: 7% auto;
+    border:1px solid  rgba(224, 215, 215, 0.5);
+    border-radius: 10px;
+}
+
+.inputbox input{
+    width: 100%;
+    height: 50px;
+    background: transparent;
+    border:none;
+    outline:none;
+    padding:0 10px 0 10px;
+    font-size: 14px;
+}
+
+.sign{
+    background-color:#92B4EC;
+    width: 100%;
+    height: 40px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 500;
+}
+.error { 
+    color: red;
+    margin-left: 5%;
+}
+p{
+    margin-top: 10px;
+    text-align: center;
+    font-size: 14px;
+
+}
+#copyright{
+    font-weight: 600;
+    margin-top: 15px;
+    margin-right: 13%;
+    color: rgb(224, 215, 215)
+}
+#signUp{
+    font-style: oblique;
+    font-weight: bold;
+    cursor: pointer;
+    color:#92B4EC;
+}
+@media (max-width: 768px) {
+    .L{
+        background: none;
+    }
+    #copyright{
+        margin-right: 20%;
+    }
+}
