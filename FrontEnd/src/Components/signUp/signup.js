@@ -15,8 +15,9 @@ class SignUp extends React.Component {
       passwordErr: "",
       re_passwordErr: ""
     };
+    
   }
-
+  
   printError = (elemId, hintMsg) => {
     this.setState({ [elemId]: hintMsg });
   };
