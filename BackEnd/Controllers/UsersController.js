@@ -13,18 +13,23 @@ let getAllUsers = async (req, res) => {
 
 let addNewUser = async (req, res) => {
   console.log(req.body);
+  console.log(req.file);
   try {
     const { username, email, password, type } = req.body;
+    // const imageFile = req.files["image"][0].filename;
+    // console.log(imageFile);
+    
+    // if (!req.file || !req.file.filename) {
+  
+    //   return res.status(400).json({ message: "Image file is required" });
+      
+    // }
 
-    if (!req.file || !req.file.filename) {
-      return res.status(400).json({ message: "Image file is required" });
-    }
-
-    const image = req.file.filename;
-
-    if (!username || !email || !password || !type) {
-      return res.status(400).json({ message: "Invalid request body" });
-    }
+    const image = req.file;
+    console.log(req.file);
+    // if (!username || !email || !password || !type) {
+    //   return res.status(400).json({ message: "Invalid request body" });
+    // }
 
     // Rest of your code for creating a new user
 
@@ -34,14 +39,15 @@ let addNewUser = async (req, res) => {
       email,
       password,
       type,
-      image,
+      image
     });
 
     // Save the user and return the response
-
+    const savedUser = await newUser.save();
+    
     return res.status(201).json({
       message: "User created successfully",
-      User: newUser,
+      User: savedUser,
     });
   } catch (err) {
     console.error(err);
