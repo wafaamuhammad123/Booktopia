@@ -1,6 +1,8 @@
 const authorsModel = require("../Models/AuthorsModel");
 
 let getAllAuthors = async (req, res) => {
+  let data = await authorsModel.find({});
+  res.json(data);
 
 };
 

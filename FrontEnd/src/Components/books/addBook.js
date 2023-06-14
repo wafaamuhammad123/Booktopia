@@ -1,5 +1,6 @@
-import React, {useState } from "react";
+import React, {useEffect,useState } from "react";
 import { fetchAddBook } from "../../api";
+import { fetchAuthors } from "../../api";
 
 function AddBook() {
     const [newBook, setNewBook] = useState({
@@ -13,15 +14,20 @@ function AddBook() {
     const [selectedImage, setSelectedImage] = useState(null);
     const [selectedmp4, setSelectedmp4] = useState(null);
     const [selectedpdf, setSelectedpdf] = useState(null);
+    const [selectedAuthorId, setSelectedAuthorId] = useState('');
+    const [authors, setAuthors] = useState([]);
 
 
 
-    const handleInputChange = (e) => {
-        setNewBook({
-          ...newBook,
-          [e.target.name]: e.target.value,
-        });
-      };
+
+    const handleInputChange = (event) => {
+      const { name, value } = event.target;
+      setNewBook((prevState) => ({
+        ...prevState,
+        [name]: value,
+        author_id: selectedAuthorId, 
+      }));
+    };
 
       const handleImageChange = (e) => {
         setSelectedImage(e.target.files[0]);
@@ -34,6 +40,20 @@ function AddBook() {
       const handlepdfChange = (e) => {
         setSelectedpdf(e.target.files[0]);
       };
+
+
+      useEffect(() => {
+        const fetchAuthorsData = async () => {
+          try {
+            const data = await fetchAuthors();
+            setAuthors(data);
+          } catch (error) {
+            console.error('Error fetching authors:', error);
+          }
+        };
+      
+        fetchAuthorsData();
+      }, []);
         
         
     
@@ -44,6 +64,7 @@ function AddBook() {
         formData.append("image", selectedImage);
         formData.append("mp4", selectedmp4);
         formData.append("pdf", selectedpdf);
+        formData.append("author_id", selectedAuthorId);
         formData.append("title", newBook.title);
         formData.append("year", newBook.year);
         formData.append("language", newBook.language);
@@ -63,7 +84,7 @@ function AddBook() {
             language: "",
             pages:"",
             category: "",
-            description: ""
+            description: "",
         });
         setSelectedImage(null);
         setSelectedmp4(null);
@@ -158,6 +179,22 @@ function AddBook() {
           name="pdf"
           onChange={handlepdfChange}
         />
+      </label>
+      <br />
+      <label>
+        Author:
+        <select
+          name="author_id"
+          value={selectedAuthorId}
+          onChange={(event) => setSelectedAuthorId(event.target.value)}
+        >
+          <option value="">Select an author</option>
+          {authors.map((author) => (
+            <option key={author._id} value={author._id}>
+              {author.name}
+            </option>
+          ))}
+        </select>
       </label>
       <br />
         <button type="submit">Add Book</button>

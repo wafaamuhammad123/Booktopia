@@ -19,4 +19,8 @@ export function fetchAddBook(book) {
   }
   
 
-
+//////////////////////////////////////////////////////////////
+export function fetchAuthors() {
+  const url = `${API_BASE_URL}/author/authors`;
+  return fetch(url).then((response) => response.json());
+}

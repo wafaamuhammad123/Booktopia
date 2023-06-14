@@ -30,6 +30,14 @@ const booksSchema = new mongoose.Schema({
     type: "string",
     required: true,
   },
+  pdfLink: {
+    type: "string",
+    required: true,
+  },
+  recordLink: {
+    type: "string",
+    required: true,
+  },
   language: {
     type: "string",
     required: true,
