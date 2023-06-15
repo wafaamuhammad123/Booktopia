@@ -31,3 +31,21 @@ export function fetchAuthors() {
   const url = `${API_BASE_URL}/author/authors`;
   return fetch(url).then((response) => response.json());
 }
+
+
+
+//////////////////////////////////////
+export function fetchLogin(email, password) {
+  const url = `${API_BASE_URL}/user/login`;
+  const user = {
+    email: email,
+    password: password
+  };
+  return fetch(url, {
+    method: "POST",
+    body: JSON.stringify(user),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  }).then((response) => response.json());
+}
