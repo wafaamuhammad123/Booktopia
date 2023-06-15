@@ -6,4 +6,4 @@ import 'bootstrap/dist/js/bootstrap.bundle';
 
 let root = ReactDom.createRoot(document.getElementById('root'))
 
-root.render(<App/>);
+root.render(<App />);

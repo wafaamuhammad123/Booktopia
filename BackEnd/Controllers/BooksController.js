@@ -14,40 +14,66 @@ let getBookById = async (req, res) => {
 
 let createBook = async (req, res) => {
   try {
-    const { title, year, pages, language, category, description, author_id } = req.body;
-    const imageFile = req.files['image'][0].filename;
-    const videoFile = req.files['mp4'][0].filename;
-    const pdfFile = req.files['pdf'][0].filename;
+    const { title, year, pages, language, category, description, author_id } =
+      req.body;
+    const imageFile = req.files["image"][0].filename;
+    const recordLink = req.files["mp3"][0].filename;
+    const pdfFile = req.files["pdf"][0].filename;
 
     const newBook = new booksModel({
       title,
       year,
       pages,
       imageLink: imageFile,
-      recordLink: videoFile,
+      recordLink,
       pdfLink: pdfFile,
       language,
       category,
       description,
-      author_id
+      author_id,
     });
     const savedBook = await newBook.save();
 
-    res.status(201).json({
-      message: 'Book created successfully',
-      book: savedBook
+    res.status(200).json({
+      message: "Book created successfully",
+      book: savedBook,
     });
   } catch (error) {
-    console.error('Error creating book:', error);
-    res.status(500).json({ error: 'Failed to create book' });
+    console.error("Error creating book:", error);
+    res.status(422).json({ error: "Failed to create book" });
   }
 };
 
-let updateBook = async (req, res) => {
- 
+const updateBook = async (req, res) => {
+  const { id } = req.params;
+  const bookDTO = req.body;
+
+  const { image: imageFiles, mp3: recordFiles, pdf: pdfFiles } = req.files;
+
+  const imageLink =
+    imageFiles && imageFiles.length ? imageFiles[0].filename : undefined;
+  const recordLink =
+    recordFiles && recordFiles.length ? recordFiles[0].filename : undefined;
+  const pdfLink =
+    pdfFiles && pdfFiles.length ? pdfFiles[0].filename : undefined;
+
+  try {
+    const book = new booksModel({
+      ...bookDTO,
+      imageLink,
+      recordLink,
+      pdfLink,
+      _id: id,
+    });
+
+    const newBook = await booksModel.findByIdAndUpdate(id, book, {
+      new: true,
+    });
+    res.json(newBook);
+  } catch (err) {
+    res.status(400).json({ msg: "Could not update the book " + err.message });
+  }
 };
-
-
 
 let deleteBook = async (req, res) => {
   var id = req.params.id;
@@ -57,9 +83,9 @@ let deleteBook = async (req, res) => {
 };
 
 module.exports = {
-    getAllBooks,
-    getBookById,
-    createBook,
-    updateBook,
-    deleteBook,
+  getAllBooks,
+  getBookById,
+  createBook,
+  updateBook,
+  deleteBook,
 };
