@@ -1,0 +1,78 @@
+.body{
+    background-color: #2F2F2F;
+    height: 100vh;
+    color: #F7F7F7
+}
+.cont{
+    border-collapse: collapse;
+    margin-left:30%;
+    color: #F7F7F7
+}
+
+.cont td, .cont th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.cont th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #FFCB74;
+  color: #F7F7F7;
+}
+
+.addBook{
+        margin-left: 30%;
+        margin-bottom: 1%;
+        font-size: 25px;
+        color: orange;
+        width: 8em;
+        height: 2em;
+        border-left: 0.08em solid;
+        cursor: pointer;
+}
+
+.addBook::before,
+.addBook::after
+ {
+    content: '';
+    position: absolute;
+    width: inherit;
+    border-left: inherit;
+    z-index: -1;
+}
+
+.addBooki::before {
+    height: 80%;
+    top: 10%;
+    left: calc(-0.15em - 0.08em * 2);
+    filter: brightness(0.8);
+}
+
+.addBook::after {
+    height: 60%;
+    top: 20%;
+    left: calc(-0.15em * 2 - 0.08em * 3);
+    filter: brightness(0.6);
+}
+
+.addBook span {
+    position: relative;
+    height: 120%;
+    top: -10%;
+    box-sizing: border-box;
+    border: 0.08em solid;
+    background-color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: sans-serif;
+    text-transform: capitalize;
+    transform: translateX(calc(-0.15em * 3 - 0.08em * 2));
+    transition: 0.3s;
+}
+
+.addBook:hover span {
+    transform: translateX(0.15em);
+}

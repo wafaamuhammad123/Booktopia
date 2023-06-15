@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetchBookDetails } from "../../api";
-
+import Sidebar from "../admin_dashboard/sidebar";
 function BookDetails() {
   const { id } = useParams();
   const [book, setBook] = useState({});
@@ -17,9 +17,19 @@ function BookDetails() {
   }, [id]);
 
   return (
-    <div>
-      <h5 className="title">{book.title}</h5>
-      <h5 className="year">{book.year}</h5>
+    <div className="body">
+      <Sidebar/>
+      <div style={{paddingTop: "1%"}} >
+        <form className="details">
+          <img src="" alt=""/>
+          <p>{book.title}</p>
+          <p>{book.year}</p>
+          <p>{book.language}</p>
+          <p>{book.description}</p>
+          <p>{book.pages}</p>
+          <p>{book.category}</p>
+      </form>
+      </div>
     </div>
   );
 }

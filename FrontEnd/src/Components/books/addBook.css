@@ -1,0 +1,45 @@
+.newBook{
+    margin-left: 39%;
+    border: 1px solid #fff;
+    width:40%;
+    padding:2%
+}
+.inputs{
+    display: flex;
+    gap:13%
+}
+input{
+    height:5vh;
+    width:120%
+}
+label{
+    padding: 0.75vh 0px;
+}
+.addbk {
+    margin-left: 40%;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    border-radius: 8px;
+    font-size: 17px;
+    font-weight: 500;
+    color: #ffffff80;
+    text-shadow: none;
+    background: transparent;
+    box-shadow: transparent;
+    border: 1px solid #ffffff80;
+    transition: 0.5s ease;
+    user-select: none;
+  }
+  
+  .addbk:hover,:focus {
+    color: #ffffff;
+    background: #FFCB74;
+    border: 1px solid #FFCB74;
+    text-shadow: 0 0 5px #ffffff,
+                0 0 10px #ffffff,
+                0 0 20px #ffffff;
+    box-shadow: 0 0 5px #FFCB74,
+                0 0 20px #FFCB74,
+                0 0 50px #FFCB74,
+                0 0 100px #FFCB74;
+  }

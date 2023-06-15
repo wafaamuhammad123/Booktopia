@@ -1,7 +1,7 @@
 const booksModel = require("../Models/BooksModel");
 
 let getAllBooks = async (req, res) => {
-  let data = await booksModel.find({});
+  let data = await booksModel.find({}).populate("author_id", "name");
   res.json(data);
 };
 
