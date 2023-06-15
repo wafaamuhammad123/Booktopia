@@ -16,7 +16,14 @@ export function fetchAddBook(book) {
       method: "POST",
       body: book,
     }).then((response) => response.json());
-  }
+}
+
+export function fetchDeleteBook(id) {
+  const url = `${API_BASE_URL}/book/delete/${id}`;
+  return fetch(url, {
+    method: 'DELETE',
+  }).then((response) => response.json());
+}
   
 
 //////////////////////////////////////////////////////////////

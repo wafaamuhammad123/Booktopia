@@ -1,5 +1,11 @@
 .details{
-    margin-left: 30%;
-    /* color: #F7F7F7; */
-    border: 1px solid #F7F7F7
+    margin-left: 40%;
+    border: 1px solid #F7F7F7;
+    width: 35%;
+}
+
+.book{
+    color: #FFCB74;
+    font-size: 18px;
+    font-family: 'Pacifico', cursive;
 }

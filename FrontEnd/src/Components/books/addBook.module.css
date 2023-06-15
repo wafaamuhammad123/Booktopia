@@ -15,7 +15,7 @@ input{
 label{
     padding: 0.75vh 0px;
 }
-.addbk {
+#addbk {
     margin-left: 40%;
     padding: 10px 20px;
     text-transform: uppercase;
@@ -31,7 +31,7 @@ label{
     user-select: none;
   }
   
-  .addbk:hover,:focus {
+  #addbk:hover,:focus {
     color: #ffffff;
     background: #FFCB74;
     border: 1px solid #FFCB74;

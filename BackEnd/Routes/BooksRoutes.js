@@ -10,11 +10,11 @@ const multer = require("multer");
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     if (file.fieldname === "image") {
-      cb(null, "public/uploads/"); // Destination folder for images
+      cb(null, "uploads/"); // Destination folder for images
     } else if (file.fieldname === "mp4") {
-      cb(null, "public/videos/"); // Destination folder for videos
+      cb(null, "videos/"); // Destination folder for videos
     } else if (file.fieldname === "pdf") {
-      cb(null, "public/files/"); // Destination folder for pdfs
+      cb(null, "files/"); // Destination folder for pdfs
     }
   },
   filename: function (req, file, cb) {

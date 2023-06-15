@@ -14,10 +14,9 @@ let getBookById = async (req, res) => {
 
 let createBook = async (req, res) => {
   try {
-    const { title, year, pages, language, category, description, author_id } =
-      req.body;
+    const { title, year, pages, language, category, description, author_id } =  req.body;
     const imageFile = req.files["image"][0].filename;
-    const recordLink = req.files["mp3"][0].filename;
+    const recordLink = req.files["mp4"][0].filename;
     const pdfFile = req.files["pdf"][0].filename;
 
     const newBook = new booksModel({

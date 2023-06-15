@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { fetchBooks } from "../../api";
+import { fetchDeleteBook } from '../../api';
 import Sidebar from '../admin_dashboard/sidebar';
 import './index.css' 
 import { NavLink } from 'react-router-dom';
@@ -10,7 +11,7 @@ class Books extends Component {
       allBooks: []
     };
   }
-
+  
   componentDidMount() {
     fetchBooks()
       .then((data) => {
@@ -20,6 +21,21 @@ class Books extends Component {
         console.log(err);
       });
   }
+
+  handleDeleteBook = (id) => {
+    const confirmDelete = window.confirm('Are you sure you want to delete this book?');
+    if (confirmDelete) {
+      fetchDeleteBook(id)
+        .then((response) => {
+          window.location.reload();
+          console.log('Book deleted successfully');
+        })
+        .catch((error) => {
+          console.error('Error deleting book:', error);
+        });
+    }
+  };
+  
 
   renderBooks = () => {
     return this.state.allBooks.map((book) => (
@@ -32,7 +48,7 @@ class Books extends Component {
         <td>
           <button className='btn btn-outline-success me-2'><NavLink className="link1" to={`/books/${book._id}`}>View</NavLink></button>
           <button className='btn btn-outline-info me-2'>Update</button>
-          <button className='btn btn-outline-danger me-2'>Delete</button>
+          <button className='btn btn-outline-danger me-2' onClick={() => this.handleDeleteBook(book._id)}>Delete</button>
         </td>
       </tr>
     ));

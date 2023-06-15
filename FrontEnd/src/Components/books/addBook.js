@@ -1,9 +1,11 @@
 import React, {useEffect,useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import { fetchAddBook } from "../../api";
 import { fetchAuthors } from "../../api";
 import Sidebar from '../admin_dashboard/sidebar';
-import './addBook.css'
+import  Styles from './addBook.module.css'
 function AddBook() {
+  const navigate = useNavigate();
     const [newBook, setNewBook] = useState({
         title: "",
         year: "",
@@ -75,6 +77,7 @@ function AddBook() {
         fetchAddBook(formData)
           .then((data) => {
             console.log("Book added successfully:", data);
+            navigate('/books');
           })
           .catch((error) => {
             console.error("Error adding book:", error);
@@ -95,9 +98,9 @@ function AddBook() {
     <div className='body'>
       <Sidebar/>
       <div style={{paddingTop: "1%"}}>
-      <form onSubmit={handleSubmit} encType="multipart/form-data" className="newBook">
+      <form onSubmit={handleSubmit} encType="multipart/form-data" className={Styles.newBook}>
       <h2 style={{textAlign:"center", color:"#FFCB74" }}>Add Book</h2>
-      <div className="inputs">
+      <div className={Styles.inputs}>
         <label>
           Title:
           <br/>
@@ -119,7 +122,7 @@ function AddBook() {
           />
         </label>
         </div>
-        <div  className="inputs">
+        <div  className={Styles.inputs}>
           <label>
           Language:
           <br />
@@ -141,7 +144,7 @@ function AddBook() {
           />
         </label>
         </div>
-        <div  className="inputs">
+        <div  className={Styles.inputs}>
         <label>
           Category:
           <br />
@@ -185,7 +188,7 @@ function AddBook() {
       <br />
       <label>
         PDF:
-        <br />
+        <br/>
         <input
           type="file"
           name="pdf"
@@ -210,13 +213,11 @@ function AddBook() {
         </select>
       </label>
       <br />
-        <button type="submit" className="addbk">Add Book</button>
+        <button type="submit" id={Styles.addbk}>Add Book</button>
       </form>
       </div>
     </div>
   );
-
- 
 }
 
 export default AddBook;
