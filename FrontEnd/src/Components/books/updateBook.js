@@ -1,28 +1,45 @@
 import React, {useEffect,useState } from "react";
-import { fetchAddBook } from "../../api";
+import { updateBook, fetchBookDetails } from "../../api";
 import { fetchAuthors } from "../../api";
+import { useParams } from "react-router-dom";
 
-function AddBook() {
-    const [newBook, setNewBook] = useState({
-        title: "",
-        year: "",
-        language: "",
-        pages:"",
-        category: "",
-        description: ""
-    });
+
+function UpdateBook() {
+    // const [newBook, setNewBook] = useState({
+    //     title: "",
+    //     year: "",
+    //     language: "",
+    //     pages:"",
+    //     category: "",
+    //     description: ""
+    // });
     const [selectedImage, setSelectedImage] = useState(null);
     const [selectedmp4, setSelectedmp4] = useState(null);
     const [selectedpdf, setSelectedpdf] = useState(null);
     const [selectedAuthorId, setSelectedAuthorId] = useState('');
     const [authors, setAuthors] = useState([]);
 
+    const { id } = useParams();
+  const [book, setBook] = useState({});
+  // console.log(book._id);
+
+  useEffect(() => {
+    fetchBookDetails(id)
+      .then((data) => {
+        setBook(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [id]);
+
+
 
 
 
     const handleInputChange = (event) => {
       const { name, value } = event.target;
-      setNewBook((prevState) => ({
+      setBook((prevState) => ({
         ...prevState,
         [name]: value,
         author_id: selectedAuthorId, 
@@ -65,27 +82,27 @@ function AddBook() {
         formData.append("mp4", selectedmp4);
         formData.append("pdf", selectedpdf);
         formData.append("author_id", selectedAuthorId);
-        formData.append("title", newBook.title);
-        formData.append("year", newBook.year);
-        formData.append("language", newBook.language);
-        formData.append("pages", newBook.pages);
-        formData.append("category", newBook.category);
-        formData.append("description", newBook.description);
-        fetchAddBook(formData)
+        formData.append("title", book.title);
+        formData.append("year", book.year);
+        formData.append("language", book.language);
+        formData.append("pages", book.pages);
+        formData.append("category", book.category);
+        formData.append("description", book.description);
+        formData.append("_id", book._id);
+        console.log("okkkk");
+        console.log(formData.get("_id"));
+        console.log(formData.get("year"));
+
+        updateBook(formData)
           .then((data) => {
-            console.log("Book added successfully:", data);
+            console.log("Book updated successfully:", data);
           })
           .catch((error) => {
-            console.error("Error adding book:", error);
+            console.error("Error updating book:", error);
         });
-          setNewBook({
-            title: "",
-            year: "",
-            language: "",
-            pages:"",
-            category: "",
-            description: "",
-        });
+        
+
+
         setSelectedImage(null);
         setSelectedmp4(null);
   }
@@ -99,7 +116,7 @@ function AddBook() {
           <input
             type="text"
             name="title"
-            value={newBook.title}
+            value={book.title}
             onChange={handleInputChange}
           />
         </label>
@@ -109,7 +126,7 @@ function AddBook() {
           <input
             type="number"
             name="year"
-            value={newBook.year}
+            value={book.year}
             onChange={handleInputChange}
           />
         </label>
@@ -119,7 +136,7 @@ function AddBook() {
           <input
             type="text"
             name="language"
-            value={newBook.language}
+            value={book.language}
             onChange={handleInputChange}
           />
         </label>
@@ -129,7 +146,7 @@ function AddBook() {
           <input
             type="number"
             name="pages"
-            value={newBook.pages}
+            value={book.pages}
             onChange={handleInputChange}
           />
         </label>
@@ -139,7 +156,7 @@ function AddBook() {
           <input
             type="text"
             name="category"
-            value={newBook.category}
+            value={book.category}
             onChange={handleInputChange}
           />
         </label>
@@ -149,7 +166,7 @@ function AddBook() {
           <input
             type="text"
             name="description"
-            value={newBook.description}
+            value={book.description}
             onChange={handleInputChange}
           />
         </label>
@@ -197,7 +214,7 @@ function AddBook() {
         </select>
       </label>
       <br />
-        <button type="submit">Add Book</button>
+        <button type="submit">Update Book</button>
       </form>
     </div>
   );
@@ -205,4 +222,4 @@ function AddBook() {
  
 }
 
-export default AddBook;
+export default UpdateBook;

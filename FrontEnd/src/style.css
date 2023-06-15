@@ -1,0 +1,14 @@
+.link,.link1{
+    text-decoration: none;
+    color: inherit;
+}
+
+.link:hover{
+   padding: 3px 10px;
+   background-color: aliceblue;
+   color: black;
+}
+
+.active {
+    color: white; 
+}

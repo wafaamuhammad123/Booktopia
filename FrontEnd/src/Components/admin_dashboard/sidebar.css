@@ -1,0 +1,37 @@
+.fixed-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 100%;
+    background-color: #2F2F2F;
+    z-index: 3;
+    box-shadow: 0px 5px 10px #FFCB74;
+}
+.title{
+    color: #FFCB74;
+    font-weight: bold;
+    text-align: center;
+    font-family: emoji;
+    margin-top: 15px;
+  }
+  .user{
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .dashboard{
+  margin-left: .5rem;
+  color: #FFCB74;
+  }
+.logout{
+    border: none;
+    background-color: transparent;
+    margin-left: 35%;
+    font-weight:bold;
+    font-size: larger;
+  }
+  .dashboard p{
+    cursor: pointer;
+    font-size: 18px;
+  }
+  

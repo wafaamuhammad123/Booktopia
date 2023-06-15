@@ -15,8 +15,9 @@ class SignUp extends React.Component {
       passwordErr: "",
       re_passwordErr: ""
     };
+    
   }
-
+  
   printError = (elemId, hintMsg) => {
     this.setState({ [elemId]: hintMsg });
   };
@@ -150,7 +151,7 @@ class SignUp extends React.Component {
               <button type="submit" class="sign">Sign Up</button>
               <div>
                 <p>
-                  Already have an account?<span><NavLink to="/login">Sign In</NavLink></span>
+                  Already have an account?<span id="span"><NavLink to="/login">Sign In</NavLink></span>
                 </p>
               </div>
             </form>

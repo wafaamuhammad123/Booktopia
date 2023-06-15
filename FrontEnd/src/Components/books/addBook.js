@@ -1,8 +1,11 @@
 import React, {useEffect,useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import { fetchAddBook } from "../../api";
 import { fetchAuthors } from "../../api";
-
+import Sidebar from '../admin_dashboard/sidebar';
+import  Styles from './addBook.module.css'
 function AddBook() {
+  const navigate = useNavigate();
     const [newBook, setNewBook] = useState({
         title: "",
         year: "",
@@ -74,6 +77,7 @@ function AddBook() {
         fetchAddBook(formData)
           .then((data) => {
             console.log("Book added successfully:", data);
+            navigate('/books');
           })
           .catch((error) => {
             console.error("Error adding book:", error);
@@ -91,11 +95,15 @@ function AddBook() {
   }
 
   return (
-    <div>
-      <h2>Add Book</h2>
-      <form onSubmit={handleSubmit} encType="multipart/form-data">
+    <div className='body'>
+      <Sidebar/>
+      <div style={{paddingTop: "1%"}}>
+      <form onSubmit={handleSubmit} encType="multipart/form-data" className={Styles.newBook}>
+      <h2 style={{textAlign:"center", color:"#FFCB74" }}>Add Book</h2>
+      <div className={Styles.inputs}>
         <label>
           Title:
+          <br/>
           <input
             type="text"
             name="title"
@@ -103,9 +111,9 @@ function AddBook() {
             onChange={handleInputChange}
           />
         </label>
-        <br />
         <label>
           Year:
+          <br />
           <input
             type="number"
             name="year"
@@ -113,9 +121,11 @@ function AddBook() {
             onChange={handleInputChange}
           />
         </label>
-        <br />
-        <label>
+        </div>
+        <div  className={Styles.inputs}>
+          <label>
           Language:
+          <br />
           <input
             type="text"
             name="language"
@@ -123,9 +133,9 @@ function AddBook() {
             onChange={handleInputChange}
           />
         </label>
-        <br />
         <label>
           Pages:
+          <br />
           <input
             type="number"
             name="pages"
@@ -133,9 +143,11 @@ function AddBook() {
             onChange={handleInputChange}
           />
         </label>
-        <br />
+        </div>
+        <div  className={Styles.inputs}>
         <label>
           Category:
+          <br />
           <input
             type="text"
             name="category"
@@ -143,9 +155,9 @@ function AddBook() {
             onChange={handleInputChange}
           />
         </label>
-        <br />
         <label>
           Description:
+          <br />
           <input
             type="text"
             name="description"
@@ -153,9 +165,10 @@ function AddBook() {
             onChange={handleInputChange}
           />
         </label>
-        <br />
+        </div>
         <label>
           Image:
+          <br />
           <input
             type="file"
             name="image"
@@ -165,6 +178,7 @@ function AddBook() {
         <br />
         <label>
         Video:
+        <br />
         <input
           type="file"
           name="mp4"
@@ -174,6 +188,7 @@ function AddBook() {
       <br />
       <label>
         PDF:
+        <br/>
         <input
           type="file"
           name="pdf"
@@ -183,6 +198,7 @@ function AddBook() {
       <br />
       <label>
         Author:
+        <br />
         <select
           name="author_id"
           value={selectedAuthorId}
@@ -197,12 +213,11 @@ function AddBook() {
         </select>
       </label>
       <br />
-        <button type="submit">Add Book</button>
+        <button type="submit" id={Styles.addbk}>Add Book</button>
       </form>
+      </div>
     </div>
   );
-
- 
 }
 
 export default AddBook;
