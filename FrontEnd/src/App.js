@@ -13,6 +13,7 @@ function App(){
     <div>
       <BrowserRouter>
           <Routes>
+              <Route path="" element={<Login/>}/>
               <Route path="login" element={<Login/>}/>
               <Route path="signup" element={<SignUp/>}/>
               <Route path="/books/:id" element={<BookDetails/>}/>
@@ -21,7 +22,6 @@ function App(){
               <Route path="dashboard" element={<DashboardPage/>}/>
               <Route path="updatebook/:id" element={<UpdateBook/>}/>
               <Route path="*" element={<Error/>}/>
-              
           </Routes>
       </BrowserRouter>
 

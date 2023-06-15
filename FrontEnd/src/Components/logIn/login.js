@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import './login.css';
 import { NavLink,  useNavigate } from 'react-router-dom';
-import { fetchLogin } from '../../api';
+import { fetchLogin } from '../../auth';
+import jwtDecode from 'jwt-decode';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -44,10 +45,21 @@ const Login = () => {
 
     if (!emailErr && !passwordErr) {
       fetchLogin(email, password)
-        .then(() => {
-          console.log('Login successful');
-          navigate("/books")
-
+        .then((data) => {
+          console.log(data.token);
+          localStorage.setItem('token', data.token);
+          const token = localStorage.getItem('token');
+          if(token){
+            const decodedToken = jwtDecode(token);
+            const userType = decodedToken.userType;
+            console.log(userType);
+            if( userType === 'admin'){
+              navigate("/books")
+            }
+            else if( userType === 'user'){
+              navigate("/signup")
+            }
+          }
           // Perform any additional actions on successful login
         })
         .catch((error) => {
