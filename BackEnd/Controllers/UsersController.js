@@ -11,7 +11,40 @@ let getAllUsers = async (req, res) => {
 };
 
 let addNewUser = async (req, res) => {
- 
+  console.log(req.body);
+  // console.log(req.file);
+  try {
+    const { username, email, password, type } = req.body;
+    const imageFile = req.files["image"][0].filename;
+    console.log("imageFile:");
+    console.log(imageFile);
+    
+    const image = req.file;
+    console.log("image:");
+    console.log(image);
+    
+    // Rest of your code for creating a new user
+
+    // Example:
+    const newUser = new usersModel({
+      username,
+      email,
+      password,
+      type,
+      image
+    });
+
+    // Save the user and return the response
+    const savedUser = await newUser.save();
+    
+    return res.status(201).json({
+      message: "User created successfully",
+      User: savedUser,
+    });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: "Error creating user" });
+  }
 };
 
 //update
