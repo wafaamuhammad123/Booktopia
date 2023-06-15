@@ -4,6 +4,7 @@ import { fetchAddBook } from "../../api";
 import { fetchAuthors } from "../../api";
 import Sidebar from '../admin_dashboard/sidebar';
 import  Styles from './addBook.module.css'
+import './update.css';
 function AddBook() {
   const navigate = useNavigate();
     const [newBook, setNewBook] = useState({

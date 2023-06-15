@@ -1,18 +1,12 @@
 import React, {useEffect,useState } from "react";
 import { updateBook, fetchBookDetails } from "../../api";
+import { useNavigate } from 'react-router-dom';
 import { fetchAuthors } from "../../api";
 import { useParams } from "react-router-dom";
-
-
+import Sidebar from '../admin_dashboard/sidebar';
+import  Styles from './addBook.module.css'
 function UpdateBook() {
-    // const [newBook, setNewBook] = useState({
-    //     title: "",
-    //     year: "",
-    //     language: "",
-    //     pages:"",
-    //     category: "",
-    //     description: ""
-    // });
+  const navigate = useNavigate();
     const [selectedImage, setSelectedImage] = useState(null);
     const [selectedmp4, setSelectedmp4] = useState(null);
     const [selectedpdf, setSelectedpdf] = useState(null);
@@ -21,7 +15,6 @@ function UpdateBook() {
 
     const { id } = useParams();
   const [book, setBook] = useState({});
-  // console.log(book._id);
 
   useEffect(() => {
     fetchBookDetails(id)
@@ -96,6 +89,7 @@ function UpdateBook() {
         updateBook(formData)
           .then((data) => {
             console.log("Book updated successfully:", data);
+            navigate('/books');
           })
           .catch((error) => {
             console.error("Error updating book:", error);
@@ -108,9 +102,12 @@ function UpdateBook() {
   }
 
   return (
-    <div>
-      <h2>Add Book</h2>
-      <form onSubmit={handleSubmit} encType="multipart/form-data">
+    <div className="body">
+      <Sidebar/>
+      <div  style={{paddingTop: "1%"}}>
+      <form onSubmit={handleSubmit} encType="multipart/form-data" className={Styles.newBook}>
+      <h2 style={{textAlign:"center", color:"#FFCB74" }}>Update Book</h2>
+      <div className={Styles.inputs}>
         <label>
           Title:
           <input
@@ -120,7 +117,6 @@ function UpdateBook() {
             onChange={handleInputChange}
           />
         </label>
-        <br />
         <label>
           Year:
           <input
@@ -130,7 +126,8 @@ function UpdateBook() {
             onChange={handleInputChange}
           />
         </label>
-        <br />
+        </div>
+        <div className={Styles.inputs}>
         <label>
           Language:
           <input
@@ -140,7 +137,6 @@ function UpdateBook() {
             onChange={handleInputChange}
           />
         </label>
-        <br />
         <label>
           Pages:
           <input
@@ -150,7 +146,8 @@ function UpdateBook() {
             onChange={handleInputChange}
           />
         </label>
-        <br />
+        </div>
+        <div className={Styles.inputs}>
         <label>
           Category:
           <input
@@ -160,7 +157,6 @@ function UpdateBook() {
             onChange={handleInputChange}
           />
         </label>
-        <br />
         <label>
           Description:
           <input
@@ -170,7 +166,7 @@ function UpdateBook() {
             onChange={handleInputChange}
           />
         </label>
-        <br />
+        </div>
         <label>
           Image:
           <input
@@ -214,8 +210,9 @@ function UpdateBook() {
         </select>
       </label>
       <br />
-        <button type="submit">Update Book</button>
+        <button type="submit" id={Styles.addbk}>Update Book</button>
       </form>
+      </div>
     </div>
   );
 
