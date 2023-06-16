@@ -18,11 +18,8 @@ let addNewUser = async (req, res) => {
     const { username, email, password, type } = req.body;
     // const imageFile = req.files["image"][0].filename;
     // console.log(imageFile);
-    
     // if (!req.file || !req.file.filename) {
-  
     //   return res.status(400).json({ message: "Image file is required" });
-      
     // }
 
     const image = req.file;
@@ -70,7 +67,21 @@ let updateUser = async (req, res) => {
 };
 
 let login = async (req, res) => {
- 
+  const { email, password } =req.body;
+  let user = await usersModel.findOne({ email: email, password: password });
+  console.log(user);
+
+
+  let Token = jwt.sign(
+    {
+      userId: user._id,
+      userType: user.type,
+    },
+    "thistokensecret"
+  );
+
+  res.header("x-auth-token", Token);
+  return res.status(200).json({ user: user, token: Token });
 };
 
 let DeleteUser = async (req, res) => {

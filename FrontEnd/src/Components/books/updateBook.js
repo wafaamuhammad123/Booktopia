@@ -1,32 +1,38 @@
 import React, {useEffect,useState } from "react";
+import { updateBook, fetchBookDetails } from "../../api";
 import { useNavigate } from 'react-router-dom';
-import { fetchAddBook } from "../../api";
 import { fetchAuthors } from "../../api";
+import { useParams } from "react-router-dom";
 import Sidebar from '../admin_dashboard/sidebar';
 import  Styles from './addBook.module.css'
-import './update.css';
-function AddBook() {
+function UpdateBook() {
   const navigate = useNavigate();
-    const [newBook, setNewBook] = useState({
-        title: "",
-        year: "",
-        language: "",
-        pages:"",
-        category: "",
-        description: ""
-    });
     const [selectedImage, setSelectedImage] = useState(null);
     const [selectedmp4, setSelectedmp4] = useState(null);
     const [selectedpdf, setSelectedpdf] = useState(null);
     const [selectedAuthorId, setSelectedAuthorId] = useState('');
     const [authors, setAuthors] = useState([]);
 
+    const { id } = useParams();
+  const [book, setBook] = useState({});
+
+  useEffect(() => {
+    fetchBookDetails(id)
+      .then((data) => {
+        setBook(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [id]);
+
+
 
 
 
     const handleInputChange = (event) => {
       const { name, value } = event.target;
-      setNewBook((prevState) => ({
+      setBook((prevState) => ({
         ...prevState,
         [name]: value,
         author_id: selectedAuthorId, 
@@ -69,107 +75,100 @@ function AddBook() {
         formData.append("mp4", selectedmp4);
         formData.append("pdf", selectedpdf);
         formData.append("author_id", selectedAuthorId);
-        formData.append("title", newBook.title);
-        formData.append("year", newBook.year);
-        formData.append("language", newBook.language);
-        formData.append("pages", newBook.pages);
-        formData.append("category", newBook.category);
-        formData.append("description", newBook.description);
-        fetchAddBook(formData)
+        formData.append("title", book.title);
+        formData.append("year", book.year);
+        formData.append("language", book.language);
+        formData.append("pages", book.pages);
+        formData.append("category", book.category);
+        formData.append("description", book.description);
+        formData.append("_id", book._id);
+        console.log("okkkk");
+        console.log(formData.get("_id"));
+        console.log(formData.get("year"));
+
+        updateBook(formData)
           .then((data) => {
-            console.log("Book added successfully:", data);
+            console.log("Book updated successfully:", data);
             navigate('/books');
           })
           .catch((error) => {
-            console.error("Error adding book:", error);
+            console.error("Error updating book:", error);
         });
-          setNewBook({
-            title: "",
-            year: "",
-            language: "",
-            pages:"",
-            category: "",
-            description: "",
-        });
+        
+
+
         setSelectedImage(null);
         setSelectedmp4(null);
   }
 
   return (
-    <div className='body'>
+    <div className="body">
       <Sidebar/>
-      <div style={{paddingTop: "1%"}}>
+      <div  style={{paddingTop: "1%"}}>
       <form onSubmit={handleSubmit} encType="multipart/form-data" className={Styles.newBook}>
-      <h2 style={{textAlign:"center", color:"#FFCB74" }}>Add Book</h2>
+      <h2 style={{textAlign:"center", color:"#FFCB74" }}>Update Book</h2>
       <div className={Styles.inputs}>
         <label>
           Title:
-          <br/>
           <input
             type="text"
             name="title"
-            value={newBook.title}
+            value={book.title}
             onChange={handleInputChange}
           />
         </label>
         <label>
           Year:
-          <br />
           <input
             type="number"
             name="year"
-            value={newBook.year}
+            value={book.year}
             onChange={handleInputChange}
           />
         </label>
         </div>
-        <div  className={Styles.inputs}>
-          <label>
+        <div className={Styles.inputs}>
+        <label>
           Language:
-          <br />
           <input
             type="text"
             name="language"
-            value={newBook.language}
+            value={book.language}
             onChange={handleInputChange}
           />
         </label>
         <label>
           Pages:
-          <br />
           <input
             type="number"
             name="pages"
-            value={newBook.pages}
+            value={book.pages}
             onChange={handleInputChange}
           />
         </label>
         </div>
-        <div  className={Styles.inputs}>
+        <div className={Styles.inputs}>
         <label>
           Category:
-          <br />
           <input
             type="text"
             name="category"
-            value={newBook.category}
+            value={book.category}
             onChange={handleInputChange}
           />
         </label>
         <label>
           Description:
-          <br />
           <input
             type="text"
             name="description"
-            value={newBook.description}
+            value={book.description}
             onChange={handleInputChange}
           />
         </label>
         </div>
         <label>
           Image:
-          <br />
           <input
             type="file"
             name="image"
@@ -179,7 +178,6 @@ function AddBook() {
         <br />
         <label>
         Video:
-        <br />
         <input
           type="file"
           name="mp4"
@@ -189,7 +187,6 @@ function AddBook() {
       <br />
       <label>
         PDF:
-        <br/>
         <input
           type="file"
           name="pdf"
@@ -199,7 +196,6 @@ function AddBook() {
       <br />
       <label>
         Author:
-        <br />
         <select
           name="author_id"
           value={selectedAuthorId}
@@ -214,11 +210,13 @@ function AddBook() {
         </select>
       </label>
       <br />
-        <button type="submit" id={Styles.addbk}>Add Book</button>
+        <button type="submit" id={Styles.addbk}>Update Book</button>
       </form>
       </div>
     </div>
   );
+
+ 
 }
 
-export default AddBook;
+export default UpdateBook;
