@@ -11,14 +11,6 @@ const Login = () => {
   const [emailErr, setEmailErr] = useState('');
   const [passwordErr, setPasswordErr] = useState('');
 
-  const printError = (elemId, hintMsg) => {
-    if (elemId === 'emailErr') {
-      setEmailErr(hintMsg);
-    } else if (elemId === 'passwordErr') {
-      setPasswordErr(hintMsg);
-    }
-  };
-
   const validateForm = (e) => {
     e.preventDefault();
 
@@ -57,14 +49,12 @@ const Login = () => {
               navigate("/books")
             }
             else if( userType === 'user'){
-              navigate("/signup")
+              navigate("/home")
             }
           }
-          // Perform any additional actions on successful login
         })
         .catch((error) => {
           console.error('Error logging in:', error);
-          // Show error message or perform any other error handling
         });
     }
   };
