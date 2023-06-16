@@ -13,10 +13,24 @@ let getAllUsers = async (req, res) => {
 
 let addNewUser = async (req, res) => {
   try {
+    
     const { username, email, password, type } = req.body;
     const image = req.file.filename;
+
+
     if (!username || !email || !password || !type || !image) {
       return res.status(400).json({ message: "Invalid request body" });
+    }
+    let testingUserByEmail = await usersModel.findOne({
+      email: req.body.email,
+    });
+    let testingUserByUsername = await usersModel.findOne({
+      username: req.body.username,
+    });
+    if (testingUserByEmail) {
+      return res.status(400).send("Email already taken");
+    } else if (testingUserByUsername) {
+      return res.status(400).send("Username already taken");
     }
     const newUser = new usersModel({
       username,
@@ -29,6 +43,8 @@ let addNewUser = async (req, res) => {
     newUser.password = await bcrypt.hash(newUser.password, salt);
     const savedUser = await newUser.save();
     
+    
+
     return res.status(201).json({
       message: "User created successfully",
       User: savedUser,
