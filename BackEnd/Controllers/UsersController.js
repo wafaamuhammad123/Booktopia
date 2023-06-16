@@ -5,7 +5,7 @@ const bcrypt = require('bcryptjs');
 const fs= require('fs');
 const jwt = require("jsonwebtoken");
 const { Console } = require("console");
-
+const { uploadProduct} = require("../multer");
 let getAllUsers = async (req, res) => {
   let data = await usersModel.find({});
   res.json(data);
@@ -13,11 +13,18 @@ let getAllUsers = async (req, res) => {
 
 let addNewUser = async (req, res) => {
   try {
-    
+    await uploadProduct(req, res, async function (err) {
+      if (err) {
+        console.log(err);
+        return res.status(500).send("Error uploading file");
+      } else {
+
+        if(req.files){
+          console.log(req.files);
+        }
     const { username, email, password, type } = req.body;
+    console.log(req.body);
     const image = req.file.filename;
-
-
     if (!username || !email || !password || !type || !image) {
       return res.status(400).json({ message: "Invalid request body" });
     }
@@ -49,7 +56,7 @@ let addNewUser = async (req, res) => {
       message: "User created successfully",
       User: savedUser,
     });
-  } catch (err) {
+  }})} catch (err) {
     console.error(err);
     return res.status(500).json({ message: "Error creating user" });
   }
