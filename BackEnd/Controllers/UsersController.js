@@ -12,25 +12,12 @@ let getAllUsers = async (req, res) => {
 };
 
 let addNewUser = async (req, res) => {
-  console.log(req.body);
-  console.log(req.file);
   try {
     const { username, email, password, type } = req.body;
-    // const imageFile = req.files["image"][0].filename;
-    // console.log(imageFile);
-    // if (!req.file || !req.file.filename) {
-    //   return res.status(400).json({ message: "Image file is required" });
-    // }
-
-    const image = req.file;
-    console.log(req.file);
-    // if (!username || !email || !password || !type) {
-    //   return res.status(400).json({ message: "Invalid request body" });
-    // }
-
-    // Rest of your code for creating a new user
-
-    // Example:
+    const image = req.file.filename;
+    if (!username || !email || !password || !type || !image) {
+      return res.status(400).json({ message: "Invalid request body" });
+    }
     const newUser = new usersModel({
       username,
       email,
@@ -38,8 +25,8 @@ let addNewUser = async (req, res) => {
       type,
       image
     });
-
-    // Save the user and return the response
+    const salt = await bcrypt.genSalt(10);
+    newUser.password = await bcrypt.hash(newUser.password, salt);
     const savedUser = await newUser.save();
     
     return res.status(201).json({
@@ -51,6 +38,8 @@ let addNewUser = async (req, res) => {
     return res.status(500).json({ message: "Error creating user" });
   }
 };
+
+
 //update
 let updateUser = async (req, res) => {
   console.log(req.body)
@@ -68,10 +57,12 @@ let updateUser = async (req, res) => {
 
 let login = async (req, res) => {
   const { email, password } =req.body;
-  let user = await usersModel.findOne({ email: email, password: password });
-  console.log(user);
-
-
+  let user = await usersModel.findOne({ email: email });
+  let checkPassword = await bcrypt.compare(password, user.password);
+  console.log(checkPassword);
+  if (!checkPassword) {
+    return res.status(400).send("Invalid email or password");
+  }
   let Token = jwt.sign(
     {
       userId: user._id,
@@ -89,7 +80,6 @@ let DeleteUser = async (req, res) => {
     var userToDelete = await usersModel.find({ _id: id });
     await usersModel.deleteOne({ _id: id });
     res.json(userToDelete || "Not Found");
-  
 };
 
 

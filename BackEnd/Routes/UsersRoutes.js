@@ -19,10 +19,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 router.get("/users", usersController.getAllUsers);
-// router.post("/create",upload.single("image"),usersController.addNewUser);
-router.post("/create",upload.fields([
-  { name: "image", maxCount: 1 }])
-,usersController.addNewUser);
+router.post("/create",upload.single("image"),usersController.addNewUser);
 
 //router.post("/create",upload.single("image"), [validator(userSchema)], usersController.addNewUser);
 router.post("/login", usersController.login);

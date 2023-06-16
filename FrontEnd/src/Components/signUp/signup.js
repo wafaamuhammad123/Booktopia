@@ -1,82 +1,91 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './signup.css';
 import { NavLink } from "react-router-dom";
+import { fetchAddUser } from '../../api';
 
-class SignUp extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      username: "",
-      email: "",
-      password: "",
-      repassword: "",
-      nameErr: "",
-      emailErr: "",
-      passwordErr: "",
-      re_passwordErr: ""
-    };
-    
-  }
-  
-  printError = (elemId, hintMsg) => {
-    this.setState({ [elemId]: hintMsg });
+const SignUp = () => {
+  const navigate = useNavigate();
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [repassword, setRepassword] = useState("");
+  const [nameErr, setNameErr] = useState("");
+  const [emailErr, setEmailErr] = useState("");
+  const [passwordErr, setPasswordErr] = useState("");
+  const [re_passwordErr, setRePasswordErr] = useState("");
+  const [image, setImage] = useState(null);
+
+  const handleImageChange = (e) => {
+    setImage(e.target.files[0]);
   };
 
-  validateForm = (e) => {
+  const printError = (elemId, hintMsg) => {
+    switch (elemId) {
+      case "nameErr":
+        setNameErr(hintMsg);
+        break;
+      case "emailErr":
+        setEmailErr(hintMsg);
+        break;
+      case "passwordErr":
+        setPasswordErr(hintMsg);
+        break;
+      case "re_passwordErr":
+        setRePasswordErr(hintMsg);
+        break;
+      default:
+        break;
+    }
+  };
+
+  const validateForm = (e) => {
     e.preventDefault();
-    const { username, email, password, repassword } = this.state;
     let nameErr = true;
     let emailErr = true;
     let passwordErr = true;
     let re_passwordErr = true;
 
-    // Validate name
     if (username === "") {
-      this.printError("nameErr", "Please enter your username");
+      printError("nameErr", "Please enter your username");
     } else {
-      const regex =/^[a-zA-Z\d\s]{5,}$/;
+      const regex = /^[a-zA-Z\d\s]{5,}$/;
       if (regex.test(username) === false) {
-        this.printError("nameErr", "Please enter a valid username with minimum length 5 characters");
+        printError("nameErr", "Please enter a valid username with a minimum length of 5 characters");
       } else {
-        this.printError("nameErr", "");
+        printError("nameErr", "");
         nameErr = false;
       }
     }
 
-    // Validate email
     if (email === "") {
-      this.printError("emailErr", "Please enter your email address");
+      printError("emailErr", "Please enter your email address");
     } else {
       const regex = /^\S+@\S+\.\S+$/;
       if (regex.test(email) === false) {
-        this.printError("emailErr", "Please enter a valid email address");
+        printError("emailErr", "Please enter a valid email address");
       } else {
-        this.printError("emailErr", "");
+        printError("emailErr", "");
         emailErr = false;
       }
     }
 
-    // Validate password
     if (password === "") {
-      this.printError("passwordErr", "Please enter your password");
+      printError("passwordErr", "Please enter your password");
     } else {
       const regex = /^[a-zA-Z\d\s]{5,}$/;
       if (regex.test(password) === false) {
-        this.printError(
-          "passwordErr",
-          "Please enter at least 5 characters"
-        );
+        printError("passwordErr", "Please enter at least 5 characters");
       } else {
-        this.printError("passwordErr", "");
+        printError("passwordErr", "");
         passwordErr = false;
       }
     }
 
-    // Validate re-entered password
     if (repassword !== password) {
-      this.printError("re_passwordErr", "Password doesn't match");
+      printError("re_passwordErr", "Password doesn't match");
     } else {
-      this.printError("re_passwordErr", "");
+      printError("re_passwordErr", "");
       re_passwordErr = false;
     }
 
@@ -84,85 +93,95 @@ class SignUp extends React.Component {
       return false;
     }
 
-    // Set the values in local storage
-    localStorage.setItem("username", username);
-    localStorage.setItem("email", email);
-    localStorage.setItem("password", password);
+    const formData = new FormData();
+    formData.append("image", image);
+    formData.append("username", username);
+    formData.append("email", email);
+    formData.append("password", password);
+    formData.append("type", "user");
+
+    fetchAddUser(formData)
+      .then((data) => {
+        console.log("User added successfully:", data);
+        navigate('/login');
+        // Redirect to login page or perform any other action
+      })
+      .catch((error) => {
+        console.error("Error adding user:", error);
+      });
   };
 
-  render() {
-    const { nameErr, emailErr, passwordErr, re_passwordErr } = this.state;
-
-    return (
-      <section>
-        <div className="form-box">
-          <div className="form-value">
-            <form id="sign" name="contactForm" onSubmit={this.validateForm}>
-              <header className="header">Sign Up</header>
-              <br />
-              <h5 id="hello" className="centered">
-                Hey, Welcome with us
-              </h5>
-              <div className="inputbox">
-                <input
-                  type="text"
-                  name="name"
-                  autoComplete="off"
-                  placeholder="Enter a username"
-                  onChange={(e) => this.setState({ username: e.target.value })}
-                />
-                 </div>
-                <p className="error">{nameErr}</p>
+  return (
+    <section>
+      <div className="form-box">
+        <div className="form-value">
+          <form id="sign" name="contactForm" onSubmit={validateForm}>
+            <header className="header">Sign Up</header>
+            <br />
+            <h5 id="hello" className="centered">
+              Hey, Welcome with us
+            </h5>
             <div className="inputbox">
-                <input
-                  type="text"
-                  name="email"
-                  autoComplete="off"
-                  placeholder="Enter Email"
-                  onChange={(e) => this.setState({ email: e.target.value })}
-                />
-                </div>
-                <p className="error">{emailErr}</p>
-              
-              <div className="inputbox">
-                <input
-                  type="password"
-                  name="password"
-                  autoComplete="off"
-                  placeholder="Enter a password"
-                  onChange={(e) => this.setState({ password: e.target.value })}
-                />
-                 </div>
-                <p className="error">{passwordErr}</p>
-             
-              <div className="inputbox">
-                <input
-                  type="password"
-                  name="re_password"
-                  autoComplete="off"
-                  placeholder="Re-enter the password"
-                  onChange={(e) =>
-                    this.setState({ repassword: e.target.value })
-                  }
-                />
-                </div>
-                <p className="error">{re_passwordErr}</p>
-              
-              <button type="submit" class="sign">Sign Up</button>
-              <div>
-                <p>
-                  Already have an account?<span id="span"><NavLink to="/login">Sign In</NavLink></span>
-                </p>
-              </div>
-            </form>
-          </div>
+              <input
+                type="text"
+                name="name"
+                autoComplete="off"
+                placeholder="Enter a username"
+                onChange={(e) => setUsername(e.target.value)}
+              />
+            </div>
+            <p className="error">{nameErr}</p>
+            <div className="inputbox">
+              <input
+                type="text"
+                name="email"
+                autoComplete="off"
+                placeholder="Enter Email"
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <p className="error">{emailErr}</p>
+            <div className="inputbox">
+              <input
+                type="password"
+                name="password"
+                autoComplete="off"
+                placeholder="Enter a password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            <p className="error">{passwordErr}</p>
+            <div className="inputbox">
+              <input
+                type="password"
+                name="re_password"
+                autoComplete="off"
+                placeholder="Re-enter the password"
+                onChange={(e) => setRepassword(e.target.value)}
+              />
+            </div>
+            <p className="error">{re_passwordErr}</p>
+            <div className="inputbox">
+              <input
+                type="file"
+                name="image"
+                onChange={handleImageChange}
+              />
+            </div>
+            <button type="submit" className="sign">Sign Up</button>
+            <div>
+              <p>
+                Already have an account?<span id="span"><NavLink to="/login">Sign In</NavLink></span>
+              </p>
+            </div>
+          </form>
         </div>
-        <p id="copyright">
-          Copyright @booktopia2023 | privacy policy
-        </p>
-      </section>
-    );
-  }
-}
+      </div>
+      <p id="copyright">
+        Copyright @booktopia2023 | privacy policy
+      </p>
+    </section>
+  );
+};
 
 export default SignUp;
