@@ -1,4 +1,4 @@
-.link,.link1{
+.link,.link1,.link2{
     text-decoration: none;
     color: inherit;
 }
@@ -11,4 +11,7 @@
 
 .active {
     color: white; 
+}
+.active2 {
+    color: black; 
 }

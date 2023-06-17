@@ -1,0 +1,29 @@
+.main-menu{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+#header{
+    background-color: rgb(52, 71, 103);
+    height: 10vh;
+    padding-top: 2vh;
+    color: rgba(0, 0, 0, 0.87);
+}
+#footer{
+    background-color: rgb(52, 71, 103);
+    color:  rgba(0, 0, 0, 0.87);
+    padding-top: 2vh;
+}
+ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+li{
+    margin-left: -30px;
+    padding: 0;
+}
+.logo{
+    height:24vh;
+    width: 60%
+}

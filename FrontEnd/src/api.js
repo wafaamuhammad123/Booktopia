@@ -47,4 +47,11 @@ export function fetchAuthors() {
 
 
 
-
+/////////////////////////////////////////////////////////////
+export function fetchAddUser(user) {
+  const url = `${API_BASE_URL}/user/create`;
+  return fetch(url, {
+    method: "POST",
+    body: user,
+  }).then((response) => response.json());
+}
