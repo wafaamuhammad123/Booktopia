@@ -10,6 +10,8 @@ import DashboardPage from "./Components/admin_dashboard/dashboard";
 import Error from "./Components/error";
 import UpdateBook from "./Components/books/updateBook";
 import BookDetail from "./Components/book_detail/book_detail";
+import Contact from './Components/contact/contact';
+
 function App(){
   return(
     <div>
@@ -25,6 +27,7 @@ function App(){
               <Route path="updatebook/:id" element={<UpdateBook/>}/>
               <Route path="home" element={<Home/>}/>
               <Route path="*" element={<Error/>}/>
+              <Route path="contact" element={<Contact/>}/>
 
               <Route path="BookDetail" element={<BookDetail/>}/>
           </Routes>
