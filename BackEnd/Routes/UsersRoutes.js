@@ -1,10 +1,15 @@
 const express = require("express");
 const router = express.Router();
 const usersController = require("../Controllers/UsersController.js");
-//const validator = require("../middlewares/validator");
+// const validator = require("../permissions/validator");
 const userValidation = require("../Utils/userValidation");
 const cors = require("cors");
 const multer = require("multer");
+
+//for Authorization
+const admin = require("../permissions/userMWPermissions.js");
+const authUser= require("../permissions/auth.js");
+
 
 // const upload= require('../multer.js');
 const { uploadProduct } = require("../multer.js");
@@ -25,13 +30,13 @@ const { uploadProduct } = require("../multer.js");
 
 
 
-router.get("/users", usersController.getAllUsers);
+router.get("/users", admin, usersController.getAllUsers);
 
 router.post("/create",uploadProduct,usersController.addNewUser);
 
 router.post("/login", usersController.login);
-// router.put("/user/:id",upload.single("image"),usersController.updateUser);
+// router.put("/user/:id", auth, upload.single("image"),usersController.updateUser);
 
-router.delete("/delete/:id", usersController.DeleteUser);
-router.get("/:id", usersController.getUserById);
+router.delete("/delete/:id", admin, usersController.DeleteUser);
+router.get("/:id", authUser, usersController.getUserById);
 module.exports = router;
