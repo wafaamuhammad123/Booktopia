@@ -19,8 +19,8 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 router.get("/authors", admin, authorsController.getAllAuthors);
-router.post("/create",upload.single("image"),authorsController.createAuthor);
-router.put("/author/:id", upload.single("image"),authorsController.updateAuthor);
+router.post("/create", admin, upload.single("image"),authorsController.createAuthor);
+router.put("/author/:id", admin,  upload.single("image"),authorsController.updateAuthor);
 router.delete("/delete/:id", admin, authorsController.deleteAuthor);
 router.get("/:id", admin, authorsController.getAuthorById);
 
