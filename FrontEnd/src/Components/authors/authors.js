@@ -7,15 +7,15 @@ export default function Authors (){
     const [authors, setAuthors] =  useState([])
 
     const handleDeleteAuthor = (id) => {
-      const confirmDelete = window.confirm('Are you sure you want to delete this book?');
+      const confirmDelete = window.confirm('Are you sure you want to delete this Author?');
       if (confirmDelete) {
         deleteAuthor(id)
           .then((response) => {
             window.location.reload();
-            console.log('Book deleted successfully');
+            console.log('Author deleted successfully');
           })
           .catch((error) => {
-            console.error('Error deleting book:', error);
+            console.error('Error deleting Author:', error);
           });
       }
     };
