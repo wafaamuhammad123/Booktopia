@@ -14,18 +14,18 @@ let getAuthorById = async (req, res) => {
 
 let createAuthor = async (req, res) => {
   try {
-    const { name, aboutHim} =  req.body;
-    const imageFile = req.files["image"][0].filename;
+     console.log("inside endpoint",req.body.data)
+    const { name, aboutHim} =  req.body.data;
     const author= new authorsModel({
      name,
-     imageFile,
+     imageLink: '',
      aboutHim
     });
     const savedAuthor= await author.save();
 
     res.status(200).json({
       message: "Author added Successfuly",
-      book: savedAuthor,
+      author: savedAuthor,
     });
   } catch (error) {
     console.error("Error adding author:", error);
@@ -39,16 +39,20 @@ let updateAuthor = async (req, res) => {
 
 try{
   let authorID = req.params.id;
-   console.log(req.body);
+   console.log("in update",req.body.data);
   let author= await authorsModel.findOneAndUpdate(
       { _id: authorID},
-      req.body,
+      req.body.data,
       { new: true}
     );
 
   if (!author) {
     throw new NotFoundError(`Author Not Found`);
   }
+  res.status(200).json({
+    message: "updated Successfuly",
+    author: author,
+  });
 }catch (err) {
     res.status(400).json({ msg: "Could not update Author" + err.message });
   }
