@@ -16,7 +16,7 @@ const authorsSchema = new mongoose.Schema({
   },
   imageLink: {
     type: "string",
-    required: true,
+    
   },
   aboutHim: {
     type: "string",
