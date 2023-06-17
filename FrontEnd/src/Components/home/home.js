@@ -11,6 +11,7 @@ const settings = {
 	speed: 500,
 	slidesToShow: 1,
 	slidesToScroll: 1,
+	fade: true, 
   };
 const Home = () => {
 	return (
