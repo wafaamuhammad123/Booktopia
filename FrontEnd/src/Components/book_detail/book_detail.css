@@ -1,0 +1,26 @@
+.product-detail{
+    text-align: left;
+    margin-top: 5%;
+    color: rgb(122, 90, 51);
+   
+}
+.product-detail p{
+    text-align: left;
+    letter-spacing:0.1rem;
+    font-family:'Times New Roman', Times, serif;
+    font-size: larger;
+    margin-bottom: 3%;
+}
+
+.fiction{
+    padding-top: 5%;
+    padding-bottom: 2%;
+}
+.product-detail h1{
+    font-weight: bolder;
+    color: black;
+}
+button{
+    width: 27%;
+
+}

@@ -45,6 +45,27 @@ export function fetchAuthors() {
   return fetch(url).then((response) => response.json());
 }
 
+export function fetchAuthor(id) {
+  const url = `${API_BASE_URL}/author/${id}`;
+  return fetch(url).then((response) => response.json());
+}
+
+export function createAuthor(data){
+  console.log(data);
+  const url = `${API_BASE_URL}/author/create`;
+  return fetch(url, {
+    method: "POST",
+    body: data,
+  }).then((response) => response.json());
+
+}
+export function  deleteAuthor(id){
+  const url = `${API_BASE_URL}/author/delete/${id}`;
+  return fetch(url, {
+    method: 'DELETE',
+  }).then((response) => response.json());
+}
+
 
 
 /////////////////////////////////////////////////////////////

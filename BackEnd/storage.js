@@ -3,29 +3,46 @@ const multer = require("multer");
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
 require("dotenv").config();
 
-console.log(process.env.API_KEY);
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
   api_key: process.env.API_KEY,
   api_secret: process.env.API_SECRET,
 });
 
-
-const storage = new CloudinaryStorage({
+const imageStorage = new CloudinaryStorage({
   cloudinary,
   params: {
-    folder: "bookImages",
+    folder: "images",
     allowedFormats: ["jpeg", "png", "jpg"],
   },
 });
 
-// const upload = multer({
-//   storage,
-//   filename: function (req, file, cb) {
-//     cb(null, Date.now() + "-" + file.originalname);
-//   },
-// });
+
+const storage = new CloudinaryStorage({
+  cloudinary,
+  params: function (req, file) {
+    let folder;
+    let resource_type;
+    if (file.fieldname === "image") {
+      folder = "images";
+      resource_type = "image";
+    } else if (file.fieldname === "mp4") {
+      folder = "videos";
+      resource_type = "video";
+    } else if (file.fieldname === "pdf") {
+      folder = "pdfs";
+      resource_type = "raw";
+    }
+
+    return {
+      folder,
+      resource_type,
+    };
+  },
+});
+
 
 module.exports = {
-  storage,
+  imageStorage,
+  storage
 };

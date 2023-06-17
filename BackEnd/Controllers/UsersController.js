@@ -1,11 +1,12 @@
 const validate = require("../Utils/userValidation");
 const usersModel = require("../Models/UsersModel");
+const cloudinary = require("cloudinary").v2;
 const mongoose = require("mongoose");
 const bcrypt = require('bcryptjs');
 const fs= require('fs');
 const jwt = require("jsonwebtoken");
 const { Console } = require("console");
-
+const {uploadImageUser} = require("../multer");
 let getAllUsers = async (req, res) => {
   let data = await usersModel.find({});
   res.json(data);
@@ -13,11 +14,14 @@ let getAllUsers = async (req, res) => {
 
 let addNewUser = async (req, res) => {
   try {
-    
+    await uploadImageUser(req, res, async function (err) {
+      if (err) {
+        console.log(err);
+        return res.status(500).send("Error uploading file");
+      } else {
     const { username, email, password, type } = req.body;
+    console.log(req.body);
     const image = req.file.filename;
-
-
     if (!username || !email || !password || !type || !image) {
       return res.status(400).json({ message: "Invalid request body" });
     }
@@ -49,7 +53,7 @@ let addNewUser = async (req, res) => {
       message: "User created successfully",
       User: savedUser,
     });
-  } catch (err) {
+  }})} catch (err) {
     console.error(err);
     return res.status(500).json({ message: "Error creating user" });
   }
@@ -58,18 +62,46 @@ let addNewUser = async (req, res) => {
 
 //update
 let updateUser = async (req, res) => {
-  console.log(req.body)
   try {
-    const updatedUser = await usersModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    if (!updatedUser) {
-      return res.status(404).json({ message: 'User not found.' });
-    }
-    return res.json(updatedUser);
+    await uploadImageUser(req, res, async function (err) {
+      if (err) {
+        console.log(err);
+        return res.status(500).send("Error uploading file");
+      } else {
+        const { username, email, password, type } = req.body;
+        const updatedFields = { username, email, password, type };
+        if (req.file) {
+          // Retrieve the existing user document
+          const existingUser = await usersModel.findById(req.params.id);
+          
+          // Delete the old image from Cloudinary
+          if (existingUser.image) {
+            await cloudinary.uploader.destroy(existingUser.image);
+          }
+
+          // Set the new image filename
+          updatedFields.image = req.file.filename;
+        }
+
+        const updatedUser = await usersModel.findByIdAndUpdate(
+          req.params.id,
+          updatedFields,
+          { new: true }
+        );
+
+        if (!updatedUser) {
+          return res.status(404).json({ message: 'User not found.' });
+        }
+
+        return res.json(updatedUser);
+      }
+    });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: 'Internal server error.' });
   }
 };
+
 
 let login = async (req, res) => {
   const { email, password } =req.body;
@@ -91,12 +123,26 @@ let login = async (req, res) => {
   return res.status(200).json({ user: user, token: Token });
 };
 
-let DeleteUser = async (req, res) => {
-    var id = req.params.id;
-    var userToDelete = await usersModel.find({ _id: id });
+const DeleteUser = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const userToDelete = await usersModel.findById(id);
+    if (!userToDelete) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    const imagePublicId = userToDelete.image;
+    if (imagePublicId) {
+      await cloudinary.uploader.destroy(imagePublicId);
+    }
     await usersModel.deleteOne({ _id: id });
-    res.json(userToDelete || "Not Found");
+
+    res.json(userToDelete);
+  } catch (error) {
+    console.error("Error deleting user:", error);
+    res.status(500).json({ message: "Error deleting user" });
+  }
 };
+
 
 
 let getUserById = async (req, res) => {
