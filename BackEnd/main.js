@@ -5,6 +5,7 @@ const PORT = process.env.PORT || 4000;
 const bookRouter = require("./Routes/BooksRoutes");
 const authorRouter = require("./Routes/AuthorsRoutes");
 const userRouter = require("./Routes/UsersRoutes");
+const user_bookRouter = require("./Routes/Users_BooksRoutes");
 // const user_bookRouter = require("./Routes/Users_BooksRoutes");
 const cors = require("cors");
 
@@ -30,7 +31,7 @@ app.use((req, res, next) => {
 app.use("/api/book", bookRouter);
 app.use("/api/author", authorRouter);
 app.use("/api/user", userRouter);
-// app.use("/api/user", user_bookRouter);
+app.use("/api/userbook", user_bookRouter);
 
 //start server
 app.listen(PORT, () => {
