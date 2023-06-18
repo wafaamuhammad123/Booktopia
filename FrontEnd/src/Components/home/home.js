@@ -174,10 +174,8 @@ const Home = () => {
 									<a href="#" class="btn-accent-arrow">shop it now <i class="icon icon-ns-arrow-right"></i></a>
 								</div>
 							</div>
-
 						</div>
 					</div>
-
 				</div>
 
 			</div>
