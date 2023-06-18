@@ -2,7 +2,13 @@ const booksModel = require("../Models/BooksModel");
 const {uploadFiles} = require("../multer");
 const cloudinary = require("cloudinary").v2;
 let getAllBooks = async (req, res) => {
-  let data = await booksModel.find({}).populate("author_id", "name");
+  const category = req.query.category;
+  let data = [];
+  if (category) {
+    data = await booksModel.find({ category: category }).populate("author_id", "name");
+  } else {
+    data = await booksModel.find({}).populate("author_id", "name");
+  }
   res.json(data);
   };
 
@@ -122,9 +128,27 @@ const updateBook = async (req, res) => {
 
 let deleteBook = async (req, res) => {
   var id = req.params.id;
-  var BookToDelete = await booksModel.find({ _id: id });
-  await booksModel.deleteOne({ _id: id });
-  res.json(BookToDelete || "Not Found");
+
+  try {
+    var bookToDelete = await booksModel.findOne({ _id: id });
+    // Delete image from Cloudinary
+    if (bookToDelete.imageLink) {
+      await cloudinary.uploader.destroy(bookToDelete.imageLink);
+    }
+    // Delete video from Cloudinary
+    if (bookToDelete.recordLink) {
+      await cloudinary.uploader.destroy(bookToDelete.recordLink);
+    }
+    // Delete PDF from Cloudinary
+    if (bookToDelete.pdfLink) {
+      await cloudinary.uploader.destroy(bookToDelete.pdfLink);
+    }
+    await booksModel.deleteOne({ _id: id });
+    res.json(bookToDelete || "Not Found");
+  } catch (error) {
+    console.error("Error deleting book:", error);
+    res.status(500).json({ error: "Failed to delete book" });
+  }
 };
 
 module.exports = {
