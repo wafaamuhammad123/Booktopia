@@ -4,15 +4,14 @@ const cloudinary = require("cloudinary").v2;
 let getAllBooks = async (req, res) => {
   let data = await booksModel.find({}).populate("author_id", "name");
   res.json(data);
-};
+  };
 
-let getBookById = async (req, res) => {
-  let id = req.params.id;
-  console.log(id);
-  let book = await booksModel.findById({ _id: id });
-  res.json(book);
-};
-
+  let getBookById = async (req, res) => {
+    let id = req.params.id;
+    console.log(id);
+    let book = await booksModel.findById({ _id: id });
+    res.json(book);
+  };
 
 
 
