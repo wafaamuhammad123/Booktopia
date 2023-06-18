@@ -1,26 +1,28 @@
 const express = require("express");
 const router = express.Router();
 const authorsController = require("../Controllers/AuthorsController.js");
-// const validator = require("../middlewares/validator");
-const cors = require("cors");
+
+// const cors = require("cors");
 const multer = require("multer");
-// const admin = require("../middlewares/userMWPermissions");
-// const auth = require("../middlewares/auth");
 
-// const storage = multer.diskStorage({
-//   destination: function (req, file, cb) {
-//     cb(null, "uploads/");
-//   },
-//   filename: function (req, file, cb) {
-//     cb(null, Date.now() + "-" + file.originalname);
-//   },
-// });
-// const upload = multer({ storage: storage });
+//for Authorization
+const admin = require("../permissions/userMWPermissions.js");
+const authUser= require("../permissions/auth.js");
 
-router.get("/authors", authorsController.getAllAuthors);
-// router.post("/create",upload.single("image"),authorsController.createAuthor);
-// router.put("/book/:id", upload.single("image"),authorsController.updateAuthor);
-router.delete("/delete/:id", authorsController.deleteAuthor);
-router.get("/:id", authorsController.getAuthorById);
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "uploads/");
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + "-" + file.originalname);
+  },
+});
+const upload = multer({ storage: storage });
+
+router.get("/authors", authUser, authorsController.getAllAuthors);
+router.post("/create", admin, upload.single("image"),authorsController.createAuthor);
+router.put("/author/:id", admin,  upload.single("image"),authorsController.updateAuthor);
+router.delete("/delete/:id", admin, authorsController.deleteAuthor);
+router.get("/:id", authUser, authorsController.getAuthorById);
 
 module.exports = router;
