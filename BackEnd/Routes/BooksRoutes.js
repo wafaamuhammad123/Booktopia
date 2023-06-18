@@ -23,7 +23,11 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
+
+router.get("/filter", booksController.getBooksByStatus);
+
 router.get("/books", booksController.getAllBooks);
+
 router.post(
   "/create",
   upload.fields([

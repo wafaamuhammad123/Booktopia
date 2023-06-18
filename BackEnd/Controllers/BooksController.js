@@ -12,6 +12,23 @@ let getBookById = async (req, res) => {
   res.json(book);
 };
 
+let getBooksByStatus = async (req, res) => {
+  try {
+    const { status } = req.query;
+
+    if (!status || !['read', 'waiting', 'finished'].includes(status)) {
+      return res.status(400).json({ message: "Invalid status parameter" });
+    }
+
+    // Retrieve books based on status
+    const books = await booksModel.find({ status });
+
+    res.status(200).json({ success: true, data: books });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: "Error retrieving books" });
+  }
+};
 
 
 
@@ -88,6 +105,7 @@ module.exports = {
   getAllBooks,
   getBookById,
   createBook,
+  getBooksByStatus,
   updateBook,
   deleteBook,
 };
