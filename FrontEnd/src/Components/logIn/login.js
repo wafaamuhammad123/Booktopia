@@ -50,7 +50,7 @@ const Login = () => {
             const userType = decodedToken.userType;
             console.log(userType);
             if( userType === 'admin'){
-              navigate("/books")
+               navigate("/books")
             }
             else if( userType === 'user'){
               navigate("/home")

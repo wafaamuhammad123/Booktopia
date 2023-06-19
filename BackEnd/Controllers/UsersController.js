@@ -62,6 +62,7 @@ let addNewUser = async (req, res) => {
 
 //update
 let updateUser = async (req, res) => {
+  console.log(req.body);
   try {
     await uploadImageUser(req, res, async function (err) {
       if (err) {
