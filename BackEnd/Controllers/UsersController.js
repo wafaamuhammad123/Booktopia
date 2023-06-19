@@ -21,7 +21,8 @@ let addNewUser = async (req, res) => {
       } else {
     const { username, email, password, type } = req.body;
     console.log(req.body);
-    const image = req.file.filename;
+    const image = req.file.path;
+    console.log(req.file.path);
     if (!username || !email || !password || !type || !image) {
       return res.status(400).json({ message: "Invalid request body" });
     }
@@ -81,7 +82,7 @@ let updateUser = async (req, res) => {
           }
 
           // Set the new image filename
-          updatedFields.image = req.file.filename;
+          updatedFields.image = req.file.path;
         }
 
         const updatedUser = await usersModel.findByIdAndUpdate(
