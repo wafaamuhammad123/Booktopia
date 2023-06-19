@@ -4,7 +4,7 @@ import Footer from '../footer/footer.js';
 import './book_detail.css';
 const BookDetail = () => {
   return (
-    <div className="page">
+    <div className="bookdetail">
       <Header />
 
 

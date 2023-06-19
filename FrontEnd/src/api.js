@@ -45,3 +45,7 @@ export function deleteAuthor(id) {
 export function fetchAddUser(user) {
   return axiosInstance.post('/user/create', user).then((response) => response.data);
 }
+
+export function fetchUpdateUser(id) {
+  return axiosInstance.put(`/user/user/${id}`).then((response) => response.data);
+}

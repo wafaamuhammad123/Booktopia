@@ -14,7 +14,9 @@ import BookList from "./Components/testSearch/search"
 import Authors from "./Components/authors/authors";
 import AddAuthor from "./Components/authors/addAuthor";
 import UpdateAuthor from "./Components/authors/updateAuthor";
+import UserProfile from "./Components/user/userprofile";
 import AllBooks from "./Components/books/allBooks";
+import UpdateUser from "./Components/user/updateUser";
 function App(){
   return(
     <div>
@@ -34,8 +36,10 @@ function App(){
               <Route path="home" element={<Home/>}/>
               <Route path="lists" element={<BookList/>}/>
               <Route path="*" element={<Error/>}/>
-
+              {/* <Route path="contact" element={<Contact/>}/> */}
               <Route path="BookDetail" element={<BookDetail/>}/>
+              <Route path="userprofile" element={<UserProfile/>}/>
+              <Route path= "UpdateUser/:id" element={<UpdateUser/>}/>
           </Routes>
       </BrowserRouter>
 

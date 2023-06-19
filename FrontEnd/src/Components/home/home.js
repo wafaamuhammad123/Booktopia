@@ -5,6 +5,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import Header from '../header/header';
 import Footer from '../footer/footer.js';
 import './home.css';
+
 const settings = {
 	dots: true,
 	infinite: true,
@@ -13,6 +14,7 @@ const settings = {
 	slidesToScroll: 1,
 	fade: true, 
   };
+
 const Home = () => {
 	return (
 	  <div className="page">
@@ -183,6 +185,8 @@ const Home = () => {
 		</div>
 	</div>
 </div>
+
+
 
 
 <div id="popular-books" class="bookshelf">
@@ -708,6 +712,7 @@ const Home = () => {
 		</div>
 	</div>
 </div>
+
 
       <Footer />
      </div> 
