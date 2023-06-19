@@ -1,75 +1,52 @@
-const API_BASE_URL = "http://localhost:4000/api";
+import axiosInstance from './Components/utils/axiosInstance';
+
+// const API_BASE_URL = "http://localhost:4000/api";
 
 export function fetchBookDetails(id) {
-  const url = `${API_BASE_URL}/book/${id}`;
-  return fetch(url).then((response) => response.json());
+  return axiosInstance.get(`/book/${id}`).then((response) => response.data);
 }
 
 export function fetchBooks() {
-  const url = `${API_BASE_URL}/book/books`;
-  return fetch(url).then((response) => response.json());
+  return axiosInstance.get('/book/books').then((response) => response.data);
 }
 
 export function fetchAddBook(book) {
-    const url = `${API_BASE_URL}/book/create`;
-    return fetch(url, {
-      method: "POST",
-      body: book,
-    }).then((response) => response.json());
+  return axiosInstance.post('/book/create', book).then((response) => response.data);
 }
 
 export function updateBook(book) {
-  console.log("HERE");
-  const id =book.get("_id");
-  console.log(id);
-  const url = `${API_BASE_URL}/book/book/${id}`;
-  
-  return fetch(url, {
-    method: "PUT",
-    body: book,
-  }).then((response) => response.json());
+  const id = book.get('_id');
+  return axiosInstance.put(`/book/book/${id}`, book).then((response) => response.data);
 }
-
 
 export function fetchDeleteBook(id) {
-  const url = `${API_BASE_URL}/book/delete/${id}`;
-  return fetch(url, {
-    method: 'DELETE',
-  }).then((response) => response.json());
+  return axiosInstance.delete(`/book/delete/${id}`).then((response) => response.data);
 }
-  
 
-//////////////////////////////////////////////////////////////
+// Similarly, update your other API functions as well
+
 export function fetchAuthors() {
-  const url = `${API_BASE_URL}/author/authors`;
-  return fetch(url).then((response) => response.json());
+  return axiosInstance.get('/author/authors').then((response) => response.data);
 }
 
+<<<<<<< HEAD
 export function fetchAuthor(id, token) {
   const url = `${API_BASE_URL}/author/${id}`;
   const headers = {
     authorization: `${token}`,
   };
   return fetch(url, {headers}).then((response) => response.json());
+=======
+export function fetchAuthor(id) {
+  return axiosInstance.get(`/author/${id}`).then((response) => response.data);
+>>>>>>> cb3bfa476ab499f9d014c8a4c5de7217b793600d
 }
 
-export function createAuthor(data){
-  console.log(data);
-  const url = `${API_BASE_URL}/author/create`;
-  return fetch(url, {
-    method: "POST",
-    body: data,
-  }).then((response) => response.json());
-
-}
-export function  deleteAuthor(id){
-  const url = `${API_BASE_URL}/author/delete/${id}`;
-  return fetch(url, {
-    method: 'DELETE',
-  }).then((response) => response.json());
+export function createAuthor(data) {
+  return axiosInstance.post('/author/create', data).then((response) => response.data);
 }
 
-
+<<<<<<< HEAD
 export function fetchBooksByAuthor (id, token){
   const url = `${API_BASE_URL}/book/booksByAuthor/${id}`;
   const headers = {
@@ -78,12 +55,12 @@ export function fetchBooksByAuthor (id, token){
   return fetch(url, {headers}).then((response) => response.json());
 }
 
+=======
+export function deleteAuthor(id) {
+  return axiosInstance.delete(`/author/delete/${id}`).then((response) => response.data);
+}
+>>>>>>> cb3bfa476ab499f9d014c8a4c5de7217b793600d
 
-/////////////////////////////////////////////////////////////
 export function fetchAddUser(user) {
-  const url = `${API_BASE_URL}/user/create`;
-  return fetch(url, {
-    method: "POST",
-    body: user,
-  }).then((response) => response.json());
+  return axiosInstance.post('/user/create', user).then((response) => response.data);
 }
