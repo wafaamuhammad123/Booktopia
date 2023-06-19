@@ -29,7 +29,23 @@ function BookDetails() {
           <p><span className="book">Description: </span>{book.description}</p>
           <p><span className="book">Pages: </span>{book.pages}</p>
           <p><span className="book">Category: </span>{book.category}</p>
-      </form>
+          <div>
+          <video controls>
+            <source src={book.recordLink} type="video/mp4" />
+          </video>
+          </div>
+          <img src={book.imageLink} alt="notFound"/>
+          <div>
+          <div>
+      <a href={book.pdfLink} target="_blank" rel="noopener noreferrer">
+        Read Online
+      </a>
+      <a href={book.pdfLink} download>
+        Download
+      </a>
+    </div>
+    </div>  
+        </form>
       </div>
     </div>
   );

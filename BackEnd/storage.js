@@ -31,7 +31,7 @@ const storage = new CloudinaryStorage({
       resource_type = "video";
     } else if (file.fieldname === "pdf") {
       folder = "pdfs";
-      resource_type = "raw";
+      resource_type = "auto";
     }
 
     return {
