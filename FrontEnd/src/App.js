@@ -13,6 +13,7 @@ import BookDetail from "./Components/book_detail/book_detail";
 import Authors from "./Components/authors/authors";
 import AddAuthor from "./Components/authors/addAuthor";
 import UpdateAuthor from "./Components/authors/updateAuthor";
+import Author from "./Components/authors/authorDetails";
 function App(){
   return(
     <div>
@@ -25,6 +26,7 @@ function App(){
               <Route path="createbook" element={<AddBook/>}/>
               <Route path="books" element={<Books/>}/>
               <Route path="authors" element={<Authors/>}/>
+              <Route path="authors/:id" element={<Author/>}/>
               <Route path="createAuthor" element={<AddAuthor/>}/>
               <Route path="updateAuthor/:id" element={<UpdateAuthor/>}/>
               <Route path="dashboard" element={<DashboardPage/>}/>
