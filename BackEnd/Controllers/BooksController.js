@@ -116,9 +116,14 @@ const updateBook = async (req, res) => {
       }
 
       // Get the file URLs or undefined if no file is uploaded
-      const imageLink = imageFiles && imageFiles.length ? imageFiles[0].path : existingBook.imageLink;
-      const recordLink = recordFiles && recordFiles.length ? recordFiles[0].path : existingBook.recordLink;
-      const pdfLink = pdfFiles && pdfFiles.length ? pdfFiles[0].path : existingBook.pdfLink;
+      const imageLink = imageFiles && imageFiles.length ? req.files["image"][0].filename : existingBook.imageLink;
+      const recordLink = recordFiles && recordFiles.length ? req.files["mp4"][0].filename : existingBook.recordLink;
+      const pdfLink = pdfFiles && pdfFiles.length ? req.files["pdf"][0].filename : existingBook.pdfLink;
+
+      // console.log(pdfFiles[0].path);
+      // console.log(existingBook.pdfLink);
+
+
 
       // Create a new book object with updated data
       const updatedBook = {
