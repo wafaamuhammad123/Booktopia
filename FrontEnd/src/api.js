@@ -6,6 +6,7 @@ export function fetchBookDetails(id) {
   return axiosInstance.get(`/book/${id}`).then((response) => response.data);
 }
 
+
 export function fetchBooks() {
   return axiosInstance.get('/book/books').then((response) => response.data);
 }

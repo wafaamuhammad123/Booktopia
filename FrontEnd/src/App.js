@@ -1,23 +1,28 @@
-import { BrowserRouter,Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter,
+  Navigate,
+  Route,
+  Routes,
+  useNavigate,
+} from "react-router-dom";
 
-import Login from "./Components/logIn/login"
-import SignUp from "./Components/signUp/signup"
-import Books from './Components/books/index'
-import BookDetails from './Components/books/bookDetails'
-import AddBook from './Components/books/addBook'
-import Home from './Components/home/home'
+import Login from "./Components/logIn/login";
+import SignUp from "./Components/signUp/signup";
+import Books from "./Components/books/index";
+import BookDetails from "./Components/books/bookDetails";
+import AddBook from "./Components/books/addBook";
+import Home from "./Components/home/home";
 import DashboardPage from "./Components/admin_dashboard/dashboard";
 import Error from "./Components/error";
 import UpdateBook from "./Components/books/updateBook";
 import BookDetail from "./Components/book_detail/book_detail";
-import BookList from "./Components/testSearch/search"
+import BookList from "./Components/testSearch/search";
 import Authors from "./Components/authors/authors";
 import AddAuthor from "./Components/authors/addAuthor";
 import UpdateAuthor from "./Components/authors/updateAuthor";
 import UserProfile from "./Components/user/userprofile";
 import AllBooks from "./Components/books/allBooks";
 import UpdateUser from "./Components/user/updateUser";
-import UserBooks from "./Components/user/userBooks";
 function App(){
   return(
     <div>
@@ -41,11 +46,11 @@ function App(){
               <Route path="BookDetail" element={<BookDetail/>}/>
               <Route path="userprofile" element={<UserProfile/>}/>
               <Route path= "UpdateUser/:id" element={<UpdateUser/>}/>
-              <Route path= "UserBooks/:id" element= {<UserBooks/>}/>
           </Routes>
       </BrowserRouter>
 
     </div>
-  )
+  );
 }
+
 export default App;
