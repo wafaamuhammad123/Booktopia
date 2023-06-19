@@ -10,14 +10,14 @@ let getAllBooks = async (req, res) => {
     data = await booksModel.find({}).populate("author_id", "name");
   }
   res.json(data);
-};
+  };
 
-let getBookById = async (req, res) => {
-  let id = req.params.id;
-  console.log(id);
-  let book = await booksModel.findById({ _id: id });
-  res.json(book);
-};
+  let getBookById = async (req, res) => {
+    let id = req.params.id;
+    console.log(id);
+    let book = await booksModel.findById({ _id: id });
+    res.json(book);
+  };
 
 let getBooksByStatus = async (req, res) => {
   try {
@@ -36,7 +36,6 @@ let getBooksByStatus = async (req, res) => {
     return res.status(500).json({ message: "Error retrieving books" });
   }
 };
-
 
 
 let createBook = async (req, res) => {
