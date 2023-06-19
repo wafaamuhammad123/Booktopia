@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
+import { NavLink } from "react-router-dom";
 const UserProfile = ({ userId }) => {
   const [user, setUser] = useState(null);
 
@@ -36,6 +36,8 @@ const UserProfile = ({ userId }) => {
           <img src={user.image} alt="User" />
         </div>
       )}
+
+<button className='btn btn-outline-info me-2'><NavLink className="link1" to={`/UpdateUser/${user._id}`}> Update</NavLink></button>
     </div>
   );
 };
