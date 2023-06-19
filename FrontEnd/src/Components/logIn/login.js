@@ -53,7 +53,7 @@ const Login = () => {
                navigate("/dashboard")
             }
             else if( userType === 'user'){
-               navigate("/home")
+              navigate("/home")
             }
           }
         })
