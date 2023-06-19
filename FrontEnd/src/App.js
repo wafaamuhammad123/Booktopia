@@ -1,49 +1,117 @@
-import { BrowserRouter,Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter,
+  Navigate,
+  Route,
+  Routes,
+  useNavigate,
+} from "react-router-dom";
 
-import Login from "./Components/logIn/login"
-import SignUp from "./Components/signUp/signup"
-import Books from './Components/books/index'
-import BookDetails from './Components/books/bookDetails'
-import AddBook from './Components/books/addBook'
-import Home from './Components/home/home'
+import Login from "./Components/logIn/login";
+import SignUp from "./Components/signUp/signup";
+import Books from "./Components/books/index";
+import BookDetails from "./Components/books/bookDetails";
+import AddBook from "./Components/books/addBook";
+import Home from "./Components/home/home";
 import DashboardPage from "./Components/admin_dashboard/dashboard";
 import Error from "./Components/error";
 import UpdateBook from "./Components/books/updateBook";
 import BookDetail from "./Components/book_detail/book_detail";
-import BookList from "./Components/testSearch/search"
+import BookList from "./Components/testSearch/search";
 import Authors from "./Components/authors/authors";
 import AddAuthor from "./Components/authors/addAuthor";
 import UpdateAuthor from "./Components/authors/updateAuthor";
 import UserProfile from "./Components/user/userprofile";
 import AllBooks from "./Components/books/allBooks";
 import UpdateUser from "./Components/user/updateUser";
-function App(){
-  return(
+import jwtDecode from "jwt-decode";
+import Error403 from "./Components/error403";
+
+const isAuthenticated = () => {
+  // const navigate =useNavigate();
+  const token = localStorage.getItem("token");
+  // return !!token;
+  if(token) return true;
+  else return false;
+};
+
+const isAdmin = () => {
+  const token = localStorage.getItem("token");
+  if (token) {
+    const decodedToken = jwtDecode(token);
+    const userRole = decodedToken.userType;
+    return userRole === "admin";
+  }
+  return false;
+};
+
+
+function App() {
+  // const navigate=useNavigate();
+
+  return (
     <div>
       <BrowserRouter>
-          <Routes>
-              <Route path="" element={<Login/>}/>
-              <Route path="login" element={<Login/>}/>
-              <Route path="signup" element={<SignUp/>}/>
-              <Route path="/books/:id" element={<BookDetails/>}/>
-              <Route path="createbook" element={<AddBook/>}/>
-              <Route path="books" element={<Books/>}/>
-              <Route path="authors" element={<Authors/>}/>
-              <Route path="createAuthor" element={<AddAuthor/>}/>
-              <Route path="updateAuthor/:id" element={<UpdateAuthor/>}/>
-              <Route path="dashboard" element={<DashboardPage/>}/>
-              <Route path="updatebook/:id" element={<UpdateBook/>}/>
-              <Route path="home" element={<Home/>}/>
-              <Route path="lists" element={<BookList/>}/>
-              <Route path="*" element={<Error/>}/>
-              {/* <Route path="contact" element={<Contact/>}/> */}
-              <Route path="BookDetail" element={<BookDetail/>}/>
-              <Route path="userprofile" element={<UserProfile/>}/>
-              <Route path= "UpdateUser/:id" element={<UpdateUser/>}/>
-          </Routes>
-      </BrowserRouter>
+        <Routes>
+          <Route path="" element={<Login />} />
+          <Route path="login" element={<Login />} />
+          <Route path="signup" element={<SignUp />} />
+          <Route path="home" element={<Home />} />
+          <Route path="error403" element={<Error403 />} />
 
+          {isAdmin() ? (
+            <>
+              <Route path="/books/:id" element={<BookDetails />} />
+              <Route path="createbook" element={<AddBook />} />
+              <Route path="books" element={<Books />} />
+              <Route path="authors" element={<Authors />} />
+              <Route path="createAuthor" element={<AddAuthor />} />
+              <Route path="updateAuthor/:id" element={<UpdateAuthor />} />
+              <Route path="dashboard" element={<DashboardPage />} />
+              <Route path="updatebook/:id" element={<UpdateBook />} />
+            </>
+          ) : (
+            <>
+              <Route path="/books/:id" element={<Navigate to="/error403" replace />} />
+              <Route path="createbook" element={<Navigate to="/error403" replace />} />
+              <Route path="books" element={<Navigate to="/error403" replace />} />
+              <Route path="authors" element={<Navigate to="/error403" replace />} />
+              <Route path="createAuthor" element={<Navigate to="/error403" replace />} />
+              <Route path="updateAuthor/:id" element={<Navigate to="/error403" replace />} />
+              <Route path="dashboard" element={<Navigate to="/error403" replace />} />
+              <Route path="updatebook/:id" element={<Navigate to="/error403" replace />} />            
+            
+            </>
+
+            
+          )}
+
+
+
+          {isAuthenticated() ? (
+            <>
+              <Route path="lists" element={<BookList />} />
+              <Route path="BookDetail" element={<BookDetail />} />
+              <Route path="userprofile" element={<UserProfile />} />
+              <Route path="UpdateUser/:id" element={<UpdateUser />} />
+            </>
+          ) : (
+            <>
+              <Route path="lists" element={<Navigate to="/login" replace />} />
+              <Route path="BookDetail" element={<Navigate to="/login" replace />} />
+              <Route path="userprofile" element={<Navigate to="/login" replace />} />
+              <Route path="UpdateUser/:id" element={<Navigate to="/login" replace />} />
+            </>
+
+            
+          )}
+
+          
+
+          <Route path="*" element={<Error />} />
+        </Routes>
+      </BrowserRouter>
     </div>
-  )
+  );
 }
+
 export default App;

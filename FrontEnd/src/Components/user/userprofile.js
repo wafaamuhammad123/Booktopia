@@ -1,18 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from "react-router-dom";
+import jwtDecode from 'jwt-decode';
+import {fetchuserDetails} from '../../api';
 const UserProfile = ({ userId }) => {
   const [user, setUser] = useState(null);
 
 
-  const hamada=localStorage.getItem("user");
-   let logged = JSON.parse(hamada);
+  const token=localStorage.getItem("token");
+  if(token){
+    const decodedToken = jwtDecode(token);
+    var userId = decodedToken.userId;
+    console.log(userId);
+  }
+ 
+  // let logged = JSON.parse(hamada);
 //   console.log(logged);
 
   useEffect(() => {
-   
-    setUser(logged); 
-
-  }, []);
+    fetchuserDetails(userId)
+    .then((data) => {
+      setUser(data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}, [userId]);
 
   
   if (!user) {

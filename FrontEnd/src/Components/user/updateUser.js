@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import  Styles from '../books/addBook.module.css';
 import axiosInstance from '../utils/axiosInstance';
-import {fetchUpdateUser} from '../../api';
+import {fetchUpdateUser,fetchuserDetails} from '../../api';
 import axios from 'axios';
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 
-//const axiosInst = require("../utils/axiosInstance");
+
 export default function UpdateUserProfile (){
     const [user, setUser]= useState({});
     const [selectedImage, setSelectedImage] = useState(null);
@@ -21,36 +21,45 @@ export default function UpdateUserProfile (){
         }));
       };
 
-    
+      useEffect(() => {
+        fetchuserDetails(id)
+          .then((data) => {
+            setUser(data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }, [id]);
+
+
       const handleImageChange = (e) => {
         setSelectedImage(e.target.files[0]);
         console.log(selectedImage);
       };  
-
-
-      const handleSubmit = async(e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        let data = {
-            email: user.email,
-            username: user.username,
-            image: selectedImage
-        };
-        console.log(data);
-        let res = await axiosInstance.put(`user/user/${user._id}`, {data});
-        navigate("/userprofile")
-    };
 
+        const formData = new FormData();
+        formData.append("image", selectedImage);
+        formData.append("email", user.email);
+        formData.append("username", user.username);
+        formData.append("_id", user._id);
+        console.log("okkkk");
+        console.log(formData.get("_id"));
 
-    useEffect(()=>{
-        fetchUpdateUser(id)
-        .then((data) => {
-          setUser(data)
-         console.log(data);
-        })
-        .catch((err) => {
-          console.log(err);
+        fetchUpdateUser(formData)
+          .then((data) => {
+            console.log("user updated successfully:", data);
+            navigate('/userprofile');
+          })
+          .catch((error) => {
+            console.error("Error updating book:", error);
         });
-    },[])
+        
+
+
+        setSelectedImage(null);
+  };
     return (
         <div className='body'>
       <div style={{paddingTop: "1%"}}>
@@ -95,79 +104,3 @@ export default function UpdateUserProfile (){
     </div>
     )
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const UpdateUserProfile = ({ userId }) => {
-//     const [user, setUser] = useState(null);
-//     const [isEditing, setIsEditing] = useState(false);
-//     const [updatedUsername, setUpdatedUsername] = useState('');
-//     const [updatedEmail, setUpdatedEmail] = useState('');
-//     const [updatedType, setUpdatedType] = useState('');
-
-//     const hamada=localStorage.getItem("user");
-//     let logged = JSON.parse(hamada);
-//     return (
-//     <div>
-//         <strong>Type:</strong>
-//         {isEditing ? (
-//           <input
-//             type="text"
-//             value={updatedType}
-//             onChange={(e) => setUpdatedType(e.target.value)}
-//           />
-//         ) : (
-//           user.type
-//         )}
-//       </div>
-//       {user.image && (
-//         <div>
-//           <img src={user.image} alt="User" />
-//         </div>
-//       )}
-//       {!isEditing && (
-//         <button className="update" onClick={() => setIsEditing(true)}>
-//           Update Data
-//         </button>
-//       )}
-//       {isEditing && (
-//         <button className="save" onClick={handleUpdateData}>
-//           Save Changes
-//         </button>
-//       )}
-//     </div>
-//     );
-// };
-// export default UpdateUserProfile;
