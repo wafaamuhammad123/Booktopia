@@ -49,9 +49,9 @@ let createBook = async (req, res) => {
           console.log(req.files);
         }
     const { title, year, pages, language, category, description, author_id } =  req.body;
-    const imageFile = req.files["image"][0].filename;
-    const recordLink = req.files["mp4"][0].filename;
-    const pdfFile = req.files["pdf"][0].filename;
+    const imageFile = req.files["image"][0].path;
+    const recordLink = req.files["mp4"][0].path;
+    const pdfFile = req.files["pdf"][0].path;
 
     const newBook = new booksModel({
       title,
@@ -116,9 +116,9 @@ const updateBook = async (req, res) => {
       }
 
       // Get the file URLs or undefined if no file is uploaded
-      const imageLink = imageFiles && imageFiles.length ? req.files["image"][0].filename : existingBook.imageLink;
-      const recordLink = recordFiles && recordFiles.length ? req.files["mp4"][0].filename : existingBook.recordLink;
-      const pdfLink = pdfFiles && pdfFiles.length ? req.files["pdf"][0].filename : existingBook.pdfLink;
+      const imageLink = imageFiles && imageFiles.length ? req.files["image"][0].path : existingBook.imageLink;
+      const recordLink = recordFiles && recordFiles.length ? req.files["mp4"][0].path : existingBook.recordLink;
+      const pdfLink = pdfFiles && pdfFiles.length ? req.files["pdf"][0].path : existingBook.pdfLink;
 
       // console.log(pdfFiles[0].path);
       // console.log(existingBook.pdfLink);
