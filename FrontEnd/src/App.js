@@ -10,10 +10,12 @@ import DashboardPage from "./Components/admin_dashboard/dashboard";
 import Error from "./Components/error";
 import UpdateBook from "./Components/books/updateBook";
 import BookDetail from "./Components/book_detail/book_detail";
+import BookList from "./Components/testSearch/search"
 import Authors from "./Components/authors/authors";
 import AddAuthor from "./Components/authors/addAuthor";
 import UpdateAuthor from "./Components/authors/updateAuthor";
 import Author from "./Components/authors/authorDetails";
+import AllBooks from "./Components/books/allBooks";
 function App(){
   return(
     <div>
@@ -32,6 +34,7 @@ function App(){
               <Route path="dashboard" element={<DashboardPage/>}/>
               <Route path="updatebook/:id" element={<UpdateBook/>}/>
               <Route path="home" element={<Home/>}/>
+              <Route path="lists" element={<BookList/>}/>
               <Route path="*" element={<Error/>}/>
 
               <Route path="BookDetail" element={<BookDetail/>}/>

@@ -21,6 +21,7 @@ const Header = () => {
                         <span className="menu-item"><NavLink className="link2" activeclassname="active2" to={`/`}>Contact</NavLink></span>
                         <span className="menu-item"><NavLink className="link2" activeclassname="active2" to={`/`}>About</NavLink></span>
                         <span className="menu-item ms-4"><NavLink className="link2" activeclassname="active2" to={`/`}>profile</NavLink></span>
+                        <span className="menu-item ms-4"><NavLink className="link2" activeclassname="active2" to={`/allBooks`}>Books</NavLink></span>
                 </div>
             </nav>
         </div>
