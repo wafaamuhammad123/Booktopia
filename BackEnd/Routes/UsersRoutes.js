@@ -19,7 +19,7 @@ const storage = multer.diskStorage({
 
 router.get("/users", admin, usersController.getAllUsers);
 router.post("/create",usersController.addNewUser);
-router.put("/user/:id", authUser, upload.single("image"), usersController.updateUser);
+router.put("/user/:id", authUser, usersController.updateUser);
 router.post("/login", usersController.login);
 router.delete("/delete/:id", admin, usersController.DeleteUser);
 router.get("/:id", authUser, usersController.getUserById);
