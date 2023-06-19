@@ -21,7 +21,6 @@ function App(){
     <div>
       <BrowserRouter>
           <Routes>
-          <Route path="/users/:id" render={({ match }) => <UserProfile userId="648b4e9a40251a2305a44cb1" />} />
               <Route path="" element={<Login/>}/>
               <Route path="login" element={<Login/>}/>
               <Route path="signup" element={<SignUp/>}/>

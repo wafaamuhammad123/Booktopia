@@ -3,21 +3,18 @@ import React, { useEffect, useState } from 'react';
 const UserProfile = ({ userId }) => {
   const [user, setUser] = useState(null);
 
+
+  const hamada=localStorage.getItem("user");
+   let logged = JSON.parse(hamada);
+//   console.log(logged);
+
   useEffect(() => {
-    // Fetch user data based on the provided ID
-    const fetchUser = async () => {
-      try {
-        const response = await fetch(`/api/user/${userId}`);
-        const userData = await response.json();
-        setUser(userData);
-      } catch (error) {
-        console.error('Error fetching user:', error);
-      }
-    };
+   
+    setUser(logged); 
 
-    fetchUser();
-  }, [userId]);
+  }, []);
 
+  
   if (!user) {
     return <div>Loading user data...</div>;
   }

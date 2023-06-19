@@ -38,18 +38,22 @@ const Login = () => {
     if (!emailErr && !passwordErr) {
       fetchLogin(email, password)
         .then((data) => {
+          console.log(data);
           console.log(data.token);
           localStorage.setItem('token', data.token);
           const token = localStorage.getItem('token');
+          let user = JSON.stringify(data.user);
+           localStorage.setItem("user", user);
+         
           if(token){
             const decodedToken = jwtDecode(token);
             const userType = decodedToken.userType;
             console.log(userType);
             if( userType === 'admin'){
-              navigate("/books")
+              // navigate("/books")
             }
             else if( userType === 'user'){
-              navigate("/home")
+              // navigate("/home")
             }
           }
         })
