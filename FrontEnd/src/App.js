@@ -17,6 +17,7 @@ import UpdateAuthor from "./Components/authors/updateAuthor";
 import UserProfile from "./Components/user/userprofile";
 import AllBooks from "./Components/books/allBooks";
 import UpdateUser from "./Components/user/updateUser";
+import UserBooks from "./Components/user/userBooks";
 function App(){
   return(
     <div>
@@ -40,6 +41,7 @@ function App(){
               <Route path="BookDetail" element={<BookDetail/>}/>
               <Route path="userprofile" element={<UserProfile/>}/>
               <Route path= "UpdateUser/:id" element={<UpdateUser/>}/>
+              <Route path= "UserBooks/:id" element= {<UserBooks/>}/>
           </Routes>
       </BrowserRouter>
 
