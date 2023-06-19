@@ -9,7 +9,7 @@ const UserProfile = ({ userId }) => {
   const token=localStorage.getItem("token");
   if(token){
     const decodedToken = jwtDecode(token);
-    var userId = decodedToken.userId;
+     userId = decodedToken.userId;
     console.log(userId);
   }
  
@@ -49,7 +49,8 @@ const UserProfile = ({ userId }) => {
         </div>
       )}
 
-<button className='btn btn-outline-info me-2'><NavLink className="link1" to={`/UpdateUser/${user._id}`}> Update</NavLink></button>
+        <button className='btn btn-outline-info me-2'><NavLink className="link1" to={`/UpdateUser/${user._id}`}> Update</NavLink></button>
+        <button className='btn btn-outline-info me-2'><NavLink className="link1" to={`/UserBooks/${user._id}`}> My Books</NavLink></button>
     </div>
   );
 };

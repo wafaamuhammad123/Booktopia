@@ -12,7 +12,7 @@ connection.once("open", () => {
 const user_booksSchema = new mongoose.Schema({
     statue: {
         type: "string",
-        enum: ['READING', 'READ', 'WANT_TO_READ'],
+        enum: ['READING', 'Done', 'WANT_TO_READ'],
         required: true,
     },
     user_id: {

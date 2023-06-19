@@ -25,6 +25,7 @@ import AllBooks from "./Components/books/allBooks";
 import UpdateUser from "./Components/user/updateUser";
 import jwtDecode from "jwt-decode";
 import Error403 from "./Components/error403";
+import UserBooks from "./Components/user/userBooks";
 
 const isAuthenticated = () => {
   // const navigate =useNavigate();
@@ -93,6 +94,7 @@ function App() {
               <Route path="BookDetail" element={<BookDetail />} />
               <Route path="userprofile" element={<UserProfile />} />
               <Route path="UpdateUser/:id" element={<UpdateUser />} />
+              <Route path="UserBooks/:id" element={<UserBooks />} />
             </>
           ) : (
             <>
