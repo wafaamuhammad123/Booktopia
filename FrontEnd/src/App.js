@@ -95,6 +95,7 @@ function App() {
               <Route path="userprofile" element={<UserProfile />} />
               <Route path="UpdateUser/:id" element={<UpdateUser />} />
               <Route path="UserBooks/:id" element={<UserBooks />} />
+              <Route path="BookDetail" element={<BookDetail />} />
             </>
           ) : (
             <>
