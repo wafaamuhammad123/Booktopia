@@ -14,11 +14,13 @@ import BookList from "./Components/testSearch/search"
 import Authors from "./Components/authors/authors";
 import AddAuthor from "./Components/authors/addAuthor";
 import UpdateAuthor from "./Components/authors/updateAuthor";
+import UserProfile from "./Components/user/userprofile";
 function App(){
   return(
     <div>
       <BrowserRouter>
           <Routes>
+          <Route path="/users/:id" render={({ match }) => <UserProfile userId="648b4e9a40251a2305a44cb1" />} />
               <Route path="" element={<Login/>}/>
               <Route path="login" element={<Login/>}/>
               <Route path="signup" element={<SignUp/>}/>
@@ -35,6 +37,7 @@ function App(){
               <Route path="*" element={<Error/>}/>
               {/* <Route path="contact" element={<Contact/>}/> */}
               <Route path="BookDetail" element={<BookDetail/>}/>
+              <Route path="userprofile" element={<UserProfile/>}/>
           </Routes>
       </BrowserRouter>
 
