@@ -37,7 +37,7 @@ function App(){
               <Route path="lists" element={<BookList/>}/>
               <Route path="*" element={<Error/>}/>
               {/* <Route path="contact" element={<Contact/>}/> */}
-              <Route path="BookDetail" element={<BookDetail/>}/>
+              <Route path="book/:id" element={<BookDetail/>}/>
               <Route path="userprofile" element={<UserProfile/>}/>
               <Route path= "UpdateUser/:id" element={<UpdateUser/>}/>
           </Routes>
