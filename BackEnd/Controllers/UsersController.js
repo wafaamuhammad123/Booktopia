@@ -106,7 +106,7 @@ let updateUser = async (req, res) => {
 let login = async (req, res) => {
   const { email, password } =req.body;
   let user = await usersModel.findOne({ email: email });
-  let checkPassword = await bcrypt.compare(password, user.password);
+  let checkPassword =  bcrypt.compare(password, user.password);
   console.log(checkPassword);
   if (!checkPassword) {
     return res.status(400).send("Invalid email or password");

@@ -45,9 +45,12 @@ export function fetchAuthors() {
   return fetch(url).then((response) => response.json());
 }
 
-export function fetchAuthor(id) {
+export function fetchAuthor(id, token) {
   const url = `${API_BASE_URL}/author/${id}`;
-  return fetch(url).then((response) => response.json());
+  const headers = {
+    authorization: `${token}`,
+  };
+  return fetch(url, {headers}).then((response) => response.json());
 }
 
 export function createAuthor(data){
@@ -66,6 +69,14 @@ export function  deleteAuthor(id){
   }).then((response) => response.json());
 }
 
+
+export function fetchBooksByAuthor (id, token){
+  const url = `${API_BASE_URL}/book/booksByAuthor/${id}`;
+  const headers = {
+    authorization: `${token}`,
+  };
+  return fetch(url, {headers}).then((response) => response.json());
+}
 
 
 /////////////////////////////////////////////////////////////
