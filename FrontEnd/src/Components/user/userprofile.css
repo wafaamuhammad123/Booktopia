@@ -1,0 +1,135 @@
+.body-div {
+    background-color: #fdf1ec;
+  }
+  
+  .profile-img{
+    text-align: center;
+    margin-top: 10%;
+   
+  }
+  
+  .center-divs{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+  
+  .sell-text{
+    color: #deaf77;
+    font-size: 34px;
+    font-family: 'Playfair Display';
+    justify-content: center;
+    display: flex;
+  }
+  
+  .hr-center{
+    width: 50%;
+    margin-left: 25%;
+  }
+  
+  .fonts{
+    width: 80%;
+    margin-left: 10%;
+    margin-bottom: 7%;
+    /* color: #a1a196; */
+    color: #545353;
+    font-weight: 500;
+    text-align: center;
+    /* letter-spacing: 0.1rem; */
+    font-size: 15px;
+    margin-top: 3%;
+  }
+  
+  .card{
+    border-color: #b4840f;
+    width: 100%;
+    position:relative;
+    overflow:hidden;
+    border-radius:8px;
+    margin-bottom: 5%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 #b4840f;
+  }
+  
+  .card:before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:4px;
+    height:100%;
+    background-color:#e9dba6;
+    transform:scaleY(1);
+    transition:all 0.5s;
+    transform-origin: bottom
+  }
+  
+  .card:after{
+  
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:4px;
+    height:100%;
+    background-color:#cfb341;
+    transform:scaleY(0);
+    transition:all 0.5s;
+    transform-origin: bottom
+  }
+  
+  .card:hover::after{
+    transform:scaleY(1);
+  }
+  
+  @media (max-width: 600px){
+    .h-media{
+      color: #0e6b52; 
+      font-size: large;
+      margin-top: 8%;
+      font-weight: bold;
+    }
+  
+    .label-media{
+      color: #0e6b52; 
+      font-size: medium;
+      font-weight: 500;
+    }
+  }
+  
+  @media (min-width: 600px){
+    .h-media{
+      color: #0e6b52;
+      font-size: x-large;
+      font-weight:bold;
+    }
+  
+    .label-media{
+      color: #0e6b52;
+      font-size: large;
+      font-weight: 500;
+    }
+  }
+  
+  
+  .sub-btn {
+    background-color:white;
+    color: rgb(201, 159, 69);
+    border: 2px solid #e0d393;
+    margin-bottom: 100px;
+    padding: 20px;
+    font-weight: bold;
+    font-size: small;
+  }
+  
+  .sub-btn:hover{
+    background-color:rgb(201, 159, 69);
+    color: white;
+  }
+  .body-div{
+    width: 60%;
+    margin-left: 20%;
+    margin-top: 5%;
+  }
+  
+  
+  

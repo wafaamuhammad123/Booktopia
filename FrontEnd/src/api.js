@@ -6,6 +6,7 @@ export function fetchBookDetails(id) {
   return axiosInstance.get(`/book/${id}`).then((response) => response.data);
 }
 
+
 export function fetchBooks() {
   return axiosInstance.get('/book/books').then((response) => response.data);
 }
@@ -62,3 +63,19 @@ export function completeSubscribe(data){
 }
 
 
+export function fetchuserDetails(id) {
+  return axiosInstance.get(`/user/${id}`).then((response) => response.data);
+}
+
+export function fetchUpdateUser(user) {
+  const id = user.get('_id');
+  return axiosInstance.put(`/user/user/${id}`, user).then((response) => response.data);
+}
+
+export function fetchmyBooks(id) {
+  return axiosInstance.get(`/userbook/bookStatus/${id}`).then((response) => response.data);
+}
+
+export function updateBookStatus(bookId, newStatus) {
+  return axiosInstance.put(`/userbook/chooseBook/${bookId}`, { statue: newStatus }).then((response) => response.data);
+}

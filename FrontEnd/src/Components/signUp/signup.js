@@ -15,10 +15,30 @@ const SignUp = () => {
   const [passwordErr, setPasswordErr] = useState("");
   const [re_passwordErr, setRePasswordErr] = useState("");
   const [image, setImage] = useState(null);
-
+  const [imageErr, setImageErr] = useState('');
   const handleImageChange = (e) => {
-    setImage(e.target.files[0]);
+    const file = e.target.files[0];
+    if (file) {
+      const fileType = file.type;
+      const validImageTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
+  
+      if (validImageTypes.includes(fileType)) {
+        setImage(file);
+        setImageErr('');
+      } else {
+        setImage(null);
+        setImageErr('Please select a valid image file (JPEG, PNG, or GIF)');
+      }
+    } else {
+      setImage(null);
+      setImageErr('Please select an image file');
+    }
+    if (imageErr) {
+      return <p className="error">{imageErr}</p>;
+    }
+    
   };
+  
 
   const printError = (elemId, hintMsg) => {
     switch (elemId) {
@@ -68,6 +88,7 @@ const SignUp = () => {
         printError("emailErr", "");
         emailErr = false;
       }
+      
     }
 
     if (password === "") {
@@ -104,10 +125,20 @@ const SignUp = () => {
       .then((data) => {
         console.log("User added successfully:", data);
         navigate('/login');
-        // Redirect to login page or perform any other action
       })
       .catch((error) => {
-        console.error("Error adding user:", error);
+        const errorMessage = error?.response?.data || "An error occurred.";
+
+        // Display the error message below the corresponding field
+        if (errorMessage === "Email already taken") {
+          setEmailErr(errorMessage);
+        } else if (errorMessage === "Username already taken") {
+          setNameErr(errorMessage);
+        } else {
+          // Handle other errors
+          // For example, display a generic error message
+          setNameErr("An error occurred. Please try again.");
+        }
       });
   };
 
@@ -162,12 +193,13 @@ const SignUp = () => {
             </div>
             <p className="error">{re_passwordErr}</p>
             <div className="inputbox">
-              <input
-                type="file"
-                name="image"
-                onChange={handleImageChange}
-              />
-            </div>
+            <input
+              type="file"
+              name="image"
+              onChange={handleImageChange}
+            />
+          </div>
+          {imageErr && <p className="error">{imageErr}</p>}
             <button type="submit" className="sign">Sign Up</button>
             <div>
               <p>

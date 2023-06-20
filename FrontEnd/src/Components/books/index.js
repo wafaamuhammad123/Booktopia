@@ -44,10 +44,10 @@ class Books extends Component {
         <td>{book.title}</td>
         <td>{book.language}</td>
         <td>{book.year}</td>
-        <td>{book.image}</td>
+        <td><img id="image" src={book.imageLink} alt='not found' /></td>
+        
         <td>
           <button className='btn btn-outline-success me-2'><NavLink className="link1" to={`/books/${book._id}`}>View</NavLink></button>
-
           <button className='btn btn-outline-info me-2'><NavLink className="link1" to={`/updatebook/${book._id}`}> Update</NavLink></button>
           <button className='btn btn-outline-danger me-2' onClick={() => this.handleDeleteBook(book._id)}>Delete</button>
         </td>

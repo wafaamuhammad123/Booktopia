@@ -55,5 +55,10 @@ const booksSchema = new mongoose.Schema({
     ref: "Author",
     required: true,
   },
+  status: {
+    type: String,
+    enum: ["READING", "READ", "WANT_TO_READ"],
+    default: "WANT_TO_READ",
+  },
 });
 module.exports = mongoose.model("Book", booksSchema);
