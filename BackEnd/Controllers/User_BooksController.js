@@ -3,40 +3,58 @@ const booksModel = require('../Models/BooksModel');
 var mongoose = require("mongoose");
 const { ObjectId } = require('mongoose');
 var Schema = mongoose.Schema;
+// Create a new user book with the chosen status
+let createUserBook = async (req, res) => {
+  console.log("body ", req.body);
 
-let chooseBook= async(req, res)=>{
-    console.log("body ",req.body);
+  const { user_id, statue } = req.body;
+  const book_id = req.params.id;
 
-    const { user_id, statue } = req.body;
-    const book_id = req.params.id;
-    try {
-      // Check if user has already chosen the book
-      const existingUserBook = await UserBooksModel.findOne({ user_id, book_id });
-  
-      if (existingUserBook) {
-        // Update the status of the existing user book
-        existingUserBook.statue = statue;
-        await existingUserBook.save();
-        res.json(existingUserBook);
-
-      } else {
-        // Create a new user book with the chosen status
-        const newUserBook = new UserBooksModel({
-            user_id,
-            book_id,
-            statue
-        });
-        await newUserBook.save();
-        res.status(200).json({
-            message: "Book created successfully",
-            UserBooks: newUserBook,
-          });
-      }
-    } catch (err) {
-      console.error(err);
-      res.status(500).json({ message: 'Server error' });
-    }
+  try {
+    const newUserBook = new UserBooksModel({
+      user_id,
+      book_id,
+      statue,
+    });
+    await newUserBook.save();
+    res.status(200).json({
+      message: "Book created successfully",
+      UserBooks: newUserBook,
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Server error" });
   }
+};
+
+// Update the status of an existing user book
+let updateUserBookStatus = async (req, res) => {
+  console.log("body ", req.body);
+
+  const { user_id, statue } = req.body;
+  const book_id = req.params.id;
+
+  try {
+    // Find the existing user book
+    const existingUserBook = await UserBooksModel.findOne({ user_id, book_id });
+
+    if (!existingUserBook) {
+      // Return a 404 error if the user book doesn't exist
+      return res.status(404).json({ message: "User book not found" });
+    }
+
+    // Update the status of the existing user book
+    existingUserBook.statue = statue;
+    await existingUserBook.save();
+    res.json(existingUserBook);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+
+
 let getBooksByStatus = async (req, res) => {
     try {
       const user_id = req.params.id;
@@ -63,6 +81,7 @@ let getBooksByStatus = async (req, res) => {
     }
   };
   module.exports = {
-    chooseBook,
+    createUserBook,
+    updateUserBookStatus,
     getBooksByStatus
   };

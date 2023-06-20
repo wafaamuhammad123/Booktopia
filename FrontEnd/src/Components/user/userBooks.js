@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import jwtDecode from 'jwt-decode';
 import { Navigate, useNavigate, useParams, NavLink } from 'react-router-dom';
-import { fetchmyBooks } from '../../api';
+import { fetchmyBooks, updateBookStatus } from '../../api';
 
 export default function UserBooks() {
   const [userBook, setBooks] = useState([]);
   const { id } = useParams();
   const [statusFilter, setStatusFilter] = useState('');
   const [filteredBooks, setFilteredBooks] = useState([]);
+  const [currentStatus, setCurrentStatus] = useState("");
 
   useEffect(() => {
     fetchmyBooks(id)
@@ -22,7 +23,6 @@ export default function UserBooks() {
   }, [id]);
 
   useEffect(() => {
-    // console.log(statusFilter , "waaaaaa");
     if (statusFilter === '') {
       setFilteredBooks(userBook);
     } else {
@@ -31,15 +31,34 @@ export default function UserBooks() {
     }
   }, [statusFilter, userBook]);
 
-  const handleStatusChange = (event) => {
-    setStatusFilter(event.target.value);
+  const handleStatusChange = (newStatus, bookId) => {
+    const decodedToken = jwtDecode(localStorage.getItem('token'));
+    const userId = decodedToken.sub;
+  
+    updateBookStatus(bookId, newStatus)
+      .then(() => {
+        // Refresh the list of books
+        fetchmyBooks(userId)
+          .then((data) => {
+            console.log(data);
+            setBooks(data.books);
+            setFilteredBooks(data.books);
+            setCurrentStatus("");
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
     <div>
       <div>
         <label htmlFor="status">Status:</label>
-        <select id="status" value={statusFilter} onChange={handleStatusChange}>
+        <select id="status" value={statusFilter} onChange={(event) => setStatusFilter(event.target.value)}>
           <option value="">All</option>
           <option value="Done">Done</option>
           <option value="WANT_TO_READ">WANT_TO_READ</option>
@@ -66,6 +85,16 @@ export default function UserBooks() {
                   Your browser does not support the audio element.
                 </audio>
                 <p>Status: {books.statue}</p>
+                {currentStatus !== "" && book._id === currentStatus && (
+                  <select value={currentStatus} onChange={(event) => handleStatusChange(event.target.value, book._id)}>
+                    <option value="">Select Status</option>
+                    <option value="Done">Done</option>
+                    <option value="WANT_TO_READ">Want to Read</option>
+                    <option value="READING">Reading</option>
+                  </select>
+                )}else{
+                  <button onClick={() => setCurrentStatus(book._id)}>Change Status</button>
+                }
               </div>
             ))}
           </div>
