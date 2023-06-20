@@ -21,7 +21,6 @@ import Authors from "./Components/authors/authors";
 import AddAuthor from "./Components/authors/addAuthor";
 import UpdateAuthor from "./Components/authors/updateAuthor";
 import Author from "./Components/authors/authorDetails";
-import AllBooks from "./Components/books/allBooks";
 import Checkout from "./Components/checkout/checkout";
 import PaymentSuccess from "./Components/checkout/paymentSuccess";
 import UserProfile from "./Components/user/userprofile";

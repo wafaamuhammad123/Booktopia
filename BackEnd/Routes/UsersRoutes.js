@@ -1,6 +1,7 @@
   const express = require("express");
   const router = express.Router();
   const usersController = require("../Controllers/UsersController.js");
+  const SubscriptionController = require("../Controllers/SubscriptionController.js")
   const userValidation = require("../Utils/userValidation");
   const cors = require("cors");
   const multer = require("multer");

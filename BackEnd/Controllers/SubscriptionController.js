@@ -25,7 +25,7 @@ let startSession = async(req,res)=>{
 
 let subscribe = async(req,res)=>{
     try{
-        console.log(req.body)
+        console.log("in subscribe",req.body)
         let id = req.body.id;
         const user = await UsersModel.findById(id);
         if (!user) {
@@ -37,7 +37,7 @@ let subscribe = async(req,res)=>{
       res.status(200).json({msg: "Subscribed Successfully"})
 
     }catch(e){
-        res.status(500).json({msg : err.message})
+        res.status(500).json({msg : e.message})
     }
 }
 
