@@ -20,6 +20,7 @@ function UpdateBook() {
     fetchBookDetails(id)
       .then((data) => {
         setBook(data);
+        console.log(data);
       })
       .catch((err) => {
         console.log(err);
@@ -30,14 +31,15 @@ function UpdateBook() {
 
 
 
-    const handleInputChange = (event) => {
-      const { name, value } = event.target;
-      setBook((prevState) => ({
-        ...prevState,
-        [name]: value,
-        author_id: selectedAuthorId, 
-      }));
-    };
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setBook((prevState) => ({
+      ...prevState,
+      [name]: value,
+      author_id: selectedAuthorId, // Update the author_id property
+    }));
+  };
+    
 
       const handleImageChange = (e) => {
         setSelectedImage(e.target.files[0]);
@@ -85,6 +87,7 @@ function UpdateBook() {
         console.log("okkkk");
         console.log(formData.get("_id"));
         console.log(formData.get("year"));
+        console.log(book);
 
         updateBook(formData)
           .then((data) => {
@@ -172,6 +175,7 @@ function UpdateBook() {
           <input
             type="file"
             name="image"
+            value={book.image}
             onChange={handleImageChange}
           />
         </label>
@@ -181,6 +185,7 @@ function UpdateBook() {
         <input
           type="file"
           name="mp4"
+          value={book.mp4}
           onChange={handlemp4Change}
         />
       </label>
@@ -190,6 +195,7 @@ function UpdateBook() {
         <input
           type="file"
           name="pdf"
+          value={book.pdf}
           onChange={handlepdfChange}
         />
       </label>
@@ -200,6 +206,7 @@ function UpdateBook() {
           name="author_id"
           value={selectedAuthorId}
           onChange={(event) => setSelectedAuthorId(event.target.value)}
+
         >
           <option value="">Select an author</option>
           {authors.map((author) => (

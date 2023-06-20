@@ -64,16 +64,12 @@ function BookDetails() {
           </div>
           <img src={book.imageLink} alt="notFound" />
           <div>
-            <div>
-              <a href={book.pdfLink} target="_blank" rel="noopener noreferrer">
-                Read Online
-              </a>
-              <a href={book.pdfLink} download={pdfLink.split("/").pop()}>
-                Download
-              </a>
-              <button onClick={handleDownload}>Download</button>
-            </div>
-          </div>
+          <div>
+      <a href={book.pdfLink} target="_blank" rel="noopener noreferrer">
+        Read Online
+      </a>
+    </div>
+    </div>  
         </form>
       </div>
     </div>
