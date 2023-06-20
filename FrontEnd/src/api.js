@@ -1,6 +1,6 @@
 import axiosInstance from './Components/utils/axiosInstance';
 
-// const API_BASE_URL = "http://localhost:4000/api";
+const API_BASE_URL = "http://localhost:4000/api";
 
 export function fetchBookDetails(id) {
   return axiosInstance.get(`/book/${id}`).then((response) => response.data);
@@ -45,6 +45,23 @@ export function deleteAuthor(id) {
 export function fetchAddUser(user) {
   return axiosInstance.post('/user/create', user).then((response) => response.data);
 }
+
+
+export function fetchBooksByAuthor (id, token){
+  const url = `${API_BASE_URL}/book/booksByAuthor/${id}`;
+  const headers = {
+    authorization: `${token}`,
+  };
+  return fetch(url, {headers}).then((response) => response.json());
+}
+
+export function getCheckoutSession (data){
+  return axiosInstance.post('/user/subscriptionSession', data).then((response) => response.data);
+}
+export function completeSubscribe(data){
+  return axiosInstance.post('/user/subscribe', data).then((response) => response.data);
+}
+
 
 export function fetchuserDetails(id) {
   return axiosInstance.get(`/user/${id}`).then((response) => response.data);

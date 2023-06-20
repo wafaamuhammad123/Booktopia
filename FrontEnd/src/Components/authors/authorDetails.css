@@ -1,0 +1,9 @@
+section {
+    background: none !important;
+    text-align: center;
+}
+
+#featured-books {
+    margin: 0 auto;
+    padding-top: 3rem ;
+}
