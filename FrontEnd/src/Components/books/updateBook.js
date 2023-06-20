@@ -136,7 +136,6 @@ function UpdateBook() {
     setSelectedImage(null);
     setSelectedmp4(null);
   };
-
   return (
     <div className="body">
       <Sidebar />

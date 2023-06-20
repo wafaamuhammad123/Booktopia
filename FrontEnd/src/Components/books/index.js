@@ -44,7 +44,7 @@ class Books extends Component {
         <td>{book.title}</td>
         <td>{book.language}</td>
         <td>{book.year}</td>
-        <td><img src={book.imageLink} alt='not found' /></td>
+        <td><img id="image" src={book.imageLink} alt='not found' /></td>
         
         <td>
           <button className='btn btn-outline-success me-2'><NavLink className="link1" to={`/books/${book._id}`}>View</NavLink></button>

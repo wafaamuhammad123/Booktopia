@@ -2,11 +2,14 @@
     background-color: #2F2F2F;
     height: auto;
     color: #F7F7F7
+
 }
 .cont{
     border-collapse: collapse;
-    margin-left:30%;
-    color: #F7F7F7
+    margin-left:27%;
+    color: #F7F7F7;
+    width: 70%;
+
 }
 
 .cont td, .cont th {
@@ -75,4 +78,10 @@
 
 .addBook:hover span {
     transform: translateX(0.15em);
+}
+
+#image{
+    width:75px;
+    height: 75px;
+    border-radius: 37.5px;
 }
