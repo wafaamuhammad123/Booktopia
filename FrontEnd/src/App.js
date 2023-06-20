@@ -16,6 +16,8 @@ import AddAuthor from "./Components/authors/addAuthor";
 import UpdateAuthor from "./Components/authors/updateAuthor";
 import Author from "./Components/authors/authorDetails";
 import AllBooks from "./Components/books/allBooks";
+import Checkout from "./Components/checkout/checkout";
+import PaymentSuccess from "./Components/checkout/paymentSuccess";
 function App(){
   return(
     <div>
@@ -24,6 +26,8 @@ function App(){
               <Route path="" element={<Login/>}/>
               <Route path="login" element={<Login/>}/>
               <Route path="signup" element={<SignUp/>}/>
+              <Route path="/checkout" element={<Checkout/>}/>
+              <Route path="/paymentSuccessful" element={<PaymentSuccess/>}/>
               <Route path="/books/:id" element={<BookDetails/>}/>
               <Route path="createbook" element={<AddBook/>}/>
               <Route path="books" element={<Books/>}/>

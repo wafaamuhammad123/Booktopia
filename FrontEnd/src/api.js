@@ -1,6 +1,6 @@
 import axiosInstance from './Components/utils/axiosInstance';
 
-// const API_BASE_URL = "http://localhost:4000/api";
+const API_BASE_URL = "http://localhost:4000/api";
 
 export function fetchBookDetails(id) {
   return axiosInstance.get(`/book/${id}`).then((response) => response.data);
@@ -29,24 +29,23 @@ export function fetchAuthors() {
   return axiosInstance.get('/author/authors').then((response) => response.data);
 }
 
-<<<<<<< HEAD
-export function fetchAuthor(id, token) {
-  const url = `${API_BASE_URL}/author/${id}`;
-  const headers = {
-    authorization: `${token}`,
-  };
-  return fetch(url, {headers}).then((response) => response.json());
-=======
 export function fetchAuthor(id) {
   return axiosInstance.get(`/author/${id}`).then((response) => response.data);
->>>>>>> cb3bfa476ab499f9d014c8a4c5de7217b793600d
 }
 
 export function createAuthor(data) {
   return axiosInstance.post('/author/create', data).then((response) => response.data);
 }
 
-<<<<<<< HEAD
+export function deleteAuthor(id) {
+  return axiosInstance.delete(`/author/delete/${id}`).then((response) => response.data);
+}
+
+export function fetchAddUser(user) {
+  return axiosInstance.post('/user/create', user).then((response) => response.data);
+}
+
+
 export function fetchBooksByAuthor (id, token){
   const url = `${API_BASE_URL}/book/booksByAuthor/${id}`;
   const headers = {
@@ -55,12 +54,11 @@ export function fetchBooksByAuthor (id, token){
   return fetch(url, {headers}).then((response) => response.json());
 }
 
-=======
-export function deleteAuthor(id) {
-  return axiosInstance.delete(`/author/delete/${id}`).then((response) => response.data);
+export function getCheckoutSession (data){
+  return axiosInstance.post('/user/subscriptionSession', data).then((response) => response.data);
 }
->>>>>>> cb3bfa476ab499f9d014c8a4c5de7217b793600d
+export function completeSubscribe(data){
+  return axiosInstance.post('/user/subscribe', data).then((response) => response.data);
+}
 
-export function fetchAddUser(user) {
-  return axiosInstance.post('/user/create', user).then((response) => response.data);
-}
+
