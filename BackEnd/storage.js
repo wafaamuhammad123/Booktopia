@@ -34,7 +34,8 @@ const storage = new CloudinaryStorage({
     } else if (file.fieldname === "pdf") {
       folder = "pdfs";
       resource_type = "auto";
-      access_mode= "public"
+      access_mode= "public";
+      // Content_Disposition = "attachment";
     }
 
     return {
