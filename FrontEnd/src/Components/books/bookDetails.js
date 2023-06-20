@@ -40,9 +40,6 @@ function BookDetails() {
       <a href={book.pdfLink} target="_blank" rel="noopener noreferrer">
         Read Online
       </a>
-      <a href={book.pdfLink} download>
-        Download
-      </a>
     </div>
     </div>  
         </form>

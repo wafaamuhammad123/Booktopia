@@ -1,6 +1,6 @@
 import axiosInstance from './Components/utils/axiosInstance';
 
-const API_BASE_URL = "http://localhost:4000/api";
+// const API_BASE_URL = "http://localhost:4000/api";
 
 export function fetchBookDetails(id) {
   return axiosInstance.get(`/book/${id}`).then((response) => response.data);
