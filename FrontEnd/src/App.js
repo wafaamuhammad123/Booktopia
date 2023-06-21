@@ -105,7 +105,7 @@ function App() {
               <Route path="userprofile" element={<UserProfile />} />
               <Route path="UpdateUser/:id" element={<UpdateUser />} />
               <Route path="UserBooks/:id" element={<UserBooks />} />
-              <Route path="BookDetail" element={<BookDetail />} />
+              <Route path="BookDetail/:id" element={<BookDetail />} />
               <Route path="authors/:id" element={<Author/>}/>
               <Route path="/checkout" element={<Checkout/>}/>
               <Route path="/paymentSuccessful" element={<PaymentSuccess/>}/>
