@@ -33,6 +33,7 @@ function BookDetails() {
       <div style={{ paddingTop: "3%" }}>
         <form className="details">
           <img src="" alt="" />
+          <img src={book.imageLink} alt="notFound" style={{height:"200px", width:"80%", marginLeft:"10%", padding:"15px" }}/>
           <p>
             <span className="book">Title: </span>
             {book.title}
@@ -57,19 +58,14 @@ function BookDetails() {
             <span className="book">Category: </span>
             {book.category}
           </p>
-          <div>
-            <video controls>
-              <source src={book.recordLink} type="video/mp4" />
-            </video>
-          </div>
-          <img src={book.imageLink} alt="notFound" />
-          <div>
-          <div>
-      <a href={book.pdfLink} target="_blank" rel="noopener noreferrer">
-        Read Online
-      </a>
-    </div>
-    </div>  
+          <p>
+          <span className="book">Video: </span>
+          <a href={book.recordLink} target="_blank" rel="noopener noreferrer"> Video</a>
+          </p>
+          <p>
+          <span className="book">Video: </span>
+          <a href={book.pdfLink} target="_blank" rel="noopener noreferrer"> Read Online</a>
+          </p>
         </form>
       </div>
     </div>

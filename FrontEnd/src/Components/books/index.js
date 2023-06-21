@@ -4,16 +4,25 @@ import { fetchDeleteBook } from '../../api';
 import Sidebar from '../admin_dashboard/sidebar';
 import './index.css' 
 import { NavLink } from 'react-router-dom';
+
 class Books extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      allBooks: []
+      allBooks: [],
+      currentPage: 1,
+      booksPerPage: 10
     };
   }
   
   componentDidMount() {
-    fetchBooks()
+    this.fetchBooksData();
+  }
+
+  fetchBooksData = () => {
+    const { currentPage, booksPerPage } = this.state;
+    const startIndex = (currentPage - 1) * booksPerPage;
+      fetchBooks(startIndex, booksPerPage)
       .then((data) => {
         this.setState({ allBooks: data });
       })
@@ -27,7 +36,7 @@ class Books extends Component {
     if (confirmDelete) {
       fetchDeleteBook(id)
         .then((response) => {
-          window.location.reload();
+          this.fetchBooksData();
           console.log('Book deleted successfully');
         })
         .catch((error) => {
@@ -35,17 +44,27 @@ class Books extends Component {
         });
     }
   };
-  
+
+  handlePageChange = (pageNumber) => {
+    this.setState({ currentPage: pageNumber }, () => {
+      this.fetchBooksData();
+    });
+  };
 
   renderBooks = () => {
-    return this.state.allBooks.map((book) => (
+    const { allBooks, currentPage, booksPerPage } = this.state;
+    const startIndex = (currentPage - 1) * booksPerPage;
+    const endIndex = startIndex + booksPerPage;
+    const booksToRender = allBooks.slice(startIndex, endIndex);
+  
+    return booksToRender.map((book) => (
       <tr key={book._id}>
         <td>{book.author_id.name}</td>
         <td>{book.title}</td>
         <td>{book.language}</td>
         <td>{book.year}</td>
         <td><img id="image" src={book.imageLink} alt='not found' /></td>
-        
+          
         <td>
           <button className='btn btn-outline-success me-2'><NavLink className="link1" to={`/books/${book._id}`}>View</NavLink></button>
           <button className='btn btn-outline-info me-2'><NavLink className="link1" to={`/updatebook/${book._id}`}> Update</NavLink></button>
@@ -55,11 +74,16 @@ class Books extends Component {
     ));
   }
   
+  
   render() {
+    const { allBooks, currentPage, booksPerPage } = this.state;
+    const totalBooks = allBooks.length;
+    const totalPages = Math.ceil(totalBooks / booksPerPage);
+
     return (
       <div className='body'>
          <Sidebar/>
-         <div style={{paddingTop: "3%"}}>
+         <div style={{paddingTop: "3%", paddingBottom: "3%"}}>
           <p className='addBook'><span><NavLink className="link1" to={`/createbook`}>Add Book</NavLink></span></p>
          <table  className="cont">
           <thead>
@@ -76,6 +100,31 @@ class Books extends Component {
         {this.renderBooks()}
         </tbody>
         </table>
+        <div className="pagination w-25" id="buttons">
+          <button
+            className="pagination-btn"
+            onClick={() => this.handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+          >
+            Previous
+          </button>
+          {Array.from({ length: totalPages }, (_, index) => (
+            <button
+              key={index + 1}
+              className={`pagination-btn ${currentPage === index + 1 ? "active" : ""}`}
+              onClick={() => this.handlePageChange(index + 1)}
+            >
+              {index + 1}
+            </button>
+          ))}
+          <button
+            className="pagination-btn"
+            onClick={() => this.handlePageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+          >
+            Next
+          </button>
+        </div>
         </div>
       </div>
     );

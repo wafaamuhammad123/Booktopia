@@ -64,7 +64,7 @@ const Login = () => {
   };
 
   return (
-    <section className="L">
+    <section className="w">
       <div className="form-boxL">
         <div className="form-valueL">
           <form id="form" name="contactForm" onSubmit={validateForm}>
