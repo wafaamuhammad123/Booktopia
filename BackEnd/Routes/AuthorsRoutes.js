@@ -21,7 +21,7 @@ const upload = multer({ storage: storage });
 
 router.get("/authors", authUser, authorsController.getAllAuthors);
 router.post("/create", admin, upload.single("image"),authorsController.createAuthor);
-router.put("/author/:id", admin,  upload.single("image"),authorsController.updateAuthor);
+router.put("/author/:id", admin, upload.single("image"),authorsController.updateAuthor);
 router.delete("/delete/:id", admin, authorsController.deleteAuthor);
 router.get("/:id", authUser, authorsController.getAuthorById);
 
