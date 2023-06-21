@@ -1,3 +1,4 @@
+const BooksModel = require("../Models/BooksModel");
 const booksModel = require("../Models/BooksModel");
 const {uploadFiles} = require("../multer");
 const cloudinary = require("cloudinary").v2;
@@ -173,6 +174,20 @@ let deleteBook = async (req, res) => {
   }
 };
 
+const  getBooksByAuthorId = async (req,res)=> {
+  try{
+    let id = req.params.id;
+    console.log(id);
+    let books = await booksModel.find({author_id: id });
+    console.log(books)
+    res.json(books)
+  }
+  catch(err){
+    res.status(500).json({msg : "Couldn't find Books by This author"})
+  }
+
+}
+
 module.exports = {
   getAllBooks,
   getBookById,
@@ -180,4 +195,5 @@ module.exports = {
   getBooksByStatus,
   updateBook,
   deleteBook,
+  getBooksByAuthorId
 };

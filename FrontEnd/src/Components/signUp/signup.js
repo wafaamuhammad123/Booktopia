@@ -15,10 +15,25 @@ const SignUp = () => {
   const [passwordErr, setPasswordErr] = useState("");
   const [re_passwordErr, setRePasswordErr] = useState("");
   const [image, setImage] = useState(null);
-
+  const [imageErr, setImageErr] = useState('');
   const handleImageChange = (e) => {
-    setImage(e.target.files[0]);
+    const file = e.target.files[0];
+    if (file) {
+      const fileType = file.type;
+      const validImageTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
+        if (validImageTypes.includes(fileType)) {
+        setImage(file);
+        setImageErr('');
+      } else {
+        setImage(null);
+        setImageErr('Please select a valid image file (JPG, PNG, or GIF)');
+      }
+    } else {
+      setImage(null);
+      setImageErr('Please select an image file');
+    }
   };
+  
 
   const printError = (elemId, hintMsg) => {
     switch (elemId) {
@@ -45,13 +60,13 @@ const SignUp = () => {
     let emailErr = true;
     let passwordErr = true;
     let re_passwordErr = true;
-
+   
     if (username === "") {
       printError("nameErr", "Please enter your username");
     } else {
       const regex = /^[a-zA-Z\d\s]{5,}$/;
       if (regex.test(username) === false) {
-        printError("nameErr", "Please enter a valid username with a minimum length of 5 characters");
+        printError("nameErr", "The minimum length 5 characters");
       } else {
         printError("nameErr", "");
         nameErr = false;
@@ -68,6 +83,7 @@ const SignUp = () => {
         printError("emailErr", "");
         emailErr = false;
       }
+      
     }
 
     if (password === "") {
@@ -88,10 +104,16 @@ const SignUp = () => {
       printError("re_passwordErr", "");
       re_passwordErr = false;
     }
+    if (image === null) {
+      setImageErr("Please select an image file");
+      return;
+    }
 
     if (nameErr || emailErr || passwordErr || re_passwordErr) {
       return false;
     }
+
+
 
     const formData = new FormData();
     formData.append("image", image);
@@ -104,10 +126,18 @@ const SignUp = () => {
       .then((data) => {
         console.log("User added successfully:", data);
         navigate('/login');
-        // Redirect to login page or perform any other action
       })
       .catch((error) => {
-        console.error("Error adding user:", error);
+        const errorMessage = error?.response?.data || "An error occurred.";
+
+        // Display the error message below the corresponding field
+        if (errorMessage === "Email already taken") {
+          setEmailErr(errorMessage);
+        } else if (errorMessage === "Username already taken") {
+          setNameErr(errorMessage);
+        } else {
+          setNameErr("An error occurred. Please try again.");
+        }
       });
   };
 
@@ -162,12 +192,15 @@ const SignUp = () => {
             </div>
             <p className="error">{re_passwordErr}</p>
             <div className="inputbox">
-              <input
-                type="file"
-                name="image"
-                onChange={handleImageChange}
-              />
-            </div>
+            <input
+              type="file"
+              name="image"
+              placeholder='Enter your image'
+              onChange={handleImageChange}
+            />
+          </div>
+          {imageErr && <p className="error">{imageErr}</p>}
+
             <button type="submit" className="sign">Sign Up</button>
             <div>
               <p>

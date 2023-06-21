@@ -26,17 +26,22 @@ const storage = new CloudinaryStorage({
     if (file.fieldname === "image") {
       folder = "images";
       resource_type = "image";
+      access_mode= "public"
     } else if (file.fieldname === "mp4") {
       folder = "videos";
       resource_type = "video";
+      access_mode= "public"
     } else if (file.fieldname === "pdf") {
       folder = "pdfs";
       resource_type = "auto";
+      access_mode= "public";
+      // Content_Disposition = "attachment";
     }
 
     return {
       folder,
       resource_type,
+      access_mode,
     };
   },
 });

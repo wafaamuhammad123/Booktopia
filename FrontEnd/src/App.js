@@ -20,6 +20,9 @@ import BookList from "./Components/testSearch/search";
 import Authors from "./Components/authors/authors";
 import AddAuthor from "./Components/authors/addAuthor";
 import UpdateAuthor from "./Components/authors/updateAuthor";
+import Author from "./Components/authors/authorDetails";
+import Checkout from "./Components/checkout/checkout";
+import PaymentSuccess from "./Components/checkout/paymentSuccess";
 import UserProfile from "./Components/user/userprofile";
 import AllBooks from "./Components/books/allBooks";
 import UpdateUser from "./Components/user/updateUser";
@@ -103,6 +106,9 @@ function App() {
               <Route path="UpdateUser/:id" element={<UpdateUser />} />
               <Route path="UserBooks/:id" element={<UserBooks />} />
               <Route path="BookDetail" element={<BookDetail />} />
+              <Route path="authors/:id" element={<Author/>}/>
+              <Route path="/checkout" element={<Checkout/>}/>
+              <Route path="/paymentSuccessful" element={<PaymentSuccess/>}/>
             </>
           ) : (
             <>
@@ -110,6 +116,9 @@ function App() {
               <Route path="BookDetail" element={<Navigate to="/login" replace />} />
               <Route path="userprofile" element={<Navigate to="/login" replace />} />
               <Route path="UpdateUser/:id" element={<Navigate to="/login" replace />} />
+              <Route path="authors/:id" element={<Navigate to="/login" replace />}/>
+              <Route path="/checkout" element={<Navigate to="/login" replace />}/>
+              <Route path="/paymentSuccessful" element={<Navigate to="/login" replace />}/>
             </>
 
             
