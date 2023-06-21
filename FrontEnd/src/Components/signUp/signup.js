@@ -21,22 +21,17 @@ const SignUp = () => {
     if (file) {
       const fileType = file.type;
       const validImageTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
-  
-      if (validImageTypes.includes(fileType)) {
+        if (validImageTypes.includes(fileType)) {
         setImage(file);
         setImageErr('');
       } else {
         setImage(null);
-        setImageErr('Please select a valid image file (JPEG, PNG, or GIF)');
+        setImageErr('Please select a valid image file (JPG, PNG, or GIF)');
       }
     } else {
       setImage(null);
       setImageErr('Please select an image file');
     }
-    if (imageErr) {
-      return <p className="error">{imageErr}</p>;
-    }
-    
   };
   
 
@@ -65,13 +60,13 @@ const SignUp = () => {
     let emailErr = true;
     let passwordErr = true;
     let re_passwordErr = true;
-
+   
     if (username === "") {
       printError("nameErr", "Please enter your username");
     } else {
       const regex = /^[a-zA-Z\d\s]{5,}$/;
       if (regex.test(username) === false) {
-        printError("nameErr", "Please enter a valid username with a minimum length of 5 characters");
+        printError("nameErr", "The minimum length 5 characters");
       } else {
         printError("nameErr", "");
         nameErr = false;
@@ -109,10 +104,16 @@ const SignUp = () => {
       printError("re_passwordErr", "");
       re_passwordErr = false;
     }
+    if (image === null) {
+      setImageErr("Please select an image file");
+      return;
+    }
 
     if (nameErr || emailErr || passwordErr || re_passwordErr) {
       return false;
     }
+
+
 
     const formData = new FormData();
     formData.append("image", image);
@@ -135,8 +136,6 @@ const SignUp = () => {
         } else if (errorMessage === "Username already taken") {
           setNameErr(errorMessage);
         } else {
-          // Handle other errors
-          // For example, display a generic error message
           setNameErr("An error occurred. Please try again.");
         }
       });
@@ -196,10 +195,12 @@ const SignUp = () => {
             <input
               type="file"
               name="image"
+              placeholder='Enter your image'
               onChange={handleImageChange}
             />
           </div>
           {imageErr && <p className="error">{imageErr}</p>}
+
             <button type="submit" className="sign">Sign Up</button>
             <div>
               <p>
