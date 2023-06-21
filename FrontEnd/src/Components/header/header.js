@@ -28,7 +28,7 @@ const Header = () => {
             <nav id="navbar">
                 <div className="main-menu">
                         <span className="menu-item"><NavLink className="link2" activeclassname="active2" to={`/home`}>Home</NavLink></span>
-                        <span className="menu-item"><NavLink className="link2" activeclassname="active2" to={`/allBooks`}>Books</NavLink></span>
+                        <span className="menu-item"><NavLink className="link2" activeclassname="active2" to={`/lists`}>Books</NavLink></span>
                         <span className="menu-item"><NavLink className="link2" activeclassname="active2" to={`/`}>Authors</NavLink></span>
                         <span className="menu-item"><NavLink className="link2" activeclassname="active2" to={`/`}>Contact</NavLink></span>
                         <span className="menu-item"><NavLink className="link2" activeclassname="active2" to={`/`}>About</NavLink></span>
