@@ -139,9 +139,9 @@ function UpdateBook() {
   return (
     <div className="body">
       <Sidebar />
-      <div style={{ paddingTop: "1%" }}>
+      <div style={{ paddingTop: "1%" ,paddingBottom: "2%"}}>
         <form onSubmit={handleSubmit} encType="multipart/form-data" className={Styles.newBook}>
-          <h2 style={{ textAlign: "center", color: "#FFCB74" }}>Update Book</h2>
+          <h3 style={{ textAlign: "center", color: "#FFCB74" }}>Update Book</h3>
           <div className={Styles.inputs}>
             <label>
               Title:

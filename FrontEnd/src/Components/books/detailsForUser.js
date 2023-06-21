@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetchBookDetails } from "../../api";
-import Sidebar from "../admin_dashboard/sidebar";
-import './details.css'
+// import './details.css'
 
-function BookDetails() {
+function UserBookDetails() {
   const { id } = useParams();
   const [book, setBook] = useState({});
   const [pdfLink, setPdfLink] = useState("");
@@ -20,18 +19,10 @@ function BookDetails() {
       });
   }, [id]);
 
-  const handleDownload = () => {
-    const link = document.createElement("a");
-    link.href = pdfLink;
-    link.download = pdfLink.split("/").pop();
-    link.click();
-  };
-
   return (
-    <div className="body">
-      <Sidebar />
+    <div >
       <div style={{ paddingTop: "3%" }}>
-        <form className="details">
+        <form >
           <img src="" alt="" />
           <img src={book.imageLink} alt="notFound" style={{height:"200px", width:"80%", marginLeft:"10%", padding:"15px" }}/>
           <p>
@@ -72,4 +63,4 @@ function BookDetails() {
   );
 }
 
-export default BookDetails;
+export default  UserBookDetails;
