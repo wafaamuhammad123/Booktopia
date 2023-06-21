@@ -26,7 +26,10 @@ import UpdateUser from "./Components/user/updateUser";
 import jwtDecode from "jwt-decode";
 import Error403 from "./Components/error403";
 import UserBooks from "./Components/user/userBooks";
-
+import Users from "./Components/user_dashboard/users";
+import ViewUser from "./Components/user_dashboard/viewUser";
+import UpdateUserDetails from "./Components/user_dashboard/updateUserDetails";
+import CreateUser from "./Components/user_dashboard/createUser";
 const isAuthenticated = () => {
   // const navigate =useNavigate();
   const token = localStorage.getItem("token");
@@ -69,6 +72,10 @@ function App() {
               <Route path="updateAuthor/:id" element={<UpdateAuthor />} />
               <Route path="dashboard" element={<DashboardPage />} />
               <Route path="updatebook/:id" element={<UpdateBook />} />
+              <Route path="getUsers" element={<Users />} />
+              <Route path="viewUser/:id" element={<ViewUser />} />
+              <Route path="updateUser/:id" element={<UpdateUserDetails />} />
+              <Route path="CreateUser" element={<CreateUser />} />
             </>
           ) : (
             <>

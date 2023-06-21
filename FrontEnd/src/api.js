@@ -62,3 +62,15 @@ export function fetchmyBooks(id) {
 export function updateBookStatus(bookId, newStatus) {
   return axiosInstance.put(`/userbook/chooseBook/${bookId}`, { statue: newStatus }).then((response) => response.data);
 }
+
+export function createBookUser(bookId, newStatus) {
+  return axiosInstance.put(`/userbook/chooseBook/${bookId}`, { statue: newStatus }).then((response) => response.data);
+}
+// this part about get all users to display them in admin dashboard 
+export function fetchusers() {
+  return axiosInstance.get('/user/users').then((response) => response.data);
+}
+
+export function fetchDeleteuser(id) {
+  return axiosInstance.delete(`/user/delete/${id}`).then((response) => response.data);
+}

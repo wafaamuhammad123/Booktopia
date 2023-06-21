@@ -1,26 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect,useState } from "react";
+import { fetchUpdateUser, fetchuserDetails } from "../../api";
+import { useNavigate } from 'react-router-dom';
+import { useParams } from "react-router-dom";
+import Sidebar from '../admin_dashboard/sidebar';
 import  Styles from '../books/addBook.module.css';
-import axiosInstance from '../utils/axiosInstance';
-import {fetchUpdateUser,fetchuserDetails} from '../../api';
-import axios from 'axios';
-import { Navigate, useNavigate, useParams } from "react-router-dom";
-
-
-export default function UpdateUserProfile (){
+function UpdateUserDetails() {
     const [user, setUser]= useState({});
     const [selectedImage, setSelectedImage] = useState(null);
     const navigate = useNavigate();
     const { id } = useParams();
-
-    const handleInputChange = (event) => {
-        const { name, value } = event.target;
-        setUser((prevState) => ({
-          ...prevState,
-          [name]: value,
-        }));
-      };
-
-      useEffect(() => {
+    
+    
+    useEffect(() => {
         fetchuserDetails(id)
           .then((data) => {
             setUser(data);
@@ -31,6 +22,13 @@ export default function UpdateUserProfile (){
       }, [id]);
 
 
+    const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        setUser((prevState) => ({
+          ...prevState,
+          [name]: value,
+        }));
+      };
       const handleImageChange = (e) => {
         setSelectedImage(e.target.files[0]);
         console.log(selectedImage);
@@ -49,7 +47,7 @@ export default function UpdateUserProfile (){
         fetchUpdateUser(formData)
           .then((data) => {
             console.log("user updated successfully:", data);
-            navigate('/userprofile');
+            navigate('/getUsers');
           })
           .catch((error) => {
             console.error("Error updating book:", error);
@@ -59,12 +57,15 @@ export default function UpdateUserProfile (){
 
         setSelectedImage(null);
   };
-    return (
-        <div className='body'>
-      <div style={{paddingTop: "1%"}}>
+
+  return (
+    <div className="body">
+      <Sidebar/>
+      <div  style={{paddingTop: "1%"}}>
       <form onSubmit={handleSubmit} encType="multipart/form-data" className={Styles.newBook}>
+      <h2 style={{textAlign:"center", color:"#FFCB74" }}>Update User</h2>
       <div className={Styles.inputs}>
-        <label>
+      <label>
           Email:
           <br/>
           <input
@@ -101,5 +102,9 @@ export default function UpdateUserProfile (){
       </form>
       </div>
     </div>
-    )
+  );
+
+ 
 }
+
+export default UpdateUserDetails;
