@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import jwtDecode from 'jwt-decode';
 import { Navigate, useNavigate, useParams, NavLink } from 'react-router-dom';
-import { fetchmyBooks } from '../../api';
+import { fetchmyBooks, updateBookStatus } from '../../api';
 
 export default function UserBooks() {
   const [userBook, setBooks] = useState([]);
@@ -22,7 +22,6 @@ export default function UserBooks() {
   }, [id]);
 
   useEffect(() => {
-    // console.log(statusFilter , "waaaaaa");
     if (statusFilter === '') {
       setFilteredBooks(userBook);
     } else {
@@ -33,6 +32,23 @@ export default function UserBooks() {
 
   const handleStatusChange = (event) => {
     setStatusFilter(event.target.value);
+  };
+
+  const handleStatusEdit = (bookId, newStatus) => {
+    updateBookStatus(bookId, newStatus)
+      .then((updatedBook) => {
+        const updatedBooks = userBook.map((books) => {
+          if (books._id === updatedBook._id) {
+            return { ...books, statue: updatedBook.statue };
+          }
+          return books;
+        });
+        setBooks(updatedBooks);
+        setFilteredBooks(updatedBooks);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -66,6 +82,7 @@ export default function UserBooks() {
                   Your browser does not support the audio element.
                 </audio>
                 <p>Status: {books.statue}</p>
+                <button onClick={() => handleStatusEdit(book._id, 'NewStatus')}>Edit Status</button>
               </div>
             ))}
           </div>
