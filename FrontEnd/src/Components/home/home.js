@@ -19,46 +19,51 @@ const Home = () => {
 	return (
 	  <div className="page">
 		<Header />
-		
-		
-		<div id="billboard">
-      <div className="container">
-        <div className="row">
-          <div className="col-md-12">
-            <Slider className='slide' {...settings}>
-              <div className="slider-item">
-                <div className="banner-content">
-                  <h2 className="banner-title">Life of the Wild</h2>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero ipsum enim pharetra hac. Urna commodo, lacus ut magna velit eleifend. Amet, quis urna, a eu.</p>
-                  <div className="btn-wrap">Read More<i className="bi bi-arrow-right"></i></div>
-                </div>
-                <img src="images/main-banner1.jpg" alt="banner" className="banner-image" />
-              </div>
-              <div className="slider-item">
-                <div className="banner-content">
-                  <h2 className="banner-title">Birds gonna be Happy</h2>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero ipsum enim pharetra hac. Urna commodo, lacus ut magna velit eleifend. Amet, quis urna, a eu.</p>
-                  <div className="btn-wrap">Read More<i className="bi bi-arrow-right"></i></div>
-                </div>
-                <img src="images/main-banner2.jpg" alt="banner" className="banner-image" />
-              </div>
-            </Slider>
-          </div>
-        </div>
-      </div>
-    </div>
+		<div className='container' style={{width:"100%"}}>
+			<img src='images/tree.png'/>
+			<div id="quotation" class="align-center" style={{position: "absolute", top: "45%", left: "50%",width:"90%", transform: "translate(-50%, -50%)"}}>
+				<div class="inner-content">
+					<h2 class="section-title divider">Plant knowledge trees</h2>
+				</div>
+			</div>
+		</div><br/>
+
+		<div className="container" id="billboard">
+			<Slider className='slide' {...settings}>
+				<div className='slider-item row'>
+					<div class="carddd">
+						<img src="images/main-banner1.jpg" alt="Image"/>
+						<div class="card-content" style={{textAlign:"center", width:"70%", marginLeft:"15%", marginRight:"15%", marginTop:"10%"}}>
+							<h2 className="banner-title">Life of the Wild</h2>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero ipsum enim pharetra hac. Urna commodo, lacus ut magna velit eleifend. Amet, quis urna, a eu.</p>
+							<div className="btn-wrap">Read More<i className="bi bi-arrow-right"></i></div>
+						</div>
+					</div>
+				</div>
+				<div className='slider-item'>
+					<div class="carddd">
+						<img src="images/main-banner2.jpg" alt="Image"/>
+						<div class="card-content" style={{textAlign:"center", width:"70%", marginLeft:"15%", marginRight:"15%", marginTop:"10%"}}>
+							<h2 className="banner-title">Birds gonna be Happy</h2>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero ipsum enim pharetra hac. Urna commodo, lacus ut magna velit eleifend. Amet, quis urna, a eu.</p>
+							<div className="btn-wrap">Read More<i className="bi bi-arrow-right"></i></div>
+						</div>
+					</div>
+				</div>
+				</Slider>
+		</div>
 	
 <div id="client-holder" data-aos="fade-up">
-	<div class="container">
+	<div class="container" style={{width:"100%", justifyContent:"center", alignItems:"center"}}>
 		<div class="row">
 			<div class="inner-content">
 				<div class="logo-wrap">
 					<div class="grid">
-						<img src="images/client-image1.png" alt="client"/>
-						<img src="images/client-image2.png" alt="client"/>
-						<img src="images/client-image3.png" alt="client"/>
-						<img src="images/client-image4.png" alt="client"/>
-						<img src="images/client-image5.png" alt="client"/>
+						<img className='col' style={{width:"20%"}} src="images/client-image1.png" alt="client"/>
+						<img className='col' style={{width:"20%"}} src="images/client-image2.png" alt="client"/>
+						<img className='col' style={{width:"20%"}} src="images/client-image3.png" alt="client"/>
+						<img className='col' style={{width:"20%"}} src="images/client-image4.png" alt="client"/>
+						<img className='col' style={{width:"20%"}} src="images/client-image5.png" alt="client"/>
 					</div>
 				</div>
 			</div>
@@ -551,7 +556,7 @@ const Home = () => {
 	<div class="container">
 		<div class="row">
 
-			<div class="col-md-8 col-md-offset-2">
+			<div style={{width:"85%", marginRight:"10%", marginLeft:"5%"}}>
 				<div class="row">
 
 					<div class="col-md-6">

@@ -1180,12 +1180,14 @@ img.post-image {
     background: #D7D5CC;
     color: #D7D5CC;
     border-radius: 50%;
+    display:none;
 }
 .slick-dots .slick-active {
     color: #74642F;
     background: #74642F;
     border: 1px solid #D7D5CC;
     outline: 1px solid #D7d5cc;
+    /* display:none; */
 }
 
 /* -- Top Menu Part
@@ -1335,8 +1337,12 @@ img.post-image {
 #billboard .slick-dots {
     left: 200px;
     bottom: 110px;
+    margin-bottom: 10%;
+    margin-left: 33%;
+    margin-right: 67%;
     width: 10%;
     text-align: inherit;
+    /* display: none; */
 }
 #billboard button.slick-arrow {
     background: rgb(227, 185, 78);
@@ -1411,7 +1417,7 @@ margin-left: 60%;
 #client-holder {
     background: #EDEBE4;
     padding: 105px 0;
-    margin-bottom: 180px;
+    /* margin-bottom: 180px; */
 }
 #client-holder .logo-wrap {
     max-width: 1000px;
@@ -1427,7 +1433,7 @@ margin-left: 60%;
 }
 #featured-books .product-list {
     border-bottom: 1px solid #E0E0E0;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
 }
 
 /*----- Best Selling Section Section
@@ -1824,5 +1830,35 @@ span.prev-price {
 @media screen and (max-width: 575px) {
   .products-grid .product-style {
     width: 100%;
+  }
+}
+
+
+.carddd {
+  display: flex;
+  flex-direction: row-reverse;
+  background-color: transparent;
+  border: none;
+}
+
+.carddd img {
+  height: auto;
+  object-fit: cover;
+  max-width: 50%;
+}
+
+.carddd-content {
+  flex: 1;
+}
+
+@media screen and (max-width: 600px) {
+  .carddd {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .carddd img {
+    max-width: 70%;
   }
 }
