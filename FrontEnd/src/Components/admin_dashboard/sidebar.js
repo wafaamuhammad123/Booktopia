@@ -21,7 +21,7 @@ const Sidebar = () => {
         <div className="dashboard">
         <p><NavLink className="link" activeclassname="active" to={`/dashboard`}>Dashboard</NavLink></p>
         <hr/>
-        <p><NavLink className="link" activeclassname="active" to={`/users`}>Users</NavLink></p>
+        <p><NavLink className="link" activeclassname="active" to={`/getUsers`}>Users</NavLink></p>
         <hr/>
         <p><NavLink className="link" activeclassname="active" to={`/authors`}>Authors</NavLink></p>
         <hr/>
