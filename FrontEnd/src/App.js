@@ -12,11 +12,11 @@ import Books from "./Components/books/index";
 import BookDetails from "./Components/books/bookDetails";
 import AddBook from "./Components/books/addBook";
 import Home from "./Components/home/home";
+import UserBookDetails from "./Components/books/detailsForUser"
 import DashboardPage from "./Components/admin_dashboard/dashboard";
 import Error from "./Components/error";
 import UpdateBook from "./Components/books/updateBook";
 import BookDetail from "./Components/book_detail/book_detail";
-import BookList from "./Components/testSearch/search";
 import Authors from "./Components/authors/authors";
 import AddAuthor from "./Components/authors/addAuthor";
 import UpdateAuthor from "./Components/authors/updateAuthor";
@@ -24,7 +24,7 @@ import Author from "./Components/authors/authorDetails";
 import Checkout from "./Components/checkout/checkout";
 import PaymentSuccess from "./Components/checkout/paymentSuccess";
 import UserProfile from "./Components/user/userprofile";
-import AllBooks from "./Components/books/allBooks";
+import BookList from "./Components/books/allBooks";
 import UpdateUser from "./Components/user/updateUser";
 import jwtDecode from "jwt-decode";
 import Error403 from "./Components/error403";
@@ -53,8 +53,6 @@ const isAdmin = () => {
 
 
 function App() {
-  // const navigate=useNavigate();
-
   return (
     <div>
       <BrowserRouter>
@@ -106,6 +104,8 @@ function App() {
               <Route path="UpdateUser/:id" element={<UpdateUser />} />
               <Route path="UserBooks/:id" element={<UserBooks />} />
               <Route path="BookDetail/:id" element={<BookDetail />} />
+              <Route path="userbookdetails/:id" element={<UserBookDetails />} />
+              <Route path="BookDetail" element={<BookDetail />} />
               <Route path="authors/:id" element={<Author/>}/>
               <Route path="/checkout" element={<Checkout/>}/>
               <Route path="/paymentSuccessful" element={<PaymentSuccess/>}/>

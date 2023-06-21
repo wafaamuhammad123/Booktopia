@@ -80,8 +80,8 @@ export function updateBookStatus(bookId, newStatus) {
   return axiosInstance.put(`/userbook/chooseBook/${bookId}`, { statue: newStatus }).then((response) => response.data);
 }
 
-export function createBookUser(bookId, newStatus) {
-  return axiosInstance.put(`/userbook/chooseBook/${bookId}`, { statue: newStatus }).then((response) => response.data);
+export function chooseBook(userBook) {
+  return axiosInstance.post(`/userbook/chooseBook`,userBook).then((response) => response.data);
 }
 // this part about get all users to display them in admin dashboard 
 export function fetchusers() {
