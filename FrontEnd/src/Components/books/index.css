@@ -1,5 +1,6 @@
 .body{
     background-color: #2F2F2F;
+    min-height: 100vh;
     height: auto;
     color: #F7F7F7
 
@@ -84,4 +85,15 @@
     width:75px;
     height: 75px;
     border-radius: 37.5px;
+}
+
+.pagination-btn{
+    color:  #FFCB74;
+    border: 1px solid white;  
+    padding:5px 20px;
+    background: none;
+}
+
+#buttons{
+    margin-left: 45%
 }

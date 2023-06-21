@@ -1,3 +1,33 @@
-h1{
-  color: red;  
+.books{
+  display: grid;
+  width: 65%;
+  grid-template-columns: repeat(auto-fit,minmax(250px,auto));
+  gap: 60px;
+  box-shadow: 5 2px 0px  rgba(0, 0, 0, 0.2);
+  margin: 3% auto;
+}
+
+
+.card {
+  position: relative;
+  padding: 10px;
+}
+
+.card img {
+  width: 100%;
+  margin: auto;
+  height: 200px;
+  display: block;
+  padding-top: 1%;
+  transition: 0.3s ease-in-out;
+}
+
+.card img:hover {
+    transition: 0.3s ease-in-out;
+    transform: scale(1.1);
+}
+
+.card-title{
+  text-align: center;
+  padding-top: 0.75rem;
 }

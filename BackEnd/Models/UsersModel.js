@@ -25,6 +25,11 @@ const usersSchema = new mongoose.Schema({
     type: "string",
     required: true,
   },
+  subscribed:{
+    type: Boolean,
+    default: false,
+    required:true,
+  },
   type: {
     type: "string",
     required: true,
