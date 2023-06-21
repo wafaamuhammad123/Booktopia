@@ -10,7 +10,8 @@ section{
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    min-height: 100vh;
+    min-height: auto;
+    padding-top: 2%;
     width:100%;
     background: url('pngegg (4).png')no-repeat;
     background-size: 50%;
@@ -20,7 +21,7 @@ section{
   .form-box{
     position: relative;
     width:400px;
-    height: 84vh;
+    height: auto;
     display: flex;
     justify-content: center;
     align-items: center;

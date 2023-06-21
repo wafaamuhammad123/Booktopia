@@ -20,13 +20,19 @@ import BookList from "./Components/testSearch/search";
 import Authors from "./Components/authors/authors";
 import AddAuthor from "./Components/authors/addAuthor";
 import UpdateAuthor from "./Components/authors/updateAuthor";
+import Author from "./Components/authors/authorDetails";
+import Checkout from "./Components/checkout/checkout";
+import PaymentSuccess from "./Components/checkout/paymentSuccess";
 import UserProfile from "./Components/user/userprofile";
 import AllBooks from "./Components/books/allBooks";
 import UpdateUser from "./Components/user/updateUser";
 import jwtDecode from "jwt-decode";
 import Error403 from "./Components/error403";
 import UserBooks from "./Components/user/userBooks";
-
+import Users from "./Components/user_dashboard/users";
+import ViewUser from "./Components/user_dashboard/viewUser";
+import UpdateUserDetails from "./Components/user_dashboard/updateUserDetails";
+import CreateUser from "./Components/user_dashboard/createUser";
 const isAuthenticated = () => {
   // const navigate =useNavigate();
   const token = localStorage.getItem("token");
@@ -69,6 +75,10 @@ function App() {
               <Route path="updateAuthor/:id" element={<UpdateAuthor />} />
               <Route path="dashboard" element={<DashboardPage />} />
               <Route path="updatebook/:id" element={<UpdateBook />} />
+              <Route path="getUsers" element={<Users />} />
+              <Route path="viewUser/:id" element={<ViewUser />} />
+              <Route path="updateUser/:id" element={<UpdateUserDetails />} />
+              <Route path="CreateUser" element={<CreateUser />} />
             </>
           ) : (
             <>
@@ -96,6 +106,9 @@ function App() {
               <Route path="UpdateUser/:id" element={<UpdateUser />} />
               <Route path="UserBooks/:id" element={<UserBooks />} />
               <Route path="BookDetail" element={<BookDetail />} />
+              <Route path="authors/:id" element={<Author/>}/>
+              <Route path="/checkout" element={<Checkout/>}/>
+              <Route path="/paymentSuccessful" element={<PaymentSuccess/>}/>
             </>
           ) : (
             <>
@@ -103,6 +116,9 @@ function App() {
               <Route path="BookDetail" element={<Navigate to="/login" replace />} />
               <Route path="userprofile" element={<Navigate to="/login" replace />} />
               <Route path="UpdateUser/:id" element={<Navigate to="/login" replace />} />
+              <Route path="authors/:id" element={<Navigate to="/login" replace />}/>
+              <Route path="/checkout" element={<Navigate to="/login" replace />}/>
+              <Route path="/paymentSuccessful" element={<Navigate to="/login" replace />}/>
             </>
 
             

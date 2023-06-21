@@ -12,9 +12,6 @@ const UserProfile = ({ userId }) => {
      userId = decodedToken.userId;
     console.log(userId);
   }
- 
-  // let logged = JSON.parse(hamada);
-//   console.log(logged);
 
   useEffect(() => {
     fetchuserDetails(userId)
