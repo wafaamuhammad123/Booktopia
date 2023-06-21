@@ -30,6 +30,27 @@ function AddUser() {
       const handleSubmit = (e) => {
         e.preventDefault();
         const formData = new FormData();
+
+                // Validate username
+        if (!newUser.username) {
+            alert("Please enter a username");
+            return;
+        }
+
+        // Validate email
+        const emailRegex = /^\S+@\S+\.\S+$/;
+        if (!newUser.email.match(emailRegex)) {
+            alert("Please enter a valid email address");
+            return;
+        }
+
+        // Validate image
+        if (!image || !image.type.startsWith("image/")) {
+            alert("Please upload a valid image file");
+            return;
+        }
+
+
         formData.append("image", image);
         formData.append("username", newUser.username);
         formData.append("email", newUser.email);
