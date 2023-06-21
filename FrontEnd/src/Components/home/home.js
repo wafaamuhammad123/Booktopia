@@ -154,13 +154,8 @@ const Home = () => {
 </div>
 
 <div id="best-selling" class="leaf-pattern-overlay">
-	<div class="corner-pattern-overlay"></div>
 	<div class="container">
-		<div class="row">
-
-			<div class="col-md-8 col-md-offset-2">
-
-				<div class="row">
+				<div class="row" style={{justifyContent:"center", alignItems:"center", width:"90%", marginLeft:"0%", marginRight:"10%"}}>
 
 					<div class="col-md-6">
 						<figure class="products-thumb">
@@ -183,10 +178,7 @@ const Home = () => {
 							</div>
 						</div>
 					</div>
-				</div>
-
-			</div>
-
+			
 		</div>
 	</div>
 </div>
