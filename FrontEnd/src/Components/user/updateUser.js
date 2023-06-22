@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import  Styles from '../books/addBook.module.css';
 import axiosInstance from '../utils/axiosInstance';
 import {fetchUpdateUser,fetchuserDetails} from '../../api';
 import axios from 'axios';
+import './update.css';
 import { Navigate, useNavigate, useParams } from "react-router-dom";
-
+import Header from '../header/header';
+import Footer from '../footer/footer.js';
+import { NavLink } from "react-router-dom";
 
 export default function UpdateUserProfile (){
+
     const [user, setUser]= useState({});
     const [selectedImage, setSelectedImage] = useState(null);
     const navigate = useNavigate();
@@ -60,10 +63,11 @@ export default function UpdateUserProfile (){
         setSelectedImage(null);
   };
     return (
-        <div className='body'>
-      <div style={{paddingTop: "1%"}}>
-      <form onSubmit={handleSubmit} encType="multipart/form-data" className={Styles.newBook}>
-      <div className={Styles.inputs}>
+        <div >
+           <Header />
+      <div >
+      <form onSubmit={handleSubmit} encType="multipart/form-data">
+      <div className='lbl'>
         <label>
           Email:
           <br/>
@@ -77,19 +81,19 @@ export default function UpdateUserProfile (){
         <label>
           username:
           <br />
-          <input
+          <input 
             type="text"
             name="username"
             value={user.username}
             onChange={handleInputChange}
           />
         </label>
-        </div>
+      
      
         <label>
           Image:
           <br />
-          <input
+          <input 
             type="file"
             name="image"
             value={user.imageLink}
@@ -97,9 +101,11 @@ export default function UpdateUserProfile (){
           />
         </label>
     
-        <button type="submit" id={Styles.addbk}>submit</button>
+        <button className="btnnn" type="submit" >submit</button>
+        </div>
       </form>
       </div>
+      <Footer />
     </div>
     )
 }
