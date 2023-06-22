@@ -27,7 +27,10 @@ const Sidebar = () => {
         <hr/>
         <p><NavLink className="link" activeclassname="active" to={`/books`}>Books</NavLink></p>
         <hr/>
-        <button className="logout" onClick={handleLogout}>Logout</button><i className="bi bi-heart-fill"></i>
+        <button class="Btn logout"  onClick={handleLogout}>
+            <div className="sign"><i class="bi bi-arrow-right-circle-fill"></i></div>
+            <div class="text" >Logout</div>
+        </button>
         </div>
     </div>
   );

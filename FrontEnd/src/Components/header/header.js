@@ -7,12 +7,6 @@ import jwtDecode from 'jwt-decode';
 import {fetchuserDetails} from '../../api';
 
 
-const isAuthenticated = () => {
-    const token = localStorage.getItem("token");
-    if(token) return true;
-    else return false;
-  };
-
 const Header = ({ userId }) => {
     const [user, setUser] = useState(null);
     const token=localStorage.getItem("token");
@@ -55,7 +49,7 @@ const Header = ({ userId }) => {
                                     <a className="nav-link"><NavLink className="link2" activeclassname="active2" to={`/home`}>Home</NavLink></a>
                                 </li>
                                 <li className="nav-item col">
-                                    <a className="nav-link"><NavLink className="link2" activeclassname="active2" to={`/allBooks`}>Books</NavLink></a>
+                                    <a className="nav-link"><NavLink className="link2" activeclassname="active2" to={`/lists`}>Books</NavLink></a>
                                 </li>
                                 <li className="nav-item col">
                                     <a className="nav-link"><NavLink className="link2" activeclassname="active2" to={`/`}>Authors</NavLink></a>

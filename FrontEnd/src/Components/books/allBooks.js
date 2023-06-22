@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { fetchBooks } from '../../api';
 import './allBooks.css';
 import { NavLink } from 'react-router-dom';
+import Header from '../header/header';
+import Footer from '../footer/footer.js';
 
 const BookList = () => {
   const [books, setBooks] = useState([]);
@@ -29,7 +31,6 @@ const BookList = () => {
     setSearchQuery(event.target.value);
   };
 
-  // Filter the books based on the selected category and search query
   const filteredBooks = category
     ? books.filter(
         (book) =>
@@ -45,18 +46,19 @@ const BookList = () => {
 
   return (
     <div>
-      <h2>Book List</h2>
-      <div>
-        <label htmlFor="category">Category:</label>
-        <select id="category" value={category} onChange={handleCategoryChange}>
-          <option value="">All</option>
-          <option value="romance">Romance</option>
-          <option value="drama">Drama</option>
-        </select>
+      <Header />
+      <div className="filter">
+      <div className="btns">
+          <span className="categortBtn" onClick={() => setCategory('')}>All</span>
+          <span className="categortBtn" onClick={() => setCategory('romance')}>Romance</span>
+          <span className="categortBtn" onClick={() => setCategory('drama')}>Drama</span>
+          <span className="categortBtn" onClick={() => setCategory('drama')}>Drama</span>
+          <span className="categortBtn" onClick={() => setCategory('drama')}>Drama</span>
+          <span className="categortBtn" onClick={() => setCategory('drama')}>Drama</span>
       </div>
-      <div>
-        <label htmlFor="search">Search:</label>
-        <input type="text" id="search" value={searchQuery} onChange={handleSearchChange} />
+      <div className='search'>
+        <input type="text" id="search" placeholder="search the book you want..." value={searchQuery} onChange={handleSearchChange} />
+      </div>
       </div>
       <div className="books">
         {filteredBooks.map((book) => (
@@ -67,11 +69,12 @@ const BookList = () => {
             </div>
             </NavLink>
             <div className="card-title">
-              <h3>{book.title}</h3>
+              <h3><i class="bi bi-book-half me-1" style={{color:"#5A96E3"}} ></i>{book.title.toUpperCase()}</h3>
             </div>
           </div>
         ))}
       </div>
+      <Footer />
     </div>
   );
 };
