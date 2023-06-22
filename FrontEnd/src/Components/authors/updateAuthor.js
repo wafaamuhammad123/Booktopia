@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react";
 import Sidebar from "../admin_dashboard/sidebar";
 import  Styles from '../books/addBook.module.css'
-import axios from 'axios';
 import {fetchAuthor, updateAuthor } from "../../api";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import {  useNavigate, useParams } from "react-router-dom";
 
 export default function UpdateAuthor (){
     const [author, setAuthor]= useState({});
     const [selectedImage, setSelectedImage] = useState(null);
     const navigate = useNavigate();
-   
     const { id } = useParams();
 
     const handleInputChange = (event) => {
@@ -20,30 +18,8 @@ export default function UpdateAuthor (){
         }));
       };
 
-    
-      const handleImageChange = (e) => {
-        setSelectedImage(e.target.files[0]);
-      };
-      const handleSubmit = async(e) => {
-        e.preventDefault();
-        let data = {
-            name: author.name,
-            aboutHim: author.aboutHim,
-            imageLink:  selectedImage ? selectedImage.name : ''
-        };
-        updateAuthor(data,id)
-        .then((data) => {
-          console.log("Author updated successfully:", data);
-          navigate('/authors');
-        })
-        .catch((error) => {
-          console.error("Error updating author:", error);
-        });
-  
-    };
 
-
-    useEffect(()=>{
+      useEffect(()=>{
         fetchAuthor(id)
         .then((data) => {
           setAuthor(data)
@@ -53,6 +29,29 @@ export default function UpdateAuthor (){
           console.log(err);
         });
     },[])
+    
+      const handleImageChange = (e) => {
+        setSelectedImage(e.target.files[0]);
+      };
+
+      const handleSubmit = async(e) => {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append("image", selectedImage);
+        formData.append("name", author.name);
+        formData.append("aboutHim", author.aboutHim);
+        formData.append("_id", author._id);
+     
+        updateAuthor(formData)
+        .then((data) => {
+          console.log("Author updated successfully:", data);
+          navigate('/authors');
+        })
+        .catch((error) => {
+          console.error("Error updating author:", error);
+        });
+  
+    };
     return (
         <div className='body'>
             <Sidebar/>
@@ -87,7 +86,7 @@ export default function UpdateAuthor (){
           <br />
           <input
             type="file"
-            name="imageLink"
+            name="image"
             onChange={handleImageChange}
           />
         </label>

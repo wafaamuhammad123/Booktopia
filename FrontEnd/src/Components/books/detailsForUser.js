@@ -44,7 +44,6 @@ function UserBookDetails() {
       fetchuserDetails(userId)
         .then((data) => {
           setUser(data);
-          console.log(user);
         })
         .catch((err) => {
           console.log(err);
@@ -58,7 +57,7 @@ function UserBookDetails() {
       .catch((err) => {
         console.log(err);
       });
-
+    console.log(user)
     const userSubscribed = user.subscribed; // Replace with actual logic to determine user subscription status
     setSubscribed(userSubscribed);
   }, [id]);

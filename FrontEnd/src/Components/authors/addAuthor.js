@@ -1,22 +1,21 @@
 import { useState } from "react";
 import Sidebar from "../admin_dashboard/sidebar";
 import  Styles from '../books/addBook.module.css'
-import axios from 'axios';
 import { createAuthor } from "../../api";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function AddAuthor (){
     const navigate = useNavigate();
     const [newAuthor, setNewAuthor] = useState({
        name: "",
         aboutHim: "",
-        imageLink:""
     });
-    const [selectedImage, setSelectedImage] = useState(null);
+    const [image, setSelectedImage] = useState(null);
 
     const handleImageChange = (e) => {
         setSelectedImage(e.target.files[0]);
       };
+      
       const handleInputChange = (event) => {
         const { name, value } = event.target;
         setNewAuthor((prevState) => ({
@@ -24,18 +23,23 @@ export default function AddAuthor (){
           [name]: value,
         }));
       };
-    
 
       const handleSubmit = async(e) => {
         e.preventDefault();
-        let data = {
-            name: newAuthor.name,
-            aboutHim: newAuthor.aboutHim,
-            imageLink: selectedImage
-        };
-        console.log(data);
-       let res = await axios.post('http://localhost:4000/api/author/create', {data});
-       navigate("/authors")
+        const formData = new FormData();
+        formData.append("image", image);
+        formData.append("name", newAuthor.name);
+        formData.append("aboutHim", newAuthor.aboutHim);
+        createAuthor(formData)
+        .then((data) => {
+          console.log("autor added successfully:", data);
+          navigate('/authors');
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
+   
     };
 
     return (
@@ -51,7 +55,6 @@ export default function AddAuthor (){
           <input
             type="text"
             name="name"
-            value={newAuthor.name}
             onChange={handleInputChange}
           />
         </label>
@@ -61,8 +64,7 @@ export default function AddAuthor (){
           <input
             type="textarea"
             name="aboutHim"
-            value={newAuthor.aboutHim}
-            onChange={handleInputChange}
+             onChange={handleInputChange}
           />
         </label>
         </div>
@@ -71,14 +73,14 @@ export default function AddAuthor (){
           Image:
           <br />
           <input
-            type="file"
-            name="imageLink"
-            value={newAuthor.imageLink}
-            onChange={handleImageChange}
-          />
+              type="file"
+              name="image"
+              placeholder='Enter the author image'
+              onChange={handleImageChange}
+            />
         </label>
     
-        <button type="submit" id={Styles.addbk}>Add Book</button>
+        <button type="submit" id={Styles.addbk}>Add Author</button>
       </form>
       </div>
     </div>

@@ -54,7 +54,8 @@ export function fetchBooksByAuthor (id, token){
   };
   return fetch(url, {headers}).then((response) => response.json());
 }
-export function updateAuthor(data , id){
+export function updateAuthor(data){
+  const id = data.get('_id');
   return axiosInstance.put(  `/author/author/${id} `, data).then((response) => response.data);
 }
 
