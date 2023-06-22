@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
 import { deleteAuthor, fetchAuthors } from "../../api";
 import { NavLink } from "react-router-dom";
+import Header from "../header/header";
+import Footer from "../footer/footer";
 
 const AllAuthors = () => {
     const [authors, setAuthors] = useState([]);
@@ -25,6 +27,8 @@ const AllAuthors = () => {
     };
   
     return (
+      <div>
+        <Header/>
       <div id="latest-blog">
         <div class="container">
           <div class="row">
@@ -102,6 +106,8 @@ const AllAuthors = () => {
             </div>
           </div>
         </div>
+      </div>
+      <Footer/>
       </div>
     );
   };
