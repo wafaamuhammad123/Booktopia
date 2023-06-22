@@ -76,10 +76,6 @@ export function fetchmyBooks(id) {
   return axiosInstance.get(`/userbook/bookStatus/${id}`).then((response) => response.data);
 }
 
-export function createBookUser(bookId, newStatus) {
-  return axiosInstance.put(`/userbook/chooseBook/${bookId}`, { statue: newStatus }).then((response) => response.data);
-}
-
 export function updateBookStatus(bookId, newStatus) {
   return axiosInstance.put(`/userbook/chooseBook/${bookId}`, { statue: newStatus }).then((response) => response.data);
 }

@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import jwtDecode from 'jwt-decode';
 import { Navigate, useNavigate, useParams, NavLink } from 'react-router-dom';
-import { fetchmyBooks, updateBookStatus, updateBookStatus } from '../../api';
+import { fetchmyBooks, updateBookStatus } from '../../api';
 
 export default function UserBooks() {
   const [userBook, setBooks] = useState([]);
   const { id } = useParams();
   const [statusFilter, setStatusFilter] = useState('');
   const [filteredBooks, setFilteredBooks] = useState([]);
-  const [currentStatus, setCurrentStatus] = useState("");
+  const [currentStatus, setCurrentStatus] = useState('');
 
   useEffect(() => {
     fetchmyBooks(id)
@@ -31,40 +31,23 @@ export default function UserBooks() {
     }
   }, [statusFilter, userBook]);
 
-  const handleStatusChange = (newStatus, bookId) => {
-    const decodedToken = jwtDecode(localStorage.getItem('token'));
-    const userId = decodedToken.sub;
-  
-    updateBookStatus(bookId, newStatus)
-      .then(() => {
-        // Refresh the list of books
-        fetchmyBooks(userId)
-          .then((data) => {
-            console.log(data);
-            setBooks(data.books);
-            setFilteredBooks(data.books);
-            setCurrentStatus("");
-          })
-          .catch((err) => {
-            console.log(err);
+  const handleStatusChange = (status, bookId) => {
+    updateBookStatus(bookId, status)
+      .then((response) => {
+        // Update the book's status in the state
+        setBooks((prevBooks) => {
+          const updatedBooks = prevBooks.map((book) => {
+            if (book._id === bookId) {
+              return {
+                ...book,
+                statue: status,
+              };
+            }
+            return book;
           });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  const handleStatusEdit = (bookId, newStatus) => {
-    updateBookStatus(bookId, newStatus)
-      .then((updatedBook) => {
-        const updatedBooks = userBook.map((books) => {
-          if (books._id === updatedBook._id) {
-            return { ...books, statue: updatedBook.statue };
-          }
-          return books;
+          return updatedBooks;
         });
-        setBooks(updatedBooks);
-        setFilteredBooks(updatedBooks);
+        setCurrentStatus('');
       })
       .catch((error) => {
         console.log(error);
@@ -102,6 +85,20 @@ export default function UserBooks() {
                   Your browser does not support the audio element.
                 </audio>
                 <p>Status: {books.statue}</p>
+            {currentStatus !== '' && book._id === currentStatus ? (
+  <select
+    value={books.statue}
+    onChange={(event) => handleStatusChange(event.target.value, book._id)}
+  >
+    <option value="">Select Status</option>
+    <option value="Done">Done</option>
+    <option value="WANT_TO_READ">Want to Read</option>
+    <option value="READING">Reading</option>
+  </select>
+) : (
+  <button onClick={() => setCurrentStatus(book._id)}>Change Status</button>
+)}
+                
               </div>
             ))}
           </div>
