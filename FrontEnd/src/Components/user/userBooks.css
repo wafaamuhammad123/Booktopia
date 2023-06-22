@@ -3,12 +3,12 @@
     flex-direction: row;
     justify-content: space-between;
     gap: 10px;
-    height: 900px;
+    
 }
 .userBooks{
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     justify-content: center;
     width: 80%;
     gap: 5px;
@@ -22,7 +22,8 @@
     margin-bottom: 20px;
     overflow: hidden;
     width: 350px;
-    height: 500px;
+    height: 600px;
+    padding: 10px;
     
 }
 
@@ -34,10 +35,33 @@
         object-position: center;
         width: 100%;
 }
+.userCard img:hover {
+    transition: 0.3s ease-in-out;
+    transform: scale(1.1);
+}
+
 .sideNav{
     width: 20%;
-    height: 80%;
-    border-radius: 10px;
+    height: 600px;
+    border-radius: 5px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    background: #C5A992;
 
+}
+.statueBtn{
+    
+    margin-top: 10px;
+    padding: 6px 8px 6px 16px;
+	text-decoration: none;
+	font-size: 20px;
+	color: #818181;
+	display: block;
+    color:white;
+    height: 100px;
+}
+.statueBtn:hover{
+    color: #d1df56;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }

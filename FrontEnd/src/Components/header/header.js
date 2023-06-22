@@ -61,7 +61,7 @@ const Header = ({ userId }) => {
                                 </li>
                                  {
                                     !isSubscribed && (
-                                   <button className="nav-item col"><a className="nav-link"><NavLink className="link2" activeclassname="active2" to={`/checkout`}>Subscribe</NavLink></a></button> 
+                                   <a className="nav-link"><NavLink className="link2" activeclassname="active2" to={`/checkout`}>Subscribe</NavLink></a>
                                 
                                     )
                                 }  

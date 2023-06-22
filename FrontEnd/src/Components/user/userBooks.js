@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import jwtDecode from 'jwt-decode';
 import { Navigate, useNavigate, useParams, NavLink } from 'react-router-dom';
-import { fetchmyBooks, updateBookStatus } from '../../api';
+import { fetchmyBooks, updateBookStatus,fetchAuthor} from '../../api';
 import Header from '../header/header';
 import Footer from '../footer/footer.js';
 import './userBooks.css';
@@ -12,6 +12,7 @@ export default function UserBooks() {
   const [statusFilter, setStatusFilter] = useState('');
   const [filteredBooks, setFilteredBooks] = useState([]);
   const [currentStatus, setCurrentStatus] = useState("");
+  const [author, setAuthor]= useState({});
 
   useEffect(() => {
     fetchmyBooks(id)
@@ -24,6 +25,7 @@ export default function UserBooks() {
         console.log(err);
       });
   }, [id]);
+  
 
   useEffect(() => {
     if (statusFilter === '') {
@@ -69,13 +71,12 @@ export default function UserBooks() {
       <Header />
       <div className='userbookPage'>
       <div className='sideNav'>
-        <label htmlFor="status">Status:</label>
-        <select id="status" value={statusFilter} onChange={(event) => setStatusFilter(event.target.value)}>
-          <option value="">All</option>
-          <option value="Done">Done</option>
-          <option value="WANT_TO_READ">WANT_TO_READ</option>
-          <option value="READING">READING</option>
-        </select>
+        
+        {/* <select id="status" value={statusFilter} onChange={(event) => setStatusFilter(event.target.value)}> */}
+        <span className="statueBtn" onClick={() => setStatusFilter('')}>All</span>
+          <span className="statueBtn" onClick={() => setStatusFilter('READING')}>READING</span>
+          <span className="statueBtn" onClick={() => setStatusFilter('Done')}>Done</span>
+          <span className="statueBtn" onClick={() => setStatusFilter('WANT_TO_READ')}>WANT_TO_READ</span>
       </div>
       <div className='userBooks'>
       {filteredBooks.length > 0 &&
@@ -84,8 +85,9 @@ export default function UserBooks() {
             {books.book.map((book) => (
               <div key={book._id} className='userCard'>
                 <h2>{book.title}</h2>
+                <NavLink to={`/userbookdetails/${book._id}`}>
                 <img src={book.imageLink} alt={book.title} />
-                <p>Author: {book.author_id}</p>
+                </NavLink>
                 <p>Category: {book.category}</p>
                 <p>Description: {book.description}</p>
                 <p>Language: {book.language}</p>
