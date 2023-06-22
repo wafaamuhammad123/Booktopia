@@ -14,7 +14,7 @@ const Contact = () => {
 			<div class="col-md-12">
 				<h1 class="page-title">Contact us</h1>
 				<div class="breadcrumbs">
-					<span class="item"><a href="index.html">Home /</a></span>
+					<span class="item1"><a href="index.html">Home /</a></span>
 					<span class="item">Contact us</span>
 				</div>
 			</div>
@@ -35,50 +35,44 @@ const Contact = () => {
 					<div class="detail mr-6 mb-4">
 						<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 						<ul class="list-unstyled list-icon">
-							<li><i class="icon icon-phone"></i>+1650-243-0000</li>
-							<li><i class="icon icon-envelope-o"></i><a href="mailto:info@yourcompany.com">info@yourcompany.com</a></li>
-							<li><i class="icon icon-location2"></i>North Melbourne VIC 3051, Australia</li>
+							<br/>
+					<p>
+					+1650-243-0000
+					</p>
+					<p>
+					North Melbourne VIC 3051, Australia
+					</p>
+						
 						</ul>
 					</div>
-					<div class="detail mb-4">
-						<h3>Social Links</h3>
-						<div class="social-links flex-container">
-							<a href="#" class="icon icon-facebook"></a>
-							<a href="#" class="icon icon-twitter"></a>
-							<a href="#" class="icon icon-pinterest-p"></a>
-							<a href="#" class="icon icon-youtube"></a>
-							<a href="#" class="icon icon-linkedin"></a>
-						</div>
-					</div>
+					
 
 				</div>
 			</div>
 
+			
+
 			<div class="col-md-6 p-0">
 				
-				<div class="contact-information">
+				<div class="contact-information"  style={{marginLeft: '5em'}}>
 					<h2>Send A Message</h2>
 					<form name="contactform" action="contact.php" method="post" class="contact-form d-flex flex-wrap mt-4">
 						<div class="row">
 					    	<div class="col-md-6">
-								<input type="text" minlength="2" name="name" placeholder="Name" class="u-full-width" required/>
+								<input type="text" minlength="2" name="name" placeholder="Name" class="name" required/>
 							</div>
 							<div class="col-md-6">
-								<input type="email" name="email" placeholder="E-mail" class="u-full-width" required/>
+								<input type="email" name="email" placeholder="E-mail" class="email" required/>
 							</div>
 						</div>
 
 						<div class="row">
 							<div class="col-md-12">
 
-								<textarea class="u-full-width" name="message" placeholder="Message" style={{height: '1em'}} required></textarea>
+								<textarea class="u-full-width" name="message" placeholder="Message" style={{height: '10em',marginTop:'2em',width:'35em'}} required></textarea>
 
-								<label>
-								    <input type="checkbox" required/>
-								    <span class="label-body">I agree all the <a href="#">terms and conditions</a></span>
-								</label>
 
-								<button type="submit" name="submit" class="btn btn-full btn-rounded">Submit</button>
+								<button  type="submit" name="submit"className="my-button">Submit</button>
 							</div>
 						</div>
 					</form>

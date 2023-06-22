@@ -33,6 +33,7 @@ import Users from "./Components/user_dashboard/users";
 import ViewUser from "./Components/user_dashboard/viewUser";
 import UpdateUserDetails from "./Components/user_dashboard/updateUserDetails";
 import CreateUser from "./Components/user_dashboard/createUser";
+import Contact from "./Components/contact/contact";
 const isAuthenticated = () => {
   // const navigate =useNavigate();
   const token = localStorage.getItem("token");
@@ -62,6 +63,8 @@ function App() {
           <Route path="signup" element={<SignUp />} />
           <Route path="home" element={<Home />} />
           <Route path="error403" element={<Error403 />} />
+          <Route path="contact" element={<Contact />} />
+
 
           {isAdmin() ? (
             <>

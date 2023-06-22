@@ -7,3 +7,44 @@
     overflow:hidden;background:none!important;height:'40em';width:'5em';
 
 }
+
+ a:link{
+    color: rgb(210, 185, 114);
+ }
+ .item1{
+    margin-left: 2%;
+ }
+
+
+ .detail{
+    margin-right: 7%;
+ }
+ input{
+    width: 40%;
+ }
+
+ .name{
+    width: 100%;
+    margin-right: 2%;
+ }
+
+ .email{
+    width: 120%;
+    margin-left: 40px;
+ }
+
+ .my-button {
+    font-weight: bold;
+    color: white;
+    font-size: 19px;
+    background: #ccb08a;
+    width: 95%;
+    height: 60px;
+
+  }
+
+  p{
+    font-size: 17px;
+    text-align: left;
+    
+  }

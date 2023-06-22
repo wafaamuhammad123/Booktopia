@@ -143,7 +143,7 @@ export default function UserBooks() {
   const { id } = useParams();
   const [statusFilter, setStatusFilter] = useState('');
   const [filteredBooks, setFilteredBooks] = useState([]);
-  const [currentStatus, setCurrentStatus] = useState('');
+  const [currentStatus, setCurrentStatus] = useState("");
 
   useEffect(() => {
     fetchmyBooks(id)
@@ -189,12 +189,9 @@ export default function UserBooks() {
           .catch((err) => {
             console.log(err);
           });
-          return updatedBooks;
-        });
-        setCurrentStatus('');
       })
-      .catch((error) => {
-        console.log(error);
+      .catch((err) => {
+        console.log(err);
       });
   };
   
