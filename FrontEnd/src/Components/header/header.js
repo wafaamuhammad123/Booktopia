@@ -9,6 +9,7 @@ import {fetchuserDetails} from '../../api';
 
 const Header = ({ userId }) => {
     const [user, setUser] = useState(null);
+    const [isSubscribed, setIsSubscribed] = useState(false)
     const token=localStorage.getItem("token");
     const navigate = useNavigate();
     const handleLogout = () => {
@@ -27,7 +28,8 @@ const Header = ({ userId }) => {
         fetchuserDetails(userId)
         .then((data) => {
         setUser(data);
-        console.log(data)
+        console.log(data.subscribed)
+        setIsSubscribed(data.subscribed)
         })
         .catch((err) => {
         console.log(err);
@@ -52,14 +54,17 @@ const Header = ({ userId }) => {
                                     <a className="nav-link"><NavLink className="link2" activeclassname="active2" to={`/lists`}>Books</NavLink></a>
                                 </li>
                                 <li className="nav-item col">
-                                    <a className="nav-link"><NavLink className="link2" activeclassname="active2" to={`/`}>Authors</NavLink></a>
+                                    <a className="nav-link"><NavLink className="link2" activeclassname="active2" to={`/allAuthors`}>Authors</NavLink></a>
                                 </li>
                                 <li className="nav-item col">
                                     <a className="nav-link"><NavLink className="link2" activeclassname="active2" to={`/`}>Contact</NavLink></a>
                                 </li>
-                                <li className="nav-item col">
-                                    <a className="nav-link"><NavLink className="link2" activeclassname="active2" to={`/`}>About</NavLink></a>
-                                </li>
+                                 {
+                                    !isSubscribed && (
+                                   <button className="nav-item col"><a className="nav-link"><NavLink className="link2" activeclassname="active2" to={`/checkout`}>Subscribe</NavLink></a></button> 
+                                
+                                    )
+                                }  
 
                                 {user ? (
 
