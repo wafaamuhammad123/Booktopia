@@ -146,7 +146,7 @@ const SignUp = () => {
       <div className="form-box">
         <div className="form-value">
           <form id="sign" name="contactForm" onSubmit={validateForm}>
-            <header className="header">Sign Up</header>
+            <header className="header" style={{marginTop:"8%"}}>Sign Up</header>
             <br />
             <h5 id="hello" className="centered">
               Hey, Welcome with us
@@ -191,7 +191,7 @@ const SignUp = () => {
               />
             </div>
             <p className="error">{re_passwordErr}</p>
-            <div className="inputbox">
+            <div className="inputbox inp-img">
             <input
               type="file"
               name="image"
