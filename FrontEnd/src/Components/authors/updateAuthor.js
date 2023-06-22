@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Sidebar from "../admin_dashboard/sidebar";
 import  Styles from '../books/addBook.module.css'
 import axios from 'axios';
-import {fetchAuthor } from "../../api";
+import {fetchAuthor, updateAuthor } from "../../api";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 
 export default function UpdateAuthor (){
@@ -23,20 +23,23 @@ export default function UpdateAuthor (){
     
       const handleImageChange = (e) => {
         setSelectedImage(e.target.files[0]);
-        console.log(selectedImage);
-      };  
-
-
+      };
       const handleSubmit = async(e) => {
         e.preventDefault();
         let data = {
             name: author.name,
             aboutHim: author.aboutHim,
-            imageLink: selectedImage
+            imageLink:  selectedImage ? selectedImage.name : ''
         };
-        console.log(data);
-        let res = await axios.put(`http://localhost:4000/api/author/author/${author._id}`, {data});
-        navigate("/authors")
+        updateAuthor(data,id)
+        .then((data) => {
+          console.log("Author updated successfully:", data);
+          navigate('/authors');
+        })
+        .catch((error) => {
+          console.error("Error updating author:", error);
+        });
+  
     };
 
 
@@ -85,14 +88,14 @@ export default function UpdateAuthor (){
           <input
             type="file"
             name="imageLink"
-            value={author.imageLink}
             onChange={handleImageChange}
           />
         </label>
     
-        <button type="submit" id={Styles.addbk}>Add Book</button>
+        <button type="submit" id={Styles.addbk}>Update</button>
       </form>
       </div>
     </div>
     )
 }
+
