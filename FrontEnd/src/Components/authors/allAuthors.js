@@ -31,7 +31,7 @@ const AllAuthors = () => {
             <div class="col-md-12">
               <div class="section-header align-center">
                 
-                <h2 class="section-title">Author</h2>
+                <h2 class="section-title">Authors</h2>
               </div>
 
               <div style={{margin: "2rem", textAlign: "center"}}>
@@ -98,17 +98,7 @@ const AllAuthors = () => {
                 </div>
               )}
   
-              <div class="row">
-                <div class="btn-wrap align-center">
-                  <a
-                    href="#"
-                    class="btn btn-outline-accent btn-accent-arrow"
-                    tabindex="0"
-                  >
-                    Read All Articles<i class="icon icon-ns-arrow-right"></i>
-                  </a>
-                </div>
-              </div>
+           
             </div>
           </div>
         </div>
