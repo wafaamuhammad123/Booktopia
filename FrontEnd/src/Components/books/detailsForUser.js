@@ -1,107 +1,129 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { fetchBookDetails, chooseBook } from "../../api";
+import { fetchBookDetails, chooseBook, fetchuserDetails } from "../../api";
 import jwtDecode from 'jwt-decode';
-// import './details.css'
+import './details.css'
+import Header from '../header/header';
+import Footer from '../footer/footer.js';
 
 function UserBookDetails() {
   const { id } = useParams();
   const [book, setBook] = useState({});
-  const [pdfLink, setPdfLink] = useState("");
+  const [user, setUser] = useState({});
   const [statue, setStatue] = useState("");
-
- 
+  const [subscribed, setSubscribed] = useState(false);
 
   const handleStatueChange = (event) => {
     setStatue(event.target.value);
+    saveStatue(event.target.value);
   };
 
-  useEffect(() => {
-    fetchBookDetails(id)
-      .then((data) => {
-        setBook(data);
-        setPdfLink(data.pdfLink);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [id]);
-
-  const handleSubmit = (event) => {
-    const token=localStorage.getItem("token");
-    if(token){
+  const saveStatue = (selectedStatue) => {
+    const token = localStorage.getItem("token");
+    if (token) {
       const decodedToken = jwtDecode(token);
       var userId = decodedToken.userId;
-
     }
-    event.preventDefault();
-    const user_id = userId; // replace with actual user id
-    const user_book={ user_id, statue, book_id: id }
+    const user_id = userId;
+
+    const user_book = { user_id, statue: selectedStatue, book_id: id }
     chooseBook(user_book)
       .then((data) => {
         console.log(data);
-        // show success message or redirect to another page
       })
       .catch((err) => {
         console.log(err);
-        // show error message
       });
   };
 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      const decodedToken = jwtDecode(token);
+      var userId = decodedToken.userId;
+      fetchuserDetails(userId)
+        .then((data) => {
+          setUser(data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+
+    fetchBookDetails(id)
+      .then((data) => {
+        setBook(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    console.log(user)
+    const userSubscribed = user.subscribed; // Replace with actual logic to determine user subscription status
+    setSubscribed(userSubscribed);
+  }, [id]);
+
+  const handleReadOnline = () => {
+    if (subscribed) {
+      window.open(book.pdfLink, "_blank");
+    } else {
+      alert("Please subscribe to access the book.");
+    }
+  };
+
   return (
-    <div >
-      <div style={{ paddingTop: "3%" }}>
-        <form onSubmit={handleSubmit}>
-          <img src="" alt="" />
-          <img src={book.imageLink} alt="notFound" style={{height:"200px", width:"80%", marginLeft:"10%", padding:"15px" }}/>
-          <p>
-            <span className="book">Title: </span>
+    <div className="container">
+      <Header />
+      <div class="row">
+        <div class="offset-1 col-md-5">
+          <img id="image2" src={book.imageLink} alt="notFound" />
+        </div>
+        <div class="ms-4 mt-3 col-md-4">
+          <span style={{ display: "block", padding: "5px 0px" }}>
+            <span className="book1">Title: </span>
             {book.title}
-          </p>
-          <p>
-            <span className="book">Year: </span>
+          </span>
+          <span style={{ display: "block", padding: "5px 0px" }}>
+            <span className="book1">Year: </span>
             {book.year}
-          </p>
-          <p>
-            <span className="book">Language: </span>
+          </span>
+          <span style={{ display: "block", padding: "5px 0px" }}>
+            <span className="book1">Language: </span>
             {book.language}
-          </p>
-          <p>
-            <span className="book">Description: </span>
+          </span>
+          <span style={{ display: "block", padding: "5px 0px" }}>
+            <span className="book1">Description: </span>
             {book.description}
-          </p>
-          <p>
-            <span className="book">Pages: </span>
+          </span>
+          <span style={{ display: "block", padding: "5px 0px" }}>
+            <span className="book1">Pages: </span>
             {book.pages}
-          </p>
-          <p>
-            <span className="book">Category: </span>
+          </span>
+          <span style={{ display: "block", padding: "5px 0px" }}>
+            <span className="book1">Category: </span>
             {book.category}
-          </p>
-          <p>
-          <span className="book">Video: </span>
-          <a href={book.recordLink} target="_blank" rel="noopener noreferrer"> Video</a>
-          </p>
-          <p>
-          <span className="book">Video: </span>
-          <a href={book.pdfLink} target="_blank" rel="noopener noreferrer"> Read Online</a>
-          </p>
-
+          </span>
+          <span style={{ display: "block", padding: "5px 0px" }}>
+            <span className="book1">Video: </span>
+            <a href={book.recordLink} target="_blank" rel="noopener noreferrer"> Video</a>
+          </span>
+          <span style={{ display: "block", padding: "5px 0px" }}>
+            <span className="book1">PDF: </span>
+            <a href={book.pdfLink} target="_blank" rel="noopener noreferrer" onClick={handleReadOnline}>Read Online</a>
+          </span>
           <div>
-      <label htmlFor="status">Status:</label>
-      <select id="status" name="status" value={statue} onChange={handleStatueChange}>
-        <option value="">--Select Status--</option>
-        <option value="READING">READING</option>
-        <option value="Done">Done</option>
-        <option value="WANT_TO_READ">WANT_TO_READ</option>
-      </select>
-    </div>
-          <button type="submit">Save</button>
-
-        </form>
+            <span className="book1" htmlFor="status">Status:</span>
+            <select id="status" name="status" value={statue} onChange={handleStatueChange}>
+              <option value="">--Select Status--</option>
+              <option value="READING">READING</option>
+              <option value="Done">Done</option>
+              <option value="WANT_TO_READ">WANT_TO_READ</option>
+            </select>
+          </div>
+        </div>
       </div>
+      <Footer />
     </div>
   );
 }
 
-export default  UserBookDetails;
+export default UserBookDetails;

@@ -9,19 +9,10 @@ const multer = require("multer");
 const admin = require("../permissions/userMWPermissions.js");
 const authUser= require("../permissions/auth.js");
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "uploads/");
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + "-" + file.originalname);
-  },
-});
-const upload = multer({ storage: storage });
 
 router.get("/authors", authUser, authorsController.getAllAuthors);
-router.post("/create", admin, upload.single("image"),authorsController.createAuthor);
-router.put("/author/:id", admin, upload.single("image"),authorsController.updateAuthor);
+router.post("/create", admin,authorsController.createAuthor);
+router.put("/author/:id", admin,authorsController.updateAuthor);
 router.delete("/delete/:id", admin, authorsController.deleteAuthor);
 router.get("/:id", authUser, authorsController.getAuthorById);
 

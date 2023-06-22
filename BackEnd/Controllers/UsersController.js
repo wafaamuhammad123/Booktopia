@@ -1,11 +1,8 @@
 const validate = require("../Utils/userValidation");
 const usersModel = require("../Models/UsersModel");
 const cloudinary = require("cloudinary").v2;
-const mongoose = require("mongoose");
 const bcrypt = require('bcryptjs');
-const fs= require('fs');
 const jwt = require("jsonwebtoken");
-const { Console } = require("console");
 const {uploadImageUser} = require("../multer");
 let getAllUsers = async (req, res) => {
   let data = await usersModel.find({});
@@ -63,7 +60,6 @@ let addNewUser = async (req, res) => {
 
 //update
 let updateUser = async (req, res) => {
-  console.log(req.body);
   try {
     await uploadImageUser(req, res, async function (err) {
       if (err) {
@@ -97,8 +93,7 @@ let updateUser = async (req, res) => {
 
         return res.json(updatedUser);
       }
-    });
-  } catch (error) {
+    }); } catch (error) {
     console.error(error);
     return res.status(500).json({ message: 'Internal server error.' });
   }

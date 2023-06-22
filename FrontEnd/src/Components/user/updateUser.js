@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import axiosInstance from '../utils/axiosInstance';
+import  Styles from '../books/addBook.module.css';
 import {fetchUpdateUser,fetchuserDetails} from '../../api';
-import axios from 'axios';
-import './update.css';
-import { Navigate, useNavigate, useParams } from "react-router-dom";
-import Header from '../header/header';
-import Footer from '../footer/footer.js';
-import { NavLink } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function UpdateUserProfile (){
 

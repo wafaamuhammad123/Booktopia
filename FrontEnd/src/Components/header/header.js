@@ -7,12 +7,6 @@ import jwtDecode from 'jwt-decode';
 import {fetchuserDetails} from '../../api';
 
 
-const isAuthenticated = () => {
-    const token = localStorage.getItem("token");
-    if(token) return true;
-    else return false;
-  };
-
 const Header = ({ userId }) => {
     const [user, setUser] = useState(null);
     const [isSubscribed, setIsSubscribed] = useState(false)
@@ -57,7 +51,7 @@ const Header = ({ userId }) => {
                                     <a className="nav-link"><NavLink className="link2" activeclassname="active2" to={`/home`}>Home</NavLink></a>
                                 </li>
                                 <li className="nav-item col">
-                                    <a className="nav-link"><NavLink className="link2" activeclassname="active2" to={`/allBooks`}>Books</NavLink></a>
+                                    <a className="nav-link"><NavLink className="link2" activeclassname="active2" to={`/lists`}>Books</NavLink></a>
                                 </li>
                                 <li className="nav-item col">
                                     <a className="nav-link"><NavLink className="link2" activeclassname="active2" to={`/allAuthors`}>Authors</NavLink></a>
@@ -67,7 +61,7 @@ const Header = ({ userId }) => {
                                 </li>
                                  {
                                     !isSubscribed && (
-                                   <button className="nav-item col"><a className="nav-link"><NavLink className="link2" activeclassname="active2" to={`/checkout`}>Subscribe</NavLink></a></button> 
+                                   <a className="nav-link"><NavLink className="link2" activeclassname="active2" to={`/checkout`}>Subscribe</NavLink></a>
                                 
                                     )
                                 }  
