@@ -40,7 +40,7 @@ const Home = () => {
 	  <div className="page">
 		<Header />
 		<div className='container' style={{width:"100%"}}>
-			<img src='images/tree.png'/>
+			<img src='images/tree.png' alt="not found"/>
 			<div id="quotation" class="align-center" style={{position: "absolute", top: "45%", left: "50%",width:"90%", transform: "translate(-50%, -50%)"}}>
 				<div class="inner-content">
 					<h2 class="section-title divider">Plant knowledge trees</h2>
@@ -52,7 +52,7 @@ const Home = () => {
 			<Slider className='slide' {...settings}>
 				<div className='slider-item row'>
 					<div class="carddd">
-						<img src="images/main-banner1.jpg" alt="Image"/>
+						<img src="images/main-banner1.jpg" alt="not found"/>
 						<div class="card-content" style={{textAlign:"center", width:"70%", marginLeft:"15%", marginRight:"15%", marginTop:"10%"}}>
 							<h2 className="banner-title">Life of the Wild</h2>
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero ipsum enim pharetra hac. Urna commodo, lacus ut magna velit eleifend. Amet, quis urna, a eu.</p>

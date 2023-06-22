@@ -33,6 +33,10 @@ import Users from "./Components/user_dashboard/users";
 import ViewUser from "./Components/user_dashboard/viewUser";
 import UpdateUserDetails from "./Components/user_dashboard/updateUserDetails";
 import CreateUser from "./Components/user_dashboard/createUser";
+import AllAuthors from "./Components/authors/allAuthors";
+import Header from "./Components/header/header";
+import Footer from "./Components/footer/footer";
+import Contact from "./Components/contact/contact"
 const isAuthenticated = () => {
   // const navigate =useNavigate();
   const token = localStorage.getItem("token");
@@ -62,6 +66,8 @@ function App() {
           <Route path="signup" element={<SignUp />} />
           <Route path="home" element={<Home />} />
           <Route path="error403" element={<Error403 />} />
+          <Route path="contact" element={<Contact />} />
+
 
           {isAdmin() ? (
             <>
@@ -90,7 +96,6 @@ function App() {
               <Route path="updatebook/:id" element={<Navigate to="/error403" replace />} />            
             
             </>
-
             
           )}
 
@@ -103,9 +108,9 @@ function App() {
               <Route path="userprofile" element={<UserProfile />} />
               <Route path="UpdateUser/:id" element={<UpdateUser />} />
               <Route path="UserBooks/:id" element={<UserBooks />} />
-              <Route path="BookDetail/:id" element={<BookDetail />} />
               <Route path="userbookdetails/:id" element={<UserBookDetails />} />
               <Route path="BookDetail" element={<BookDetail />} />
+              <Route path ="allAuthors" element={<AllAuthors/>}/>
               <Route path="authors/:id" element={<Author/>}/>
               <Route path="/checkout" element={<Checkout/>}/>
               <Route path="/paymentSuccessful" element={<PaymentSuccess/>}/>

@@ -54,6 +54,9 @@ export function fetchBooksByAuthor (id, token){
   };
   return fetch(url, {headers}).then((response) => response.json());
 }
+export function updateAuthor(data , id){
+  return axiosInstance.put(  `/author/author/${id} `, data).then((response) => response.data);
+}
 
 export function getCheckoutSession (data){
   return axiosInstance.post('/user/subscriptionSession', data).then((response) => response.data);
@@ -91,3 +94,4 @@ export function fetchusers() {
 export function fetchDeleteuser(id) {
   return axiosInstance.delete(`/user/delete/${id}`).then((response) => response.data);
 }
+
