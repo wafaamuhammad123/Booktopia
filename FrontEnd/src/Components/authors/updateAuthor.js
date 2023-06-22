@@ -3,6 +3,7 @@ import Sidebar from "../admin_dashboard/sidebar";
 import  Styles from '../books/addBook.module.css'
 import {fetchAuthor, updateAuthor } from "../../api";
 import {  useNavigate, useParams } from "react-router-dom";
+import "./authorDetails.css"
 
 export default function UpdateAuthor (){
     const [author, setAuthor]= useState({});
@@ -57,9 +58,9 @@ export default function UpdateAuthor (){
             <Sidebar/>
       <div style={{paddingTop: "1%"}}>
       <form onSubmit={handleSubmit} encType="multipart/form-data" className={Styles.newBook}>
-      <h2 style={{textAlign:"center", color:"#FFCB74" }}>Add Author</h2>
-      <div className={Styles.inputs}>
-        <label>
+      <h2 style={{textAlign:"center", color:"#FFCB74" }}>Update Author</h2>
+      <div  className="newfrm">
+        <label className="lbll">
           Name:
           <br/>
           <input
@@ -69,19 +70,19 @@ export default function UpdateAuthor (){
             onChange={handleInputChange}
           />
         </label>
-        <label>
+        <label className="lbll">
           About The Author:
           <br />
-          <input
+          <textarea className="txtt"
             type="textarea"
             name="aboutHim"
             value={author.aboutHim}
             onChange={handleInputChange}
           />
         </label>
-        </div>
+       
      
-        <label>
+        <label  className="lbll">
           Image:
           <br />
           <input
@@ -91,7 +92,8 @@ export default function UpdateAuthor (){
           />
         </label>
     
-        <button type="submit" id={Styles.addbk}>Update</button>
+        <button className="btn2" type="submit" >Update</button>
+        </div>
       </form>
       </div>
     </div>

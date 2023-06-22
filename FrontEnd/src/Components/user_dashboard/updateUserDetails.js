@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useParams } from "react-router-dom";
 import Sidebar from '../admin_dashboard/sidebar';
 import  Styles from '../books/addBook.module.css';
+import "./user.css";
 function UpdateUserDetails() {
     const [user, setUser]= useState({});
     const [selectedImage, setSelectedImage] = useState(null);
@@ -64,8 +65,8 @@ function UpdateUserDetails() {
       <div  style={{paddingTop: "1%"}}>
       <form onSubmit={handleSubmit} encType="multipart/form-data" className={Styles.newBook}>
       <h2 style={{textAlign:"center", color:"#FFCB74" }}>Update User</h2>
-      <div className={Styles.inputs}>
-      <label>
+      <div className="newfrm">
+      <label className="lbll">
           Email:
           <br/>
           <input
@@ -75,7 +76,7 @@ function UpdateUserDetails() {
             onChange={handleInputChange}
           />
         </label>
-        <label>
+        <label className="lbll">
           username:
           <br />
           <input
@@ -85,9 +86,9 @@ function UpdateUserDetails() {
             onChange={handleInputChange}
           />
         </label>
-        </div>
+       
      
-        <label>
+        <label className="lbll">
           Image:
           <br />
           <input
@@ -98,7 +99,8 @@ function UpdateUserDetails() {
           />
         </label>
     
-        <button type="submit" id={Styles.addbk}>submit</button>
+        <button className="btn2" type="submit" >Update</button>
+        </div>
       </form>
       </div>
     </div>

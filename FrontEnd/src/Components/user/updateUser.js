@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import  Styles from '../books/addBook.module.css';
 import {fetchUpdateUser,fetchuserDetails} from '../../api';
 import { useNavigate, useParams } from "react-router-dom";
+import Header from '../header/header';
+import Footer from '../footer/footer.js';
+import "./update.css";
 
 export default function UpdateUserProfile (){
 
@@ -61,7 +64,7 @@ export default function UpdateUserProfile (){
         <div >
            <Header />
       <div >
-      <form onSubmit={handleSubmit} encType="multipart/form-data">
+      <form className='frmm' onSubmit={handleSubmit} encType="multipart/form-data">
       <div className='lbl'>
         <label>
           Email:

@@ -21,7 +21,7 @@ function UserDetails() {
     <div className="body">
       <Sidebar/>
       <div style={{paddingTop: "3%"}} >
-        <form className="details">
+        <form className="details" >
           <img src="" alt=""/>
           <p><span className="book">UserName: </span>{user.username}</p>
           <p><span className="book">Email: </span>{user.email}</p>

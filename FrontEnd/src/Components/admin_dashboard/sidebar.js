@@ -29,7 +29,7 @@ const Sidebar = () => {
         <hr/>
         <button class="Btn logout"  onClick={handleLogout}>
             <div className="sign"><i class="bi bi-arrow-right-circle-fill"></i></div>
-            <div class="text" >Logout</div>
+            <div className="text" >Logout</div>
         </button>
         </div>
     </div>
