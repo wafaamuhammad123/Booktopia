@@ -3,7 +3,6 @@ import {
   Navigate,
   Route,
   Routes,
-  useNavigate,
 } from "react-router-dom";
 
 import Login from "./Components/logIn/login";
@@ -16,7 +15,6 @@ import UserBookDetails from "./Components/books/detailsForUser"
 import DashboardPage from "./Components/admin_dashboard/dashboard";
 import Error from "./Components/error";
 import UpdateBook from "./Components/books/updateBook";
-import BookDetail from "./Components/book_detail/book_detail";
 import Authors from "./Components/authors/authors";
 import AddAuthor from "./Components/authors/addAuthor";
 import UpdateAuthor from "./Components/authors/updateAuthor";
@@ -34,8 +32,6 @@ import ViewUser from "./Components/user_dashboard/viewUser";
 import UpdateUserDetails from "./Components/user_dashboard/updateUserDetails";
 import CreateUser from "./Components/user_dashboard/createUser";
 import AllAuthors from "./Components/authors/allAuthors";
-import Header from "./Components/header/header";
-import Footer from "./Components/footer/footer";
 import Contact from "./Components/contact/contact"
 const isAuthenticated = () => {
   // const navigate =useNavigate();
@@ -99,18 +95,14 @@ function App() {
             
           )}
 
-
-
           {isAuthenticated() ? (
             <>
               <Route path="lists" element={<BookList />} />
-              <Route path="book/:id" element={<BookDetail />} />
               <Route path="userprofile" element={<UserProfile />} />
               <Route path="UpdateUser/:id" element={<UpdateUser />} />
               <Route path="UserBooks/:id" element={<UserBooks />} />
               <Route path="userbookdetails/:id" element={<UserBookDetails />} />
-              <Route path="BookDetail" element={<BookDetail />} />
-              <Route path ="allAuthors" element={<AllAuthors/>}/>
+               <Route path ="allAuthors" element={<AllAuthors/>}/>
               <Route path="authors/:id" element={<Author/>}/>
               <Route path="/checkout" element={<Checkout/>}/>
               <Route path="/paymentSuccessful" element={<PaymentSuccess/>}/>

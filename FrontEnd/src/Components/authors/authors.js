@@ -33,14 +33,13 @@ export default function Authors (){
     return (
         <div className='body'>
         <Sidebar/>
-        <div style={{paddingTop: "3%"}}>
+        <div style={{paddingTop: "3%", paddingBottom: "3%"}}>
          <p className='addBook'><span><NavLink className="link1" to={`/createAuthor`}>Add Author</NavLink></span></p>
         <table  className="cont">
          <thead>
              <tr>
                <th>Author</th>
-               <th>Name</th>
-               <th>About</th>
+                 <th>About</th>
                <th>Actions</th>
              </tr>
        </thead>
@@ -48,7 +47,7 @@ export default function Authors (){
         {authors.map(author=>(
              <tr key={author._id}>
              <td>{author.name}</td>
-             <td>{author.aboutHim}</td>
+             <td className="w-50">{author.aboutHim}</td>
              <td>
                <button className='btn btn-outline-success me-2'><NavLink className="link1" to={`/authors/${author._id}`}>View</NavLink></button>
      

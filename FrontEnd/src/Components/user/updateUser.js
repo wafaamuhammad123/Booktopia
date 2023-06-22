@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import  Styles from '../books/addBook.module.css';
-import axiosInstance from '../utils/axiosInstance';
 import {fetchUpdateUser,fetchuserDetails} from '../../api';
-import axios from 'axios';
-import { Navigate, useNavigate, useParams } from "react-router-dom";
-
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function UpdateUserProfile (){
     const [user, setUser]= useState({});

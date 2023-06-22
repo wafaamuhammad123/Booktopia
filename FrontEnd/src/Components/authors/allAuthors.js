@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
-import { deleteAuthor, fetchAuthors } from "../../api";
-import { NavLink } from "react-router-dom";
-
+import { fetchAuthors } from "../../api";
+import Header from "../header/header";
+import Footer from "../footer/footer";
 const AllAuthors = () => {
     const [authors, setAuthors] = useState([]);
     const [filtered, setFiltered] = useState([]);
@@ -26,6 +26,7 @@ const AllAuthors = () => {
   
     return (
       <div id="latest-blog">
+        <Header />
         <div class="container">
           <div class="row">
             <div class="col-md-12">
@@ -50,7 +51,7 @@ const AllAuthors = () => {
                     <div class="col-md-4">
                       <article class="column" data-aos="fade-up">
                         <figure>
-                          <a href="#" class="image-hvr-effect">
+                          <a href="." class="image-hvr-effect">
                             <img
                               src={author.imageLink}
                               alt="author"
@@ -60,7 +61,7 @@ const AllAuthors = () => {
                         </figure>
                         <div class="post-item">
                           <h3>
-                            <a href="#">{author.name}</a>
+                            <a href=".">{author.name}</a>
                           </h3>
   
                           <div class="links-element">
@@ -68,17 +69,17 @@ const AllAuthors = () => {
                             <div class="social-links">
                               <ul>
                                 <li>
-                                  <a href="#">
+                                  <a href=".">
                                     <i class="icon icon-facebook"></i>
                                   </a>
                                 </li>
                                 <li>
-                                  <a href="#">
+                                  <a href=".">
                                     <i class="icon icon-twitter"></i>
                                   </a>
                                 </li>
                                 <li>
-                                  <a href="#">
+                                  <a href=".">
                                     <i class="icon icon-behance-square"></i>
                                   </a>
                                 </li>
@@ -102,6 +103,7 @@ const AllAuthors = () => {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     );
   };
