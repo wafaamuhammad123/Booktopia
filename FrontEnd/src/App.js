@@ -36,6 +36,7 @@ import CreateUser from "./Components/user_dashboard/createUser";
 import AllAuthors from "./Components/authors/allAuthors";
 import Header from "./Components/header/header";
 import Footer from "./Components/footer/footer";
+import Contact from "./Components/contact/contact"
 const isAuthenticated = () => {
   // const navigate =useNavigate();
   const token = localStorage.getItem("token");
