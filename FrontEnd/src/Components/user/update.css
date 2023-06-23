@@ -1,0 +1,45 @@
+.frmm{
+    padding: 5%;
+    margin-left: 25%;
+    background-color: rgb(181, 181, 181);
+    width: 50%;
+    margin-top: 5%;
+    height: 500px;
+    border-top: 3px solid rgb(220 197 168);
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    
+    background-color: rgb(244 243 243);
+
+    
+    
+
+}
+
+.lbl{
+
+    width: 150%;
+    display: flex;
+    margin-left: 21%;
+    flex-direction: column;
+}
+/* .sora{
+    background-color: none;
+} */
+
+  
+.btnnn{
+    margin-left: 7%;
+    margin-top: 3%;
+    font-size: larger;
+    height: 60px;
+    border: 1px solid white;
+    width: 20%;
+}
+
+.btnnn:hover{
+    background-color: rgb(255, 255, 255);
+    color: rgb(167, 134, 67);
+    border: 1px solid black;
+
+}

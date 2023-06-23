@@ -130,7 +130,7 @@ const Header = ({ userId }) => {
                                         <a className="dropdown-item"><NavLink className="link2" activeclassname="active2" to={`/`}>Authors</NavLink></a>
                                     </li>
                                     <li>
-                                        <a className="dropdown-item"><NavLink className="link2" activeclassname="active2" to={`/`}>Contact</NavLink></a>
+                                        <a className="dropdown-item"><NavLink className="link2" activeclassname="active2" to={`/contact`}>Contact</NavLink></a>
                                     </li>
                                     <li>
                                         <a className="dropdown-item"><NavLink className="link2" activeclassname="active2" to={`/`}>About</NavLink></a>
