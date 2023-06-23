@@ -106,6 +106,7 @@ function App() {
               <Route path="authors/:id" element={<Author/>}/>
               <Route path="/checkout" element={<Checkout/>}/>
               <Route path="/paymentSuccessful" element={<PaymentSuccess/>}/>
+              <Route path="contact" element={<Contact />} />
             </>
           ) : (
             <>

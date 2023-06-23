@@ -71,12 +71,10 @@ export default function UserBooks() {
       <Header />
       <div className='userbookPage'>
       <div className='sideNav'>
-        
-        {/* <select id="status" value={statusFilter} onChange={(event) => setStatusFilter(event.target.value)}> */}
         <span className="statueBtn" onClick={() => setStatusFilter('')}>All</span>
           <span className="statueBtn" onClick={() => setStatusFilter('READING')}>READING</span>
           <span className="statueBtn" onClick={() => setStatusFilter('Done')}>Done</span>
-          <span className="statueBtn" onClick={() => setStatusFilter('WANT_TO_READ')}>WANT_TO_READ</span>
+          <span className="statueBtn" onClick={() => setStatusFilter('WANT_TO_READ')}>WANT TO READ</span>
       </div>
       <div className='userBooks'>
       {filteredBooks.length > 0 &&
