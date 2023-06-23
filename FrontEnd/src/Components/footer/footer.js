@@ -1,6 +1,5 @@
 import React from 'react';
 import '../header/header.css'
-// import { NavLink } from "react-router-dom";
 const Footer = () => {
     return (
 <div  id="footer">      
@@ -10,27 +9,17 @@ const Footer = () => {
 			<div className="col" id='footer-logo' style={{ textAlign: "center"}}>
 				<div className="footer-item">
 					<div className="company-brand">
-						<img src="images/logo_1.png" className="logo" alt="logo"/>
+						<img src={process.env.PUBLIC_URL + "images/logo_1.png"} className="logo" alt="logo"/>
+						
 					</div>
 				</div>
 			</div>
 			<div className="col footer-size" style={{marginTop:"35px"}}>
 				<div className="footer-menu">
 					<h5>About Us</h5>
-					<h7>Vision</h7><br/>
-					<h7>Articles</h7><br/>
-					<h7>Service terms</h7>
-					{/* <ul className="menu-list" style={{listStyleType:"none"}}>
-						<li className="menu-item">
-							vision
-						</li>
-						<li className="menu-item">
-							articles
-						</li>
-						<li className="menu-item">
-							service terms
-                        </li>
-					</ul> */}
+					<h6>Vision</h6><br/>
+					<h6>Articles</h6><br/>
+					<h6>Service terms</h6>
 				</div>
 
 			</div>
@@ -38,59 +27,28 @@ const Footer = () => {
 
 				<div className="footer-menu">
 					<h5 style={{marginTop:"35px"}}>Discover</h5>
-					<h7>Home</h7><br/>
-					<h7>Books</h7><br/>
-					<h7>Authors terms</h7>
-					{/* <ul className="menu-list" style={{listStyleType:"none"}}>
-						<li className="menu-item">
-							Home
-						</li>
-						<li className="menu-item">
-							Books
-						</li>
-						<li className="menu-item">
-							Authors
-						</li>
-					</ul> */}
+					<h6>Home</h6><br/>
+					<h6>Books</h6><br/>
+					<h6>Authors terms</h6>
+
 				</div>
 
 			</div>
 			<div className="col footer-size">
 				<div className="footer-menu">
 					<h5 style={{marginTop:"35px"}}>My account</h5>
-					<h7>Sign In</h7><br/>
-					<h7>View Cart</h7><br/>
-					<h7>My Wishlist</h7>
-					{/* <ul className="menu-list" style={{listStyleType:"none"}}>
-						<li className="menu-item">
-							Sign In
-						</li>
-						<li className="menu-item">
-							View Cart
-						</li>
-						<li className="menu-item">
-							My Wishtlist
-						</li>
-					</ul> */}
+					<h6>Sign In</h6><br/>
+					<h6>View Cart</h6><br/>
+					<h6>My Wishlist</h6>
+
 				</div>
 			</div>
 			<div className="col footer-size">
 				<div className="footer-menu">
 					<h5 style={{marginTop:"35px"}}>Help center</h5>
-					<h7>Report a problem</h7><br/>
-					<h7>Suggesting edits</h7><br/>
-					<h7>Contact us</h7>
-					{/* <ul className="menu-list" style={{listStyleType:"none"}}>
-						<li className="menu-item">
-							Report a problem
-						</li>
-						<li className="menu-item">
-							Suggesting edits
-						</li>
-						<li className="menu-item">
-							Contact us
-						</li>
-					</ul> */}
+					<h6>Report a problem</h6><br/>
+					<h6>Suggesting edits</h6><br/>
+					<h6>Contact us</h6>
 				</div>
 			</div>
 		</div>
