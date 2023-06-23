@@ -1,0 +1,38 @@
+.subscribe{
+    border-top: 3px solid #d4c065;
+    padding: 6%;
+    background: #f7f4f0;
+    margin-top: 5%;
+    width: 40%;
+    margin-left: 30%;
+    height: 40%;
+    /* border: 1px solid black; */
+
+}
+
+.order{
+
+ margin-top: 5%;
+}
+
+.butn{
+    height: 55px;
+    margin-top: 5%;
+    margin-left: 27%;
+}
+
+.butn:hover{
+    background-color: white;
+    border: 1px solid black;
+    color: rgb(164, 145, 46);
+}
+.sub{
+  
+   
+    width: 450px;
+}
+
+.sub1{
+
+    text-align: center;
+}

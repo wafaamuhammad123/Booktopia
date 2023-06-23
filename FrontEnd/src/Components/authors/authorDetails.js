@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import "./authorDetails.css";
 import { fetchAuthor, fetchBooksByAuthor } from "../../api";
 import { useParams } from "react-router-dom";
+import Header from '../header/header';
+import Footer from '../footer/footer.js';
+import "./authorDetails.css";
 
 export default function Author (){
     const [author, setAuthor]= useState({});
@@ -32,13 +35,14 @@ export default function Author (){
 
     return (
       <div>
+            <Header />
         <div className="bg-sand padding-large author">
           <div className="container">
            {author && <div className="row">
               <div className="col-md-6">
-                <a href="#" className="product-image">
+                <a href="#">
                   <img
-                    style={{ height: "550px" }}
+                    style={{ height: "500px", width:"400px" }}
                     alt="not found"
                     src={author.imageLink}
                   />
@@ -111,6 +115,7 @@ export default function Author (){
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     );
 }

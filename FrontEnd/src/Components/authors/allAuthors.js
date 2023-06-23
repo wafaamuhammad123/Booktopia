@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { fetchAuthors } from "../../api";
+import {  NavLink } from 'react-router-dom';
 import Header from "../header/header";
 import Footer from "../footer/footer";
 const AllAuthors = () => {
@@ -51,13 +52,13 @@ const AllAuthors = () => {
                     <div class="col-md-4">
                       <article class="column" data-aos="fade-up">
                         <figure>
-                          <a href="." class="image-hvr-effect">
+                        <NavLink to={`/authors/${author._id}`}>
                             <img
                               src={author.imageLink}
                               alt="author"
                               class="post-image"
                             />
-                          </a>
+                          </NavLink>
                         </figure>
                         <div class="post-item">
                           <h3>

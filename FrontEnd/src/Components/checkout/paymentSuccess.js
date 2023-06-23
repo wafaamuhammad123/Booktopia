@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { completeSubscribe } from "../../api";
 
+
 export default function PaymentSuccess() {
   let subscribe = async () => {
     let user = localStorage.getItem("user");
@@ -20,6 +21,7 @@ export default function PaymentSuccess() {
 
   return (
     <div>
+      
       <section>
         <div class="container">
           <div class="row">
@@ -38,6 +40,7 @@ export default function PaymentSuccess() {
           </div>
         </div>
       </section>
+      
     </div>
   );
 }
