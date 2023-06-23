@@ -98,15 +98,21 @@
 
   #divs{
     display:flex;
-    gap: 50px;
+    gap: 40px;
   }
 
-  .divv{
-    padding: 40px;
+.divv{
+    padding: 20px;
     border-radius: 10px;
     font-size: 20px;
   }
 
   .div-title{
     display:block;
+  }
+
+  .chartDashboard{
+    margin-left: 25%;
+    margin-top: 2%;
+    width: 65%;
   }
