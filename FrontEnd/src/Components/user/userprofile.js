@@ -4,7 +4,7 @@ import jwtDecode from 'jwt-decode';
 import {fetchuserDetails} from '../../api';
 import './userprofile.css';
 import Header from '../header/header';
-import Footer from '../footer/footer.js';
+import Footer from '../footer/footer';
 
 
 const UserProfile = ({ userId }) => {
@@ -95,10 +95,17 @@ const UserProfile = ({ userId }) => {
 
         </div>
       </div>
-    </div>
-    <Footer />
+    </div><br/><br/>
+    {/* <div className="image-container">
+      <img src="images/seed.png" alt="Image 1"/>
+      <img src="images/ss_tree.png" alt="Image 2"/>
+      <img src="images/b_tree.png" alt="Image 3"/>
+    </div> */}
+    {/* <div style={{marginLeft:"1%"}}>
+      <img src="images/land.png" alt="Footer Image" class="footer-image"/>
+    </div> */}
+    <Footer/>
 </div>
   );
 };
-
 export default UserProfile;

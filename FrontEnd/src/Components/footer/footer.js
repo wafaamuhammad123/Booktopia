@@ -16,81 +16,37 @@ const Footer = () => {
 			</div>
 			<div className="col footer-size" style={{marginTop:"35px"}}>
 				<div className="footer-menu">
-					<h5>About Us</h5>
+					<h5 style={{fontSize:"18px", fontWeight:"bold"}}>About Us</h5>
 					<h7>Vision</h7><br/>
 					<h7>Articles</h7><br/>
 					<h7>Service terms</h7>
-					{/* <ul className="menu-list" style={{listStyleType:"none"}}>
-						<li className="menu-item">
-							vision
-						</li>
-						<li className="menu-item">
-							articles
-						</li>
-						<li className="menu-item">
-							service terms
-                        </li>
-					</ul> */}
 				</div>
 
 			</div>
 			<div className="col footer-size">
 
 				<div className="footer-menu">
-					<h5 style={{marginTop:"35px"}}>Discover</h5>
+					<h5 style={{marginTop:"35px", fontSize:"18px", fontWeight:"bold"}}>Discover</h5>
 					<h7>Home</h7><br/>
 					<h7>Books</h7><br/>
 					<h7>Authors terms</h7>
-					{/* <ul className="menu-list" style={{listStyleType:"none"}}>
-						<li className="menu-item">
-							Home
-						</li>
-						<li className="menu-item">
-							Books
-						</li>
-						<li className="menu-item">
-							Authors
-						</li>
-					</ul> */}
 				</div>
 
 			</div>
 			<div className="col footer-size">
 				<div className="footer-menu">
-					<h5 style={{marginTop:"35px"}}>My account</h5>
+					<h5 style={{marginTop:"35px", fontSize:"18px", fontWeight:"bold"}}>My account</h5>
 					<h7>Sign In</h7><br/>
 					<h7>View Cart</h7><br/>
 					<h7>My Wishlist</h7>
-					{/* <ul className="menu-list" style={{listStyleType:"none"}}>
-						<li className="menu-item">
-							Sign In
-						</li>
-						<li className="menu-item">
-							View Cart
-						</li>
-						<li className="menu-item">
-							My Wishtlist
-						</li>
-					</ul> */}
 				</div>
 			</div>
 			<div className="col footer-size">
 				<div className="footer-menu">
-					<h5 style={{marginTop:"35px"}}>Help center</h5>
+					<h5 style={{marginTop:"35px", fontSize:"18px", fontWeight:"bold"}}>Help center</h5>
 					<h7>Report a problem</h7><br/>
 					<h7>Suggesting edits</h7><br/>
 					<h7>Contact us</h7>
-					{/* <ul className="menu-list" style={{listStyleType:"none"}}>
-						<li className="menu-item">
-							Report a problem
-						</li>
-						<li className="menu-item">
-							Suggesting edits
-						</li>
-						<li className="menu-item">
-							Contact us
-						</li>
-					</ul> */}
 				</div>
 			</div>
 		</div>

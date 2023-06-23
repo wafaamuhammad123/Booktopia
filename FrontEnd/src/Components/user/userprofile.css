@@ -82,3 +82,25 @@ transform: scale(1,1);
     font-weight: 500;
   }
 }
+
+
+.image-container {
+  /* Set the image container to be a flexbox */
+  display: flex;
+  justify-content: space-between; /* Space the images evenly across the container */
+  align-items: center; /* Center the images vertically */
+  position: absolute; /* Position the container absolutely at the bottom of the page */
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100px; /* Set the height of the container */
+  background-color: #ffffff; /* Set a background color for the container */
+  z-index: 1; /* Set the z-index to be higher than the page content */
+}
+
+.image-container img {
+  /* Set the width of the images to be one-third of the container width */
+  width: calc(100% / 3);
+  height: auto; /* Set the height of the images to be automatic */
+  object-fit: cover; /* Resize the images to cover the container */
+}

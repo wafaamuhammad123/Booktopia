@@ -123,15 +123,23 @@ const Header = ({ userId }) => {
                                             </NavLink>
                                         </a>
                                     </li>
-                                    <li>
-                                        <a href="." className="dropdown-item"><NavLink className="link2" activeclassname="active2" to={`/allBooks`}>Books</NavLink></a>
+
+                                <li className="nav-item col">
+                                    <a href="." className="dropdown-item"><NavLink className="link2" activeclassname="active2" to={`/lists`}>Books</NavLink></a>
+                                </li>
+                                <li className="nav-item col">
+                                    <a href="." className="dropdown-item"><NavLink className="link2" activeclassname="active2" to={`/allAuthors`}>Authors</NavLink></a>
+                                </li>
+                                <li className="nav-item col">
+                                    <a href="." className="dropdown-item"><NavLink className="link2" activeclassname="active2" to={`/contact`}>Contact</NavLink></a>
+                                </li>
+                                 {
+                                    !isSubscribed && (
+                                    <li className="nav-item col">
+                                        <a href="." className="dropdown-item"><NavLink className="link2" activeclassname="active2" to={`/checkout`}>Subscribe</NavLink></a>
                                     </li>
-                                    <li>
-                                        <a href="." className="dropdown-item"><NavLink className="link2" activeclassname="active2" to={`/`}>Authors</NavLink></a>
-                                    </li>
-                                    <li>
-                                        <a href="." className="dropdown-item"><NavLink className="link2" activeclassname="active2" to={`/contact`}>Contact</NavLink></a>
-                                    </li>
+                                    )
+                                }
                                     <li><a href="." className="dropdown-item">
                                         <div onClick={handleLogout} id="logout">Logout</div>
                                     </a></li>

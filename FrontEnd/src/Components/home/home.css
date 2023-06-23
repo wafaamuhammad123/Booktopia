@@ -1862,3 +1862,17 @@ span.prev-price {
     max-width: 70%;
   }
 }
+
+
+
+@media (min-width: 992px) {
+  .title-a {
+    font-size: 40px;
+  }
+  .title-b {
+    font-size: 20px;
+  }
+  .title-c {
+    font-size: 18px;
+  }
+}
