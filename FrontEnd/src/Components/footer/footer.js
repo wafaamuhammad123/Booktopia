@@ -9,7 +9,7 @@ const Footer = () => {
 			<div className="col" id='footer-logo' style={{ textAlign: "center"}}>
 				<div className="footer-item">
 					<div className="company-brand">
-						<img src={process.env.PUBLIC_URL + "images/logo_1.png"} className="logo" alt="logo"/>
+						<img src={process.env.PUBLIC_URL + "/images/logo_1.png"} className="logo" alt="logo"/>
 						
 					</div>
 				</div>
