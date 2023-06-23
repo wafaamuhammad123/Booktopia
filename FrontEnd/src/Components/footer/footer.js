@@ -1,6 +1,5 @@
 import React from 'react';
 import '../header/header.css'
-// import { NavLink } from "react-router-dom";
 const Footer = () => {
     return (
 <div  id="footer">      
@@ -10,7 +9,8 @@ const Footer = () => {
 			<div className="col" id='footer-logo' style={{ textAlign: "center"}}>
 				<div className="footer-item">
 					<div className="company-brand">
-						<img src="images/logo_1.png" className="logo" alt="logo"/>
+						<img src={process.env.PUBLIC_URL + "images/logo_1.png"} className="logo" alt="logo"/>
+						
 					</div>
 				</div>
 			</div>
@@ -26,6 +26,7 @@ const Footer = () => {
 			<div className="col footer-size">
 
 				<div className="footer-menu">
+
 					<h5 style={{marginTop:"35px", fontSize:"18px", fontWeight:"bold"}}>Discover</h5>
 					<h7>Home</h7><br/>
 					<h7>Books</h7><br/>
@@ -35,14 +36,17 @@ const Footer = () => {
 			</div>
 			<div className="col footer-size">
 				<div className="footer-menu">
+
 					<h5 style={{marginTop:"35px", fontSize:"18px", fontWeight:"bold"}}>My account</h5>
 					<h7>Sign In</h7><br/>
 					<h7>View Cart</h7><br/>
 					<h7>My Wishlist</h7>
+
 				</div>
 			</div>
 			<div className="col footer-size">
 				<div className="footer-menu">
+
 					<h5 style={{marginTop:"35px", fontSize:"18px", fontWeight:"bold"}}>Help center</h5>
 					<h7>Report a problem</h7><br/>
 					<h7>Suggesting edits</h7><br/>
