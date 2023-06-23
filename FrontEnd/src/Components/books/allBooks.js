@@ -52,9 +52,9 @@ const BookList = () => {
           <span className="categortBtn" onClick={() => setCategory('')}>All</span>
           <span className="categortBtn" onClick={() => setCategory('romance')}>Romance</span>
           <span className="categortBtn" onClick={() => setCategory('drama')}>Drama</span>
-          <span className="categortBtn" onClick={() => setCategory('drama')}>Drama</span>
-          <span className="categortBtn" onClick={() => setCategory('drama')}>Drama</span>
-          <span className="categortBtn" onClick={() => setCategory('drama')}>Drama</span>
+          <span className="categortBtn" onClick={() => setCategory('autobiography')}>Autobiography</span>
+          <span className="categortBtn" onClick={() => setCategory('philosophy')}>Philosophy</span>
+          <span className="categortBtn" onClick={() => setCategory('realism')}>Realism</span>
       </div>
       <div className='search'>
         <input type="text" id="search" placeholder="search the book you want..." value={searchQuery} onChange={handleSearchChange} />

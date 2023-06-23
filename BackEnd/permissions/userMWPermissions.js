@@ -8,7 +8,6 @@ module.exports = (req, res, next) => {
   if (decodedPayload.userType === "admin") {
     next(); //isAdmin
   } else {
-    console.log(decodedPayload.userType);
     res.status(401).send("You are not an admin");
   }
 };

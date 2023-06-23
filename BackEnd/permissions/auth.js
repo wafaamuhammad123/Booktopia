@@ -11,10 +11,8 @@ module.exports = function (req, res, next) {
   try {
     var decodedPayload = jwt.verify(token, "thistokensecret");
     req.user = decodedPayload;
-    console.log("auth")
     next();
   } catch (ex) {
     res.status(400).send("Invalid token.");
-    console.log("not auth")
   }
 };

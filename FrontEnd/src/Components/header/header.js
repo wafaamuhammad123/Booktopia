@@ -41,27 +41,27 @@ const Header = ({ userId }) => {
             <header id="header" className='navbar navbar-expand-lg' style={{textAlign:"center"}}>
                 <div className='nav-con'>
                     <div className="container row  d-none d-lg-flex">
-                        <a className="navbar-brand col-lg-2">
+                        <a href="." className="navbar-brand col-lg-2">
                             <img src="images/main-logo (1).png" alt="Logo"/>
                         </a>
                         <div className='col-lg-2'></div>
                         <div className="collapse navbar-collapse col-md-auto row" id="collapsibleNavbar">
                             <ul className="navbar-nav justify-content-end d-none d-lg-flex">
                                 <li className="nav-item col">
-                                    <a className="nav-link"><NavLink className="link2" activeclassname="active2" to={`/home`}>Home</NavLink></a>
+                                    <a href="." className="nav-link"><NavLink className="link2" activeclassname="active2" to={`/home`}>Home</NavLink></a>
                                 </li>
                                 <li className="nav-item col">
-                                    <a className="nav-link"><NavLink className="link2" activeclassname="active2" to={`/lists`}>Books</NavLink></a>
+                                    <a href="." className="nav-link"><NavLink className="link2" activeclassname="active2" to={`/lists`}>Books</NavLink></a>
                                 </li>
                                 <li className="nav-item col">
-                                    <a className="nav-link"><NavLink className="link2" activeclassname="active2" to={`/allAuthors`}>Authors</NavLink></a>
+                                    <a href="." className="nav-link"><NavLink className="link2" activeclassname="active2" to={`/allAuthors`}>Authors</NavLink></a>
                                 </li>
                                 <li className="nav-item col">
-                                    <a className="nav-link"><NavLink className="link2" activeclassname="active2" to={`/`}>Contact</NavLink></a>
+                                    <a href="." className="nav-link"><NavLink className="link2" activeclassname="active2" to={`/contact`}>Contact</NavLink></a>
                                 </li>
                                  {
                                     !isSubscribed && (
-                                   <a className="nav-link"><NavLink className="link2" activeclassname="active2" to={`/checkout`}>Subscribe</NavLink></a>
+                                   <a href="." className="nav-link"><NavLink className="link2" activeclassname="active2" to={`/checkout`}>Subscribe</NavLink></a>
                                 
                                     )
                                 }  
@@ -69,20 +69,20 @@ const Header = ({ userId }) => {
                                 {user ? (
 
                                     <li className="nav-item dropdown">
-                                        <a className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <a href="." className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                             <img
                                             className="userImage"
                                             src={user.image}
-                                            alt="User Image"
+                                            alt="UserImage"
                                             />
                                         </a>
                                         <ul className="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                                            <li><a className="dropdown-item">
+                                            <li><a  href="." className="dropdown-item">
                                                 <NavLink className="link2" activeclassname="active2" to={`/userprofile`}>
                                                 Profile
                                                 </NavLink>
                                             </a></li>
-                                            <li><a className="dropdown-item">
+                                            <li><a href="." className="dropdown-item">
                                                 <div onClick={handleLogout} id="logout">Logout</div>
                                             </a></li>
                                         </ul>
@@ -90,7 +90,7 @@ const Header = ({ userId }) => {
                                 )
                                 : (
                                     <li className="nav-item col">
-                                        <a className="nav-link">
+                                        <a  href="." className="nav-link">
                                             <NavLink id="loginBtn" className="link2" activeclassname="active2" to={`/login`}>
                                             Login
                                             </NavLink>
@@ -106,36 +106,36 @@ const Header = ({ userId }) => {
 
                     <div className='d-flex d-lg-none container'>
                         <div className='container'>
-                            <a className="navbar-brand col-lg-2">
+                            <a href="." className="navbar-brand col-lg-2">
                                 <img src="images/main-logo (1).png" alt="Logo"/>
                             </a>
                         </div>
                         <ul className='row'>
-                            <button className="navbar-toggler" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span className="navbar-toggler" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <span className="navbar-toggler-icon"></span>
-                            </button>
+                            </span>
                             {user ? (
                                 <ul className="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                                     <li>
-                                        <a className="dropdown-item">
+                                        <a href="." className="dropdown-item">
                                             <NavLink className="link2" activeclassname="active2" to={`/userprofile`}>
                                             Profile
                                             </NavLink>
                                         </a>
                                     </li>
                                     <li>
-                                        <a className="dropdown-item"><NavLink className="link2" activeclassname="active2" to={`/allBooks`}>Books</NavLink></a>
+                                        <a href="." className="dropdown-item"><NavLink className="link2" activeclassname="active2" to={`/allBooks`}>Books</NavLink></a>
                                     </li>
                                     <li>
-                                        <a className="dropdown-item"><NavLink className="link2" activeclassname="active2" to={`/`}>Authors</NavLink></a>
+                                        <a href="." className="dropdown-item"><NavLink className="link2" activeclassname="active2" to={`/`}>Authors</NavLink></a>
                                     </li>
                                     <li>
-                                        <a className="dropdown-item"><NavLink className="link2" activeclassname="active2" to={`/contact`}>Contact</NavLink></a>
+                                        <a href="." className="dropdown-item"><NavLink className="link2" activeclassname="active2" to={`/contact`}>Contact</NavLink></a>
                                     </li>
                                     <li>
-                                        <a className="dropdown-item"><NavLink className="link2" activeclassname="active2" to={`/`}>About</NavLink></a>
+                                        <a href="." className="dropdown-item"><NavLink className="link2" activeclassname="active2" to={`/`}>About</NavLink></a>
                                     </li>
-                                    <li><a className="dropdown-item">
+                                    <li><a href="." className="dropdown-item">
                                         <div onClick={handleLogout} id="logout">Logout</div>
                                     </a></li>
                                 </ul>
@@ -143,14 +143,14 @@ const Header = ({ userId }) => {
                             : (
                                 <ul className="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                                     <li>
-                                            <a className="dropdown-item">
+                                            <a href="." className="dropdown-item">
                                                 <NavLink id="loginBtn" className="link2" activeclassname="active2" to={`/login`}>
                                                 Login
                                                 </NavLink>
                                             </a>
                                     </li>
                                     <li>
-                                        <a className="dropdown-item"><NavLink className="link2" activeclassname="active2" to={`/`}>About</NavLink></a>
+                                        <a href="." className="dropdown-item"><NavLink className="link2" activeclassname="active2" to={`/`}>About</NavLink></a>
                                     </li>
                                 </ul>
                             )}

@@ -95,3 +95,18 @@
   .Btn:active {
     transform: translate(2px ,2px);
   }
+
+  #divs{
+    display:flex;
+    gap: 50px;
+  }
+
+  .divv{
+    padding: 40px;
+    border-radius: 10px;
+    font-size: 20px;
+  }
+
+  .div-title{
+    display:block;
+  }

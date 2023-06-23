@@ -29,7 +29,7 @@ export default function UpdateAuthor (){
         .catch((err) => {
           console.log(err);
         });
-    },[])
+    },[id])
     
       const handleImageChange = (e) => {
         setSelectedImage(e.target.files[0]);

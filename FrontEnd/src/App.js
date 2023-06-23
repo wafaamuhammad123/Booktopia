@@ -57,17 +57,14 @@ function App() {
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="" element={<Login />} />
+          <Route path="" element={<Home />} />
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<SignUp />} />
           <Route path="home" element={<Home />} />
-          <Route path="error403" element={<Error403 />} />
           <Route path="contact" element={<Contact />} />
-
-
           {isAdmin() ? (
             <>
-              <Route path="/books/:id" element={<BookDetails />} />
+              <Route path="books/:id" element={<BookDetails />} />
               <Route path="createbook" element={<AddBook />} />
               <Route path="books" element={<Books />} />
               <Route path="authors" element={<Authors />} />
@@ -121,9 +118,7 @@ function App() {
 
             
           )}
-
-          
-
+          <Route path="error403" element={<Error403 />} />
           <Route path="*" element={<Error />} />
         </Routes>
       </BrowserRouter>
