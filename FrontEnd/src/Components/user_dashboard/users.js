@@ -53,7 +53,7 @@ export default function Users (){
              <td>
                <button className='btn btn-outline-success me-2'><NavLink className="link1" to={`/viewUser/${user._id}`}>View</NavLink></button>
      
-               <button className='btn btn-outline-info me-2'><NavLink className="link1" to={`/updateUser/${user._id}`}> Update</NavLink></button>
+               <button className='btn btn-outline-info me-2'><NavLink className="link1" to={`/updateUserByAdmin/${user._id}`}> Update</NavLink></button>
                <button className='btn btn-outline-danger me-2'onClick={() => handleDeleteUser(user._id)}>Delete</button>
              </td>
            </tr>

@@ -23,7 +23,7 @@ import Checkout from "./Components/checkout/checkout";
 import PaymentSuccess from "./Components/checkout/paymentSuccess";
 import UserProfile from "./Components/user/userprofile";
 import BookList from "./Components/books/allBooks";
-import UpdateUser from "./Components/user/updateUser";
+import UpdateUserProfile from "./Components/user/updateUser";
 import jwtDecode from "jwt-decode";
 import Error403 from "./Components/error403";
 import UserBooks from "./Components/user/userBooks";
@@ -77,7 +77,7 @@ function App() {
               <Route path="updatebook/:id" element={<UpdateBook />} />
               <Route path="getUsers" element={<Users />} />
               <Route path="viewUser/:id" element={<ViewUser />} />
-              <Route path="updateUser/:id" element={<UpdateUserDetails />} />
+              <Route path="updateUserByAdmin/:id" element={<UpdateUserDetails />} />
               <Route path="CreateUser" element={<CreateUser />} />
             </>
           ) : (
@@ -99,7 +99,7 @@ function App() {
             <>
               <Route path="lists" element={<BookList />} />
               <Route path="userprofile" element={<UserProfile />} />
-              <Route path="UpdateUser/:id" element={<UpdateUser />} />
+              <Route path="UpdateUser/:id" element={<UpdateUserProfile />} />
               <Route path="UserBooks/:id" element={<UserBooks />} />
               <Route path="userbookdetails/:id" element={<UserBookDetails />} />
                <Route path ="allAuthors" element={<AllAuthors/>}/>
