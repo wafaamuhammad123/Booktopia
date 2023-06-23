@@ -33,24 +33,27 @@ import UpdateUserDetails from "./Components/user_dashboard/updateUserDetails";
 import CreateUser from "./Components/user_dashboard/createUser";
 import AllAuthors from "./Components/authors/allAuthors";
 import Contact from "./Components/contact/contact"
-const isAuthenticated = () => {
-  // const navigate =useNavigate();
-  const token = localStorage.getItem("token");
-  // return !!token;
-  if(token) return true;
-  else return false;
-};
 
-const isAdmin = () => {
+const isAuthenticated = async () => {
   const token = localStorage.getItem("token");
   if (token) {
-    const decodedToken = jwtDecode(token);
+    const decodedToken = await jwtDecode(token);
+    const expirationTime = decodedToken.exp;
+    const currentTime = Date.now() / 1000; // Convert to seconds
+    return currentTime < expirationTime;
+  }
+  return false;
+};
+
+const isAdmin = async () => {
+  const token = localStorage.getItem("token");
+  if (token) {
+    const decodedToken = await jwtDecode(token);
     const userRole = decodedToken.userType;
     return userRole === "admin";
   }
   return false;
 };
-
 
 function App() {
   return (

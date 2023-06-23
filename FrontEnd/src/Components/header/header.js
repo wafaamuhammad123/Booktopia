@@ -42,7 +42,7 @@ const Header = ({ userId }) => {
                 <div className='nav-con'>
                     <div className="container row  d-none d-lg-flex">
                         <a href="." className="navbar-brand col-lg-2">
-                            <img src="images/main-logo (1).png" alt="Logo"/>
+                        <img src={process.env.PUBLIC_URL + "/images/main-logo (1).png"} alt="Logo" />
                         </a>
                         <div className='col-lg-2'></div>
                         <div className="collapse navbar-collapse col-md-auto row" id="collapsibleNavbar">
