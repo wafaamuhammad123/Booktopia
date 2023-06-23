@@ -4,6 +4,8 @@ import { fetchDeleteBook } from '../../api';
 import Sidebar from '../admin_dashboard/sidebar';
 import './index.css' 
 import { NavLink } from 'react-router-dom';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
 
 class Books extends Component {
   constructor(props) {
@@ -11,7 +13,9 @@ class Books extends Component {
     this.state = {
       allBooks: [],
       currentPage: 1,
-      booksPerPage: 10
+      booksPerPage: 10,
+      showModal: false, 
+      deleteBookId: null, 
     };
   }
   
@@ -19,6 +23,15 @@ class Books extends Component {
     this.fetchBooksData();
   }
 
+  handleDeleteBook = (id) => {
+    this.setState({ showModal: true, deleteBookId: id });
+  };
+
+  handleCloseModal = () => {
+    this.setState({ showModal: false, deleteBookId: null });
+  };
+  
+  
   fetchBooksData = () => {
     const { currentPage, booksPerPage } = this.state;
     const startIndex = (currentPage - 1) * booksPerPage;
@@ -30,20 +43,18 @@ class Books extends Component {
         console.log(err);
       });
   }
-
-  handleDeleteBook = (id) => {
-    const confirmDelete = window.confirm('Are you sure you want to delete this book?');
-    if (confirmDelete) {
-      fetchDeleteBook(id)
-        .then((response) => {
-          this.fetchBooksData();
-          console.log('Book deleted successfully');
-        })
-        .catch((error) => {
-          console.error('Error deleting book:', error);
-        });
-    }
+  handleDeleteConfirmed = (id) => {
+    fetchDeleteBook(id)
+      .then((response) => {
+        this.fetchBooksData();
+        console.log('Book deleted successfully');
+        this.handleCloseModal(); 
+      })
+      .catch((error) => {
+        console.error('Error deleting book:', error);
+      });
   };
+  
 
   handlePageChange = (pageNumber) => {
     this.setState({ currentPage: pageNumber }, () => {
@@ -126,6 +137,22 @@ class Books extends Component {
           </button>
         </div>
         </div>
+        <Modal show={this.state.showModal} onHide={this.handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirm Delete</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Are you sure you want to delete this book?
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={this.handleCloseModal}>
+            Cancel
+          </Button>
+          <Button variant="danger" onClick={() => this.handleDeleteConfirmed(this.state.deleteBookId)}>
+            Delete
+          </Button>
+        </Modal.Footer>
+      </Modal>
       </div>
     );
   }

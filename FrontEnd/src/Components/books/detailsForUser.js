@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { fetchBookDetails, chooseBook, fetchuserDetails } from "../../api";
 import jwtDecode from 'jwt-decode';
 import './details.css'
 import Header from '../header/header';
 import Footer from '../footer/footer.js';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
 
 function UserBookDetails() {
+  const navigate= useNavigate();
   const { id } = useParams();
   const [book, setBook] = useState({});
   const [user, setUser] = useState({});
   const [statue, setStatue] = useState("");
   const [subscribed, setSubscribed] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const handleStatueChange = (event) => {
     setStatue(event.target.value);
@@ -38,18 +42,22 @@ function UserBookDetails() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+  
     if (token) {
       const decodedToken = jwtDecode(token);
-      var userId = decodedToken.userId;
+      const userId = decodedToken.userId;
+  
       fetchuserDetails(userId)
         .then((data) => {
           setUser(data);
+          const userSubscribed = data.subscribed;
+          setSubscribed(userSubscribed);
         })
         .catch((err) => {
           console.log(err);
         });
     }
-
+  
     fetchBookDetails(id)
       .then((data) => {
         setBook(data);
@@ -57,18 +65,23 @@ function UserBookDetails() {
       .catch((err) => {
         console.log(err);
       });
-    console.log(user)
-    const userSubscribed = user.subscribed; // Replace with actual logic to determine user subscription status
-    setSubscribed(userSubscribed);
+  
   }, [id]);
+  
 
-  const handleReadOnline = () => {
+  const handleReadOnline = (event) => {
+    event.preventDefault();
     if (subscribed) {
       window.open(book.pdfLink, "_blank");
     } else {
-      alert("Please subscribe to access the book.");
+      setShowModal(true);
     }
   };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+  
 
   return (
     <div className="container">
@@ -121,6 +134,22 @@ function UserBookDetails() {
           </div>
         </div>
       </div>
+      <Modal show={showModal} onHide={handleCloseModal}>
+      <Modal.Header closeButton>
+        <Modal.Title>Subscription Required</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        Please subscribe to access the book.
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={handleCloseModal}>
+          Close
+        </Button>
+        <Button variant="primary" onClick={() => navigate("/checkout")}>
+          Subscribe
+        </Button>
+      </Modal.Footer>
+    </Modal>
       <Footer />
     </div>
   );

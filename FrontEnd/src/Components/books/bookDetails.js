@@ -20,13 +20,6 @@ function BookDetails() {
       });
   }, [id]);
 
-  const handleDownload = () => {
-    const link = document.createElement("a");
-    link.href = pdfLink;
-    link.download = pdfLink.split("/").pop();
-    link.click();
-  };
-
   return (
     <div className="body">
       <Sidebar />

@@ -132,9 +132,6 @@ const Header = ({ userId }) => {
                                     <li>
                                         <a href="." className="dropdown-item"><NavLink className="link2" activeclassname="active2" to={`/contact`}>Contact</NavLink></a>
                                     </li>
-                                    <li>
-                                        <a href="." className="dropdown-item"><NavLink className="link2" activeclassname="active2" to={`/`}>About</NavLink></a>
-                                    </li>
                                     <li><a href="." className="dropdown-item">
                                         <div onClick={handleLogout} id="logout">Logout</div>
                                     </a></li>

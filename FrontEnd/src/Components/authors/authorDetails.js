@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import "./authorDetails.css";
 import { fetchAuthor, fetchBooksByAuthor } from "../../api";
 import { useParams } from "react-router-dom";
 import Header from '../header/header';
@@ -12,7 +11,6 @@ export default function Author (){
     const { id } = useParams();
     const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDg0Y2RiNDJhMWRlNmEwODkyZTljMmYiLCJ1c2VyVHlwZSI6ImFkbWluIiwiaWF0IjoxNjg3MTcxODI0fQ.nY9c1L4x-YxDRJ4X9eXp7ADi5SsTlWy2OPTn4LaAdCA"
 
-  
     useEffect(()=>{
         fetchAuthor(id, token)
         .then((data) => {
@@ -35,12 +33,12 @@ export default function Author (){
 
     return (
       <div>
-            <Header />
+          <Header />
         <div className="bg-sand padding-large author">
           <div className="container">
            {author && <div className="row">
               <div className="col-md-6">
-                <a href="#">
+                <a href=".">
                   <img
                     style={{ height: "500px", width:"400px" }}
                     alt="not found"
@@ -86,17 +84,11 @@ export default function Author (){
                             <div className="col-md-6">
                             <figure className="product-style">
                               <img
-                              src={book.imgLink}
+                              src={book.imageLink}
                                 alt="Books"
+                                style={{height: "500px"}}
                                 className="product-item"
                               />
-                              <button
-                                type="button"
-                                className="add-to-cart"
-                                data-product-tile="add-to-cart"
-                              >
-                                Add to Favorites
-                              </button>
                               <figcaption>
                                 <h3>{book.title}</h3>
                                 <p>{book.description}</p>
